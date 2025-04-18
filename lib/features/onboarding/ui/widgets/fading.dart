@@ -1,23 +1,38 @@
+import 'dart:ui'; // Import for BackdropFilter
+
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/theming/colors.dart';
+import 'package:rive/rive.dart'; // Import the Rive package
 
 class Fading extends StatelessWidget {
   const Fading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 600.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
-          stops: [0.17.h, 0.9.h],
-          colors: [AppColors.lmcBlue, AppColors.lmcBlue.withOpacity(0.0)],
+    return Stack(
+      children: [
+        // Rive animation as the background
+        const RiveAnimation.asset(
+          'assets/animations/shapes.riv', // Path to your Rive file
+          fit:
+              BoxFit.cover, // Ensures the animation covers the entire container
         ),
-      ),
+
+        // Blurry white overlay
+        BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 100.0,
+            sigmaY: 100.0,
+          ), // Adjust blur intensity
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            color: AppColors.backgroundColor.withOpacity(
+              0.3,
+            ), // Semi-transparent white
+          ),
+        ),
+      ],
     );
   }
 }

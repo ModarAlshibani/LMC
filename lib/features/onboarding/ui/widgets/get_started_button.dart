@@ -19,7 +19,7 @@ class GetStartedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0), // Rounded corners
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: 85.0,
+          horizontal: 80.0,
           vertical: 12.0,
         ), // Button padding
       ),
