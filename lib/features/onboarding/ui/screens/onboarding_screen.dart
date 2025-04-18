@@ -18,8 +18,8 @@ class OnboardingScreen extends StatelessWidget {
             Fading(),
             Positioned(
               top: -20.h,
-              left: 20.h,
-              right: 20.h,
+              left: 20.w,
+              right: 20.w,
               // right: 40.h,
               child: Center(child: Logo()),
             ),
@@ -27,15 +27,15 @@ class OnboardingScreen extends StatelessWidget {
             Container(
               child: Positioned(
                 top: 150.h,
-                left: 20.h,
-                right: 20.h,
+                left: 20.w,
+                right: 20.w,
                 child: OnboardingText(),
               ),
             ),
             Positioned(
               bottom: 40.h,
-              left: 20.h,
-              right: 20.h,
+              left: 20.w,
+              right: 20.w,
               child: GetStartedButton(),
             ),
           ],
