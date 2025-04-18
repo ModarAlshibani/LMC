@@ -17,7 +17,7 @@ class OnboardingScreen extends StatelessWidget {
           children: [
             Fading(),
             Positioned(
-              top: 10.h,
+              top: -20.h,
               left: 20.h,
               right: 20.h,
               // right: 40.h,
