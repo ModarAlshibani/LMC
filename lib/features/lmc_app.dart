@@ -14,7 +14,7 @@ class LmcApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-     child: MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'LMC App',
         theme: ThemeData(
@@ -22,9 +22,9 @@ class LmcApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.backgroundColor,
           fontFamily: 'Poppins',
         ),
-        
+
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.onboardingScreen
+        initialRoute: Routes.onboardingScreen,
       ),
     );
   }
