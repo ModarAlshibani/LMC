@@ -3,24 +3,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 
 class GeneralTextFormField extends StatelessWidget {
-  const GeneralTextFormField({super.key});
+  const GeneralTextFormField({super.key, this.focusedBorder, this.enabledBorder, this.hintText, this.prefixIcon, this.suffixIcon, this.isObsecureText});
+
+  final InputBorder? focusedBorder;
+  final InputBorder? enabledBorder;
+  final bool? isObsecureText;
+  final String? hintText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
-        enabledBorder: OutlineInputBorder(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
+        enabledBorder: enabledBorder ?? OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.greyBorder, width: 1.3),
           borderRadius: BorderRadius.circular(8.0),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.lmcOrange, width: 1.3),
+        focusedBorder: focusedBorder ?? OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.lmcOrange.withOpacity(0.6), width: 1.3),
           borderRadius: BorderRadius.circular(8.0),
         ),
-        hintStyle: TextStyle(fontSize: 10, color: AppColors.hintBlue),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        hintStyle: TextStyle(fontSize: 14.sp, color: AppColors.greyBorder),
+        hintText: hintText ?? "No hint text added",
       ),
+      obscureText: isObsecureText ?? false,
+      style: TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
+      cursorColor: AppColors.greyBorder,
     );
   }
 }

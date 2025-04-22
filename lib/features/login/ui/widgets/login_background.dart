@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 
-class LoginBackgroung extends StatelessWidget {
-  const LoginBackgroung({super.key});
+class LoginBackground extends StatelessWidget {
+  const LoginBackground({super.key});
 
   @override
   Widget build(BuildContext context) {
