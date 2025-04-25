@@ -2,7 +2,7 @@ import 'dart:ui'; // Import for BackdropFilter
 
 import 'package:flutter/material.dart';
 import 'package:lmc_app/core/theming/colors.dart';
-import 'package:rive/rive.dart'; // Import the Rive package
+// import 'package:rive/rive.dart'; // Import the Rive package
 
 class Fading extends StatelessWidget {
   const Fading({super.key});
@@ -12,11 +12,11 @@ class Fading extends StatelessWidget {
     return Stack(
       children: [
         // Rive animation as the background
-        const RiveAnimation.asset(
-          'assets/animations/shapes.riv', // Path to your Rive file
-          fit:
-              BoxFit.cover, // Ensures the animation covers the entire container
-        ),
+        // const RiveAnimation.asset(
+        //   'assets/animations/shapes.riv', // Path to your Rive file
+        //   fit:
+        //       BoxFit.cover, // Ensures the animation covers the entire container
+        // ),
 
         // Blurry white overlay
         BackdropFilter(

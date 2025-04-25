@@ -9,9 +9,16 @@ import 'package:lmc_app/features/login/ui/widgets/welcomeBackText.dart';
 
 import '../../../../core/routing/routes.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  bool isObsecureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +26,7 @@ class LoginScreen extends StatelessWidget {
       body: Stack(
         children: [
           LoginBackground(),
-          Positioned(
-            top: 62.h,
-            left: 0,
-            right: 0,
-            child: WelcomeBackText(),
-          ),
+          Positioned(top: 62.h, left: 0, right: 0, child: WelcomeBackText()),
           Positioned(
             bottom: 0.h,
             left: 0,
@@ -64,11 +66,21 @@ class LoginScreen extends StatelessWidget {
             right: 40.w,
             child: GeneralTextFormField(
               hintText: "********",
-              isObsecureText: true,
+              isObsecureText: isObsecureText,
               prefixIcon: Icon(
                 Icons.vpn_key_outlined,
-                size: 20.sp,
+                size: 20,
                 color: AppColors.greyBorder,
+              ),
+              suffixIcon: GestureDetector(
+                onTap: () => setState(() => isObsecureText = !isObsecureText),
+                child: Icon(
+                  isObsecureText
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined,
+                  size: 20,
+                  color: AppColors.greyBorder,
+                ),
               ),
             ),
           ),
@@ -88,9 +100,7 @@ class LoginScreen extends StatelessWidget {
             bottom: 70.h,
             right: 40.w,
             child: InkWell(
-              onTap: () => context.pushNamed(
-                Routes.signUp,
-              ),
+              onTap: () => context.pushNamed(Routes.signUp),
               child: Text(
                 "Sign up",
                 style: TextStyle(
