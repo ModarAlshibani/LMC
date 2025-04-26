@@ -8,12 +8,18 @@ class LoginRepo {
   ApiService _apiService;
 
   LoginRepo(this._apiService);
-  Future<ApiResult<LoginResponse> > login(LoginRequestBody loginRequestBody) async {
-     try{
+  Future<ApiResult<LoginResponse>> login(
+    LoginRequestBody loginRequestBody,
+  ) async {
+    print('Login request sent');
+    print('Email: ${loginRequestBody.email}');
+    print('Password: ${loginRequestBody.password}');
+    
+    try {
       final response = await _apiService.login(loginRequestBody);
       return ApiResult.success(response);
-     }catch(error){
+    } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));
-     }
+    }
   }
 }

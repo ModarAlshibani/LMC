@@ -12,7 +12,6 @@ pluginManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         gradlePluginPortal()
     }
 }
@@ -24,4 +23,3 @@ plugins {
 }
 
 include(":app")
-rootProject.name = "lmc"
