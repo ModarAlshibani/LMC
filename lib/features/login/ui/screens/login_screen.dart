@@ -76,14 +76,12 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(10.h),
-                Container(
-                  width: double.infinity,
-                  child: LoginButton(
-                    onPressed: () {
-                      print("button pressed");
-                      validateThenLogin(context);
-                    },
-                  ),
+                AppTextButton(
+                  buttonText: "Login",
+                  onPressed: () {
+                    validateThenDoLogin(context);
+                  },
+                  textStyle: TextStyle(fontSize: 15),
                 ),
                 verticalSpace(10.h),
                 const LoginBlocListener(),
@@ -95,15 +93,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  validateThenLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState != null &&
-        context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates(
-        LoginRequestBody(
-          email: context.read<LoginCubit>().emailController.text,
-          password: context.read<LoginCubit>().passwordController.text,
-        ),
-      );
+  void validateThenDoLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates();
     }
   }
 }

@@ -14,19 +14,19 @@ class EmailAndPassword extends StatefulWidget {
 }
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
-  
   bool isObsecureText = true;
 
-  late TextEditingController emailController;
   late TextEditingController passwordController;
 
-
-@override
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    emailController = context.read<LoginCubit>().emailController;
     passwordController = context.read<LoginCubit>().passwordController;
+    setupPasswordControllerListener();
+  }
+
+  void setupPasswordControllerListener() {
+    passwordController.addListener(() {});
   }
 
   @override
@@ -37,8 +37,8 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         children: [
           GeneralTextFormField(
             controller: context.read<LoginCubit>().emailController,
-            validator: (value){
-              if(value == null || value.isEmpty){
+            validator: (value) {
+              if (value == null || value.isEmpty) {
                 return "Email is required";
               }
             },
@@ -52,8 +52,8 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
           verticalSpace(10.h),
           GeneralTextFormField(
             controller: context.read<LoginCubit>().passwordController,
-            validator: (value){
-              if(value == null || value.isEmpty){
+            validator: (value) {
+              if (value == null || value.isEmpty) {
                 return "Password is required";
               }
             },
@@ -79,4 +79,12 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    super.dispose();
+  }
 }
+
+

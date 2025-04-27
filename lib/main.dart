@@ -5,5 +5,6 @@ import 'package:lmc_app/features/lmc_app.dart';
 
 void main() {
   setupGetIt();
+  // WidgetsFlutterBinding.ensureInitialized();
   runApp(LmcApp(appRouter: AppRouter()));
 }

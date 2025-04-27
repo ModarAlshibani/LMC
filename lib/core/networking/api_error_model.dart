@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 part 'api_error_model.g.dart';
 

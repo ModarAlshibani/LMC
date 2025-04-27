@@ -7,7 +7,7 @@ class LoginResponse {
   String? token;
   User? user;
 
-  LoginResponse({required this.token});
+  LoginResponse({this.message, this.token, this.user});
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
 }
@@ -16,19 +16,18 @@ class LoginResponse {
 class User {
   int? id;
   String? name;
-
   String? email;
   DateTime? emailVerifiedAt;
   String? role;
   List<String>? permissions;
 
   User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.emailVerifiedAt,
-    required this.role,
-    required this.permissions,
+    this.id,
+    this.name,
+    this.email,
+    this.emailVerifiedAt,
+    this.role,
+    this.permissions,
   });
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

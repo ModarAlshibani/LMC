@@ -8,8 +8,6 @@ import 'package:lmc_app/features/login/ui/screens/login_screen.dart';
 import 'package:lmc_app/features/onboarding/ui/screens/onboarding_screen.dart';
 import 'package:lmc_app/features/signup/sign_up.dart';
 
-
-
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     //this value is to be passed in any screen like this (arguments as ClassName)
@@ -23,7 +21,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
-                create: (context) => get_it<LoginCubit>(),
+                create: (context) => getIt<LoginCubit>(),
                 child: const LoginScreen(),
               ),
         );

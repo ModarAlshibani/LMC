@@ -5,21 +5,18 @@ import 'package:lmc_app/features/login/data/models/login_request_body.dart';
 import 'package:lmc_app/features/login/data/models/login_response.dart';
 
 class LoginRepo {
-  ApiService _apiService;
+  final ApiService _apiService;
 
   LoginRepo(this._apiService);
+
   Future<ApiResult<LoginResponse>> login(
     LoginRequestBody loginRequestBody,
   ) async {
-    print('Login request sent');
-    print('Email: ${loginRequestBody.email}');
-    print('Password: ${loginRequestBody.password}');
-    
     try {
       final response = await _apiService.login(loginRequestBody);
       return ApiResult.success(response);
-    } catch (error) {
-      return ApiResult.failure(ErrorHandler.handle(error));
+    } catch (errro) {
+      return ApiResult.failure(ErrorHandler.handle(errro));
     }
   }
 }
