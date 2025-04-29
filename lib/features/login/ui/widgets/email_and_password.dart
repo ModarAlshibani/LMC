@@ -6,19 +6,29 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/widgets/general_text_form_field.dart';
 
-class EmailAndPassword extends StatelessWidget {
-  const EmailAndPassword({super.key, required this.emailController, required this.passwordController});
- final TextEditingController emailController;
- final TextEditingController passwordController;
+class EmailAndPassword extends StatefulWidget {
+  const EmailAndPassword({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  @override
+  State<EmailAndPassword> createState() => _EmailAndPasswordState();
+}
+
+class _EmailAndPasswordState extends State<EmailAndPassword> {
+   bool isObsecureText = true;
   @override
   Widget build(BuildContext context) {
-
-    bool isObsecureText = true;
+   
 
     return Column(
       children: [
         GeneralTextFormField(
-          controller: emailController,
+          controller: widget.emailController,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Email is required";
@@ -33,7 +43,7 @@ class EmailAndPassword extends StatelessWidget {
         ),
         verticalSpace(10.h),
         GeneralTextFormField(
-          controller: passwordController,
+          controller: widget.passwordController,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Password is required";
@@ -47,13 +57,13 @@ class EmailAndPassword extends StatelessWidget {
             color: AppColors.greyBorder,
           ),
           suffixIcon: GestureDetector(
-            onTap: () => {isObsecureText = false},
+            onTap: () {
+              setState(() {
+                isObsecureText = !isObsecureText;
+              });
+            },
             child: Icon(
-              isObsecureText
-                  ? Icons.visibility_off_outlined
-                  : Icons.visibility_outlined,
-              size: 20,
-              color: AppColors.greyBorder,
+              isObsecureText ? Icons.visibility_off : Icons.visibility,
             ),
           ),
         ),

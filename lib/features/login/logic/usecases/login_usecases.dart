@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:lmc_app/core/networking/api_service.dart';
 
 import '../../../../core/di/shared_pref.dart';
@@ -10,8 +11,8 @@ class LoginUseCase {
 
   LoginUseCase(this.apiService, this.localStorage);
 
-  Future<LoginResponse> execute(String username, String password) async {
-    final response = await apiService.login(username, password);
+  Future<LoginResponse> execute(String username, String password, BuildContext context) async {
+    final response = await apiService.login(username, password, context);
 
     // Log the response to see what is being returned
     print("Response from API: ${response.data}");

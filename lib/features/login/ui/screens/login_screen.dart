@@ -18,11 +18,10 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-   LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
@@ -53,7 +52,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   verticalSpace(10.h),
-                  EmailAndPassword(emailController: emailController, passwordController: passwordController),
+                  EmailAndPassword(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
                   verticalSpace(10.h),
                   Row(
                     children: [
@@ -82,14 +84,19 @@ class LoginScreen extends StatelessWidget {
                   AppTextButton(
                     buttonText: "Login",
                     onPressed: () {
-                      final email = emailController.text;
-                      final password = passwordController.text;
-                      context.read<LoginCubit>().login(email, password);
+                 
+                        final email = emailController.text;
+                        final password = passwordController.text;
+                        context.read<LoginCubit>().login(
+                          email,
+                          password,
+                          context,
+                        );
+                     
                     },
                     textStyle: TextStyle(fontSize: 15),
                   ),
                   verticalSpace(10.h),
-
                 ],
               ),
             ),
@@ -98,5 +105,4 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-
 }
