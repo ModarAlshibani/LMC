@@ -1,12 +1,30 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+// presentation/cubit/login_state.dart
+part of 'login_cubit.dart';
 
-part 'login_state.freezed.dart';
+abstract class LoginState extends Equatable {
+  @override
+  List<Object> get props => [];
+}
 
-@freezed
-class LoginState<T> with _$LoginState<T> {
-  const factory LoginState.initial() = _Initial;
+class LoginInitial extends LoginState {}
 
-  const factory LoginState.loading() = Loading;
-  const factory LoginState.success(T data) = Success<T>;
-  const factory LoginState.error({required String error}) = Error;
+class LoginLoading extends LoginState {}
+
+class LoginSuccess extends LoginState {
+  final String? token;
+  final User? user;
+
+  LoginSuccess({this.token, this.user});
+
+  @override
+  List<Object> get props => [token!, user!];
+}
+
+class LoginFailure extends LoginState {
+  final String error;
+
+  LoginFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

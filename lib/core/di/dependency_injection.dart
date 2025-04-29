@@ -1,17 +1,21 @@
-import 'package:dio/dio.dart';
+// service_locator.dart
 import 'package:get_it/get_it.dart';
+import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/core/networking/api_service.dart';
-import 'package:lmc_app/core/networking/dio_factory.dart';
-import 'package:lmc_app/features/login/data/repos/login_repo.dart';
-import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
 
-final getIt = GetIt.instance;
-Future<void> setupGetIt() async {
-  //dio
-  Dio dio = DioFactory.getDio();
-  getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
+import '../../features/login/logic/cubit/login_cubit.dart';
+import '../../features/login/logic/usecases/login_usecases.dart';
 
-  // login
-  getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+final GetIt getIt = GetIt.instance;
+
+void setupLocator() {
+  // Registering services and use cases
+  getIt.registerLazySingleton(() => ApiService());
+  getIt.registerLazySingleton(() => LocalStorage());  // Register LocalStorage
+
+  // Register the LoginUseCase with its dependencies
+  getIt.registerLazySingleton(() => LoginUseCase(getIt<ApiService>(), getIt<LocalStorage>()));
+
+  // Register the LoginCubit as a factory (it will be created when needed)
+  getIt.registerFactory(() => LoginCubit(getIt<LoginUseCase>()));
 }

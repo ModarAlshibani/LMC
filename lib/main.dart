@@ -4,7 +4,7 @@ import 'package:lmc_app/core/routing/app_router.dart';
 import 'package:lmc_app/features/lmc_app.dart';
 
 void main() {
-  setupGetIt();
+  setupLocator();
   // WidgetsFlutterBinding.ensureInitialized();
   runApp(LmcApp(appRouter: AppRouter()));
 }

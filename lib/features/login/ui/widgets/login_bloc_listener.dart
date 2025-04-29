@@ -1,63 +1,27 @@
+// presentation/widgets/login_bloc_listener.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/helpers/extentions.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
-import 'package:lmc_app/features/login/logic/cubit/login_state.dart';
+import 'package:lmc_app/core/routing/routes.dart';
 
 class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+  final Widget child;
+
+  const LoginBlocListener({required this.child});
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen:
-          (previous, current) =>
-              current is Loading || current is Success || current is Error,
       listener: (context, state) {
-        state.whenOrNull(
-          loading: () {
-            showDialog(
-              context: context,
-              builder:
-                  (context) => const Center(
-                    child: CircularProgressIndicator(color: AppColors.lmcBlue),
-                  ),
-            );
-          },
-          success: (loginResponse) {
-            context.pop();
-            context.pushNamed(Routes.homePage);
-          },
-          error: (error) {
-            print("the error is:" + error);
-
-            setupErrorState(context, error);
-          },
-        );
+        if (state is LoginSuccess) {
+          // On success, navigate to the home screen or show user details
+          Navigator.pushReplacementNamed(context, Routes.homePage); // or '/home'
+        } else if (state is LoginFailure) {
+          // Show error message
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+        }
       },
-      child: const SizedBox.shrink(),
-    );
-  }
-
-  void setupErrorState(BuildContext context, String error) {
-    context.pop();
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            icon: const Icon(Icons.error, color: Colors.red, size: 32),
-            content: Text(error),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  context.pop();
-                },
-                child: Text('Got it'),
-              ),
-            ],
-          ),
+      child: child,
     );
   }
 }
