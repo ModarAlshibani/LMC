@@ -61,7 +61,7 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
               return "Password is required";
             }
           },
-          hintText: "********",
+          hintText: "Password",
           isObsecureText: true,
           prefixIcon: Icon(Icons.lock, size: 20, color: AppColors.greyBorder),
         ),
@@ -73,7 +73,7 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
               return "Confirm Password is required";
             }
           },
-          hintText: "********",
+          hintText: "Password confirmation",
           isObsecureText: true,
           prefixIcon: Icon(Icons.lock, size: 20, color: AppColors.greyBorder),
         ),

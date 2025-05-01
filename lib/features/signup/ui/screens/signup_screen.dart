@@ -35,7 +35,7 @@ class SignUp extends StatelessWidget {
             top: 62.h,
             left: 0,
             right: 0,
-            child: SignupText(fontSize: 26),
+            child: SignupText(fontSize: 24),
           ),
           Positioned(
             bottom: 0.h,

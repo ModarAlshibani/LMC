@@ -26,13 +26,16 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
-          Background(image: "assets/images/b.jpg",color: AppColors.lmcBlue.withOpacity(0.7),),
+          Background(
+            image: "assets/images/b.jpg",
+            color: AppColors.lmcBlue.withOpacity(0.6),
+          ),
           Positioned(top: 62.h, left: 0, right: 0, child: WelcomeBackText()),
           Positioned(
             bottom: 0.h,
             left: 0,
             right: 0,
-            child: BottomBlurContainer(height: 270.h,),
+            child: BottomBlurContainer(height: 270.h),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
@@ -84,15 +87,13 @@ class LoginScreen extends StatelessWidget {
                   AppTextButton(
                     buttonText: "Login",
                     onPressed: () {
-                 
-                        final email = emailController.text;
-                        final password = passwordController.text;
-                        context.read<LoginCubit>().login(
-                          email,
-                          password,
-                          context,
-                        );
-                     
+                      final email = emailController.text;
+                      final password = passwordController.text;
+                      context.read<LoginCubit>().login(
+                        email,
+                        password,
+                        context,
+                      );
                     },
                     textStyle: TextStyle(fontSize: 15),
                   ),
