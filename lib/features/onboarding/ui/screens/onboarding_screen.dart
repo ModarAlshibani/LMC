@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/onboarding/ui/widgets/fading.dart';
-import 'package:lmc_app/features/onboarding/ui/widgets/logo.dart';
-import 'package:lmc_app/features/onboarding/ui/widgets/onboarding_text.dart';
-import 'package:lmc_app/features/onboarding/ui/widgets/get_started_button.dart';
+
+import '../widgets/fading.dart';
+import '../widgets/get_started_button.dart';
+import '../widgets/logo.dart';
+import '../widgets/onboarding_text.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

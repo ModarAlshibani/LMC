@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+
+import '../theming/colors.dart';
 
 class GeneralTextFormField extends StatelessWidget {
   const GeneralTextFormField({

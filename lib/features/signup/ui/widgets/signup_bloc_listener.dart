@@ -4,21 +4,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
 
-class LoginBlocListener extends StatelessWidget {
+import '../../logic/cubit/signup_cubit.dart';
+
+class SignupBlocListener extends StatelessWidget {
   final Widget child;
 
-  const LoginBlocListener({required this.child});
+  const SignupBlocListener({required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<signupCubit, signupState>(
       listener: (context, state) {
-        if (state is LoginSuccess) {
+        if (state is signupSuccess) {
           // On success, navigate to the home screen or show user details
-          Navigator.pushReplacementNamed(context, Routes.homePage); // or '/home'
-        } else if (state is LoginFailure) {
+          Navigator.pushReplacementNamed(
+            context,
+            Routes.homePage,
+          ); // or '/home'
+        } else if (state is signupFailure) {
           // Show error message
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
         }
       },
       child: child,

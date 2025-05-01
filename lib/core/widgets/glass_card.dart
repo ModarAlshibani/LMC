@@ -1,11 +1,10 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/login/ui/widgets/login_button.dart';
 
 class GlassContainer extends StatelessWidget {
-  GlassContainer({
+  const GlassContainer({
     super.key,
     required this.width,
     required this.height,
@@ -14,7 +13,8 @@ class GlassContainer extends StatelessWidget {
     required this.bottomRight,
     required this.bottomLeft,
     required this.firstColor,
-    required this.secondColor, required this.child,
+    required this.secondColor,
+    required this.child,
   });
 
   final double width;

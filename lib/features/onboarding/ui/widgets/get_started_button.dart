@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/helpers/extentions.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+import '../../../../core/helpers/extentions.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../../core/theming/colors.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({super.key});

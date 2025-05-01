@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/extentions.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
-import 'package:lmc_app/features/login/ui/widgets/bottom_blur_container.dart';
-import 'package:lmc_app/features/login/ui/widgets/email_and_password.dart';
-import 'package:lmc_app/features/login/ui/widgets/login_background.dart';
-import 'package:lmc_app/features/login/ui/widgets/login_bloc_listener.dart';
-import 'package:lmc_app/features/login/ui/widgets/login_button.dart';
-import 'package:lmc_app/features/login/ui/widgets/welcomeBackText.dart';
+import '../../../../core/helpers/extentions.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/colors.dart';
+import '../../logic/cubit/login_cubit.dart';
+import '../widgets/bottom_blur_container.dart';
+import '../widgets/email_and_password.dart';
+import '../../../../core/widgets/background.dart';
+import '../widgets/login_bloc_listener.dart';
+import '../../../../core/widgets/App_button.dart';
+import '../widgets/welcomeBackText.dart';
 
 import '../../../../core/routing/routes.dart';
 
@@ -26,13 +26,13 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
-          LoginBackground(),
+          Background(image: "assets/images/b.jpg",color: AppColors.lmcBlue.withOpacity(0.7),),
           Positioned(top: 62.h, left: 0, right: 0, child: WelcomeBackText()),
           Positioned(
             bottom: 0.h,
             left: 0,
             right: 0,
-            child: BottomBlurContainer(),
+            child: BottomBlurContainer(height: 270.h,),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),

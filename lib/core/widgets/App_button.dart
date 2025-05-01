@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/extentions.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
+
+import '../theming/colors.dart';
 
 
 class AppTextButton extends StatelessWidget {

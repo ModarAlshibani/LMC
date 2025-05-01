@@ -1,16 +1,18 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/login/ui/widgets/login_button.dart';
+
+import '../../../../core/theming/colors.dart';
 
 class BottomBlurContainer extends StatelessWidget {
-  const BottomBlurContainer({super.key});
+  double? height;
+   BottomBlurContainer({super.key,this.height });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 270.h,
+      height:height!.h ?? 270.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(50),

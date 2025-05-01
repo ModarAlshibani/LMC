@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+
+import '../theming/colors.dart';
 import '../widgets/glass_card.dart';
 
 class NetworkErrorHandler {
@@ -48,7 +49,13 @@ class NetworkErrorHandler {
   static String? _extractMessageFromResponse(Response? response) {
     if (response?.data is Map<String, dynamic>) {
       final data = response?.data as Map<String, dynamic>;
-      return data['message'] ?? data['error'] ?? data['detail'];
+      return data['message'] ??
+          data['error'] ??
+          data['detail'] ??
+          data['errors']['email'].toString().substring(
+            1,
+            data['errors']['email'].toString().length - 1,
+          );
     }
     return null;
   }
@@ -95,14 +102,6 @@ class NetworkErrorHandler {
                       Navigator.of(context).pop();
                       Navigator.of(context).pop();
                     },
-                    child: Text(
-                      "Ok",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        color: AppColors.backgroundColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.lmcOrange,
                       shape: RoundedRectangleBorder(
@@ -111,6 +110,14 @@ class NetworkErrorHandler {
                       padding: EdgeInsets.symmetric(
                         horizontal: 80.0,
                         vertical: 12.0,
+                      ),
+                    ),
+                    child: Text(
+                      "Ok",
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        color: AppColors.backgroundColor,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

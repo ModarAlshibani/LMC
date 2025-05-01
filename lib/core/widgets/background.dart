@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/theming/colors.dart';
 
-class LoginBackground extends StatelessWidget {
-  const LoginBackground({super.key});
+import '../theming/colors.dart';
+
+class Background extends StatelessWidget {
+  String? image;
+  Color? color;
+   Background({super.key, this.image, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class LoginBackground extends StatelessWidget {
           height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/b.jpg"),
+              image: AssetImage(image!),
               fit: BoxFit.cover,
             ),
           ),
@@ -21,7 +24,7 @@ class LoginBackground extends StatelessWidget {
         Container(
           width: double.infinity,
           height: double.infinity,
-          color: AppColors.lmcBlue.withOpacity(0.5),
+          color: color!,
         ),
       ],
     );

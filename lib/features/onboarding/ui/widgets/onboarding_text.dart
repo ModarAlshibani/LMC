@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+import '../../../../core/theming/colors.dart';
 
 class OnboardingText extends StatelessWidget {
   const OnboardingText({super.key});

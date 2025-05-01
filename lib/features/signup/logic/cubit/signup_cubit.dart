@@ -2,47 +2,65 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/helpers/validators.dart';
+import 'package:lmc_app/core/networking/network_error_handler.dart';
+import 'package:lmc_app/core/theming/colors.dart';
+import 'package:lmc_app/core/widgets/glass_card.dart';
+import 'package:lmc_app/features/signup/data/signup_response.dart';
+import 'package:lmc_app/features/signup/logic/usecases/signup_usecases.dart';
 
-import '../../../../core/helpers/validators.dart';
-import '../../../../core/networking/network_error_handler.dart';
-import '../../../../core/theming/colors.dart';
-import '../../../../core/widgets/glass_card.dart';
-import '../../data/models/login_response.dart';
-import '../usecases/login_usecases.dart'; // Import to access BuildContext
 
-part 'login_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  final LoginUseCase loginUseCase;
-  final formKey = GlobalKey<FormState>(); // Global key for the form to validate
+part 'signup_state.dart';
 
-  LoginCubit(this.loginUseCase) : super(LoginInitial());
+class signupCubit extends Cubit<signupState> {
+  final SignupUseCase signupUseCase;
+  final formKey = GlobalKey<FormState>(); 
 
-  Future<void> login(
+  signupCubit(this.signupUseCase) : super(signupInitial());
+
+  Future<void> signup(
+    String name,
     String email,
     String password,
     BuildContext context,
   ) async {
-    if (email.isEmpty && password.isEmpty) {
-      emit(LoginFailure(error: 'Email and Password are required.'));
+    if (email.isEmpty && password.isEmpty && name.isEmpty) {
+      emit(signupFailure(error: 'Email, Password and name are required.'));
       _showDialog(
         context,
-        'Email and Password are required.',
+        'Email, Password and name are required.',
       ); // استخدام Dialog بدلاً من Snackbar
       return;
     }
     if (email.isEmpty) {
-      emit(LoginFailure(error: 'Email cannot be empty.'));
+      emit(signupFailure(error: 'Email cannot be empty.'));
       _showDialog(
         context,
         'Email cannot be empty.',
       ); // استخدام Dialog بدلاً من Snackbar
       return;
     }
+    if (password.isEmpty) {
+      emit(signupFailure(error: 'Password cannot be empty.'));
+      _showDialog(
+        context,
+        'Password cannot be empty.',
+      ); // استخدام Dialog بدلاً من Snackbar
+      return;
+    }
+    if (name.isEmpty) {
+      emit(signupFailure(error: 'Name cannot be empty.'));
+      _showDialog(
+        context,
+        'Name cannot be empty.',
+      ); // استخدام Dialog بدلاً من Snackbar
+      return;
+    }
 
     // التحقق من صحة المدخلات قبل محاولة الإرسال
     if (Validators.isValidEmail(email) == false) {
-      emit(LoginFailure(error: 'Please enter a valid email address.'));
+      emit(signupFailure(error: 'Please enter a valid email address.'));
       _showDialog(
         context,
         'Please enter a valid email address.',
@@ -50,24 +68,60 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
 
-    if (password.isEmpty) {
-      emit(LoginFailure(error: 'Password cannot be empty.'));
+    if (Validators.hasMinLength(password) == false) {
+      emit(signupFailure(error: 'Password should be at least 8 characters.'));
       _showDialog(
         context,
-        'Password cannot be empty.',
-      ); // استخدام Dialog بدلاً من Snackbar
+        'Password should be at least 8 characters.',
+      );
       return;
     }
 
-    emit(LoginLoading());
+    if (Validators.hasUpperCase(password) == false) {
+      emit(signupFailure(error: 'Password should contain at least one uppercase letter.'));
+      _showDialog(
+        context,
+        'Password should contain at least one uppercase letter.',
+      );
+      return;
+    }
+
+    if (Validators.hasLowerCase(password) == false) {
+      emit(signupFailure(error: 'Password should contain at least one lowercase letter.'));
+      _showDialog(
+        context,
+        'Password should contain at least one lowercase letter.',
+      );
+      return;
+    }
+     if (Validators.hasNumber(password) == false) {
+       emit(signupFailure(error: 'Password should contain at least one number.'));
+       _showDialog(
+         context,
+         'Password should contain at least one number.',
+       );
+       return;
+     }
+     if (Validators.hasSpecialCharacter(password) == false) {
+       emit(signupFailure(error: 'Password should contain at least one special character.'));
+       _showDialog(
+         context,
+         'Password should contain at least one special character.',
+       );
+       return;
+     }
+
+
+
+    emit(signupLoading());
 
     try {
       // إرسال طلب تسجيل الدخول
-      final loginData = await loginUseCase.execute(email, password, context);
-      emit(LoginSuccess(token: loginData.token, user: loginData.user));
+      final signupData = await signupUseCase.execute(name, email, password, context);
+      emit(signupSuccess(token: signupData.token, user: signupData.user));
     } catch (error) {
       NetworkErrorHandler.handleError(error, context); // معالجة الخطأ
-      emit(LoginFailure(error: error.toString()));
+      emit(signupFailure(error: error.toString()));
     }
   }
 

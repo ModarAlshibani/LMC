@@ -1,6 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:lmc_app/core/networking/api_service.dart';
+import '../../../../core/networking/api_service.dart';
 
 import '../../../../core/di/shared_pref.dart';
 import '../../data/models/login_response.dart';

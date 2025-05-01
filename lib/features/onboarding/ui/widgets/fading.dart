@@ -1,7 +1,8 @@
 import 'dart:ui'; // Import for BackdropFilter
 
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+
+import '../../../../core/theming/colors.dart';
 // import 'package:rive/rive.dart'; // Import the Rive package
 
 class Fading extends StatelessWidget {
