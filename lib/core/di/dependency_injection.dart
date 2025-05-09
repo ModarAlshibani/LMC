@@ -11,9 +11,8 @@ import '../../features/login/logic/usecases/login_usecases.dart';
 final GetIt getIt = GetIt.instance;
 
 void setupLocator() {
-  // Registering services and use cases
   getIt.registerLazySingleton(() => ApiService());
-  getIt.registerLazySingleton(() => LocalStorage()); // Register LocalStorage
+  getIt.registerLazySingleton(() => LocalStorage());
 
   getIt.registerLazySingleton(
     () => LoginUseCase(getIt<ApiService>(), getIt<LocalStorage>()),

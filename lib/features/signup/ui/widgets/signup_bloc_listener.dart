@@ -19,7 +19,7 @@ class SignupBlocListener extends StatelessWidget {
           // On success, navigate to the home screen or show user details
           Navigator.pushReplacementNamed(
             context,
-            Routes.homePage,
+            Routes.guest_homePage,
           ); // or '/home'
         } else if (state is signupFailure) {
           // Show error message

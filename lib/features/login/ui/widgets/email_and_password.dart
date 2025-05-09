@@ -20,11 +20,9 @@ class EmailAndPassword extends StatefulWidget {
 }
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
-   bool isObsecureText = true;
+  bool isObsecureText = true;
   @override
   Widget build(BuildContext context) {
-   
-
     return Column(
       children: [
         GeneralTextFormField(
@@ -49,7 +47,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               return "Password is required";
             }
           },
-          hintText: "********",
+          hintText: "Password",
           isObsecureText: isObsecureText,
           prefixIcon: Icon(
             Icons.vpn_key_outlined,

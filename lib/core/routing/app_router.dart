@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lmc_app/features/guest_homePage/ui/screens/guest_home_page_screen.dart';
 import 'package:lmc_app/features/signup/logic/cubit/signup_cubit.dart';
 
-import '../../features/homePage/ui/screens/home_page.dart';
 import '../../features/login/logic/cubit/login_cubit.dart';
 import '../../features/login/ui/screens/login_screen.dart';
 import '../../features/onboarding/ui/screens/onboarding_screen.dart';
@@ -34,8 +34,8 @@ class AppRouter {
               ),
         );
 
-      case Routes.homePage:
-        return MaterialPageRoute(builder: (_) => const HomePage());
+      case Routes.guest_homePage:
+        return MaterialPageRoute(builder: (_) => const GuestHomePageScreen());
 
       default:
         return MaterialPageRoute(

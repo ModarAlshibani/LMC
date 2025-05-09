@@ -5,6 +5,6 @@ class AppColors {
   static const Color hintBlue = Color.fromARGB(255, 166, 203, 238);
   static const Color lmcOrange = Color.fromARGB(255, 238, 126, 28);
   static const Color lightLmcBlue = Color.fromARGB(255, 158, 180, 204);
-  static const Color backgroundColor = Color(0xFFF5F5F5);
+  static const Color backgroundColor = Color.fromARGB(255, 248, 247, 245);
   static const Color greyBorder = Color.fromARGB(255, 155, 155, 155);
 }

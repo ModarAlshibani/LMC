@@ -20,10 +20,8 @@ class ApiService {
       );
       return response;
     } on DioException catch (e) {
-      // Catch DioError specifically and pass it to the centralized error handler
       throw NetworkErrorHandler.handleError(e, context);
     } catch (e) {
-      // If it's not a DioError, handle it generically (for unexpected cases)
       throw NetworkException('An unexpected error occurred.');
     }
   }
@@ -41,10 +39,8 @@ class ApiService {
       );
       return response;
     } on DioException catch (e) {
-      // Catch DioError specifically and pass it to the centralized error handler
       throw NetworkErrorHandler.handleError(e, context);
     } catch (e) {
-      // If it's not a DioError, handle it generically (for unexpected cases)
       throw NetworkException('An unexpected error occurred.');
     }
   }

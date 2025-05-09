@@ -15,6 +15,8 @@ class GlassContainer extends StatelessWidget {
     required this.firstColor,
     required this.secondColor,
     required this.child,
+    this.firstBlurOpacity,
+    this.secondBlurOpacity,
   });
 
   final double width;
@@ -26,6 +28,8 @@ class GlassContainer extends StatelessWidget {
   final Color firstColor;
   final Color secondColor;
   final Widget child;
+  final double? firstBlurOpacity;
+  final double? secondBlurOpacity;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,10 @@ class GlassContainer extends StatelessWidget {
           bottomLeft: Radius.circular(bottomRight),
         ),
         gradient: LinearGradient(
-          colors: [firstColor.withOpacity(0.15), secondColor.withOpacity(0.05)],
+          colors: [
+            firstColor.withOpacity(firstBlurOpacity ?? 0.15),
+            secondColor.withOpacity(secondBlurOpacity ?? 0.05),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

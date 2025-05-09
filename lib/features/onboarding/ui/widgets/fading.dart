@@ -12,12 +12,12 @@ class Fading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Rive animation as the background
-        // const RiveAnimation.asset(
-        //   'assets/animations/shapes.riv', // Path to your Rive file
-        //   fit:
-        //       BoxFit.cover, // Ensures the animation covers the entire container
-        // ),
+       // Rive animation as the background
+       //  const RiveAnimation.asset(
+       //    'assets/animations/shapes.riv', // Path to your Rive file
+       //    fit:
+       //        BoxFit.cover, // Ensures the animation covers the entire container
+       //  ),
 
         // Blurry white overlay
         BackdropFilter(

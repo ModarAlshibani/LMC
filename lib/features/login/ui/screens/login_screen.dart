@@ -95,7 +95,11 @@ class LoginScreen extends StatelessWidget {
                         context,
                       );
                     },
-                    textStyle: TextStyle(fontSize: 15),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.lmcBlue,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   verticalSpace(10.h),
                 ],

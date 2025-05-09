@@ -6,7 +6,6 @@ import '../theming/colors.dart';
 import '../widgets/glass_card.dart';
 
 class NetworkErrorHandler {
-  // General method to handle any error type
   static Exception handleError(dynamic error, BuildContext context) {
     String errorMessage = 'An unexpected error occurred. Please try again.';
 
@@ -23,12 +22,9 @@ class NetworkErrorHandler {
     }
 
     _showDialog(context, errorMessage);
-
-    // Always return a generic ApiException for consistency
     return ApiException(errorMessage);
   }
 
-  // Internal: Handling Dio specific errors
   static String _handleDioException(DioException e) {
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
@@ -45,7 +41,7 @@ class NetworkErrorHandler {
     }
   }
 
-  // Internal: Try to extract custom message from server response
+  //message from server response
   static String? _extractMessageFromResponse(Response? response) {
     if (response?.data is Map<String, dynamic>) {
       final data = response?.data as Map<String, dynamic>;
@@ -60,7 +56,6 @@ class NetworkErrorHandler {
     return null;
   }
 
-  // Show a beautiful glass dialog
   static void _showDialog(BuildContext context, String errorMessage) {
     showDialog(
       context: context,
@@ -130,7 +125,6 @@ class NetworkErrorHandler {
     );
   }
 
-  // For external usage
   static String getErrorMessage(Exception exception) {
     if (exception is NetworkException || exception is ApiException) {
       return exception.toString();
@@ -139,7 +133,6 @@ class NetworkErrorHandler {
   }
 }
 
-// Custom Exception Classes
 class NetworkException implements Exception {
   final String message;
   NetworkException(this.message);
