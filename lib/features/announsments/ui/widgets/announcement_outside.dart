@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 
@@ -158,14 +157,6 @@ void _showDialog(
                   onPressed: () {
                     Navigator.of(context).pop(); // إغلاق الـ Dialog
                   },
-                  child: Text(
-                    "Ok",
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                      color: AppColors.backgroundColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lmcOrange,
                     shape: RoundedRectangleBorder(
@@ -174,6 +165,14 @@ void _showDialog(
                     padding: EdgeInsets.symmetric(
                       horizontal: 80.0,
                       vertical: 12.0,
+                    ),
+                  ),
+                  child: Text(
+                    "Ok",
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      color: AppColors.backgroundColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

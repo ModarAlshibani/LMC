@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/core/networking/api_constants.dart';
 import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/announsments/ui/widgets/announcement_outside.dart';
 
 class AnnouncementsList extends StatelessWidget {
@@ -26,12 +25,10 @@ class AnnouncementsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return AnnouncementOutside(
                 title: announcements[index].title ?? 'No Title',
-                image:
-                    announcements[index].photo!.replaceAll(
-                      'localhost',
-                      ApiConstants.ip,
-                    ) ??
-                    'No Image',
+                image: announcements[index].photo!.replaceAll(
+                  'localhost',
+                  ApiConstants.ip,
+                ),
                 content: announcements[index].content ?? 'No Content',
               );
             },
