@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/helpers/validators.dart';
 import '../../../../core/networking/network_error_handler.dart';
 import '../../../../core/theming/colors.dart';

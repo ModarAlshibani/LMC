@@ -21,10 +21,9 @@ class LoginBlocListener extends StatelessWidget {
           } else if (state.user?.role == 'Student') {
           } else if (state.user?.role == 'Teacher') {
           } else if (state.user?.role == 'Logistic') {
-            print("Logistic guy is here");
+            Navigator.pushReplacementNamed(context, Routes.logistic_homePage);
           }
         } else if (state is LoginFailure) {
-          // Show error message
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.error)));

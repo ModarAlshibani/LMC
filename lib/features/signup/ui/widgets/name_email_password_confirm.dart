@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/general_text_form_field.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/colors.dart';
+import '../../../../core/widgets/general_text_form_field.dart';
 
 class NameEmailPasswordConfirm extends StatefulWidget {
   const NameEmailPasswordConfirm({

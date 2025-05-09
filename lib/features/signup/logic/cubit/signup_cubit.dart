@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/validators.dart';
-import 'package:lmc_app/core/networking/network_error_handler.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/signup/data/signup_response.dart';
-import 'package:lmc_app/features/signup/logic/usecases/signup_usecases.dart';
+import '../../../../core/helpers/validators.dart';
+import '../../../../core/networking/network_error_handler.dart';
+import '../../../../core/theming/colors.dart';
+import '../../../../core/widgets/glass_card.dart';
+import '../../data/signup_response.dart';
+import '../usecases/signup_usecases.dart';
 
 
 
@@ -30,7 +30,7 @@ class signupCubit extends Cubit<signupState> {
       _showDialog(
         context,
         'Email, Password and name are required.',
-      ); // استخدام Dialog بدلاً من Snackbar
+      );
       return;
     }
     if (email.isEmpty) {
@@ -38,7 +38,7 @@ class signupCubit extends Cubit<signupState> {
       _showDialog(
         context,
         'Email cannot be empty.',
-      ); // استخدام Dialog بدلاً من Snackbar
+      );
       return;
     }
     if (password.isEmpty) {
@@ -46,7 +46,7 @@ class signupCubit extends Cubit<signupState> {
       _showDialog(
         context,
         'Password cannot be empty.',
-      ); // استخدام Dialog بدلاً من Snackbar
+      );
       return;
     }
     if (name.isEmpty) {
@@ -54,17 +54,17 @@ class signupCubit extends Cubit<signupState> {
       _showDialog(
         context,
         'Name cannot be empty.',
-      ); // استخدام Dialog بدلاً من Snackbar
+      );
       return;
     }
 
-    // التحقق من صحة المدخلات قبل محاولة الإرسال
+
     if (Validators.isValidEmail(email) == false) {
       emit(signupFailure(error: 'Please enter a valid email address.'));
       _showDialog(
         context,
         'Please enter a valid email address.',
-      ); // استخدام Dialog بدلاً من Snackbar
+      );
       return;
     }
 
@@ -120,12 +120,12 @@ class signupCubit extends Cubit<signupState> {
       final signupData = await signupUseCase.execute(name, email, password, context);
       emit(signupSuccess(token: signupData.token, user: signupData.user));
     } catch (error) {
-      NetworkErrorHandler.handleError(error, context); // معالجة الخطأ
+      NetworkErrorHandler.handleError(error, context);
       emit(signupFailure(error: error.toString()));
     }
   }
 
-  // دالة لعرض الـ Dialog
+
   void _showDialog(BuildContext context, String errorMessage) {
     showDialog(
       context: context,

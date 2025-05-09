@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
+import '../../../../core/theming/colors.dart';
+import '../../../../core/widgets/glass_card.dart';
 
 class GlassInkwell extends StatelessWidget {
   const GlassInkwell({

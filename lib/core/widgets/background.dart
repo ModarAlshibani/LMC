@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theming/colors.dart';
-
 class Background extends StatelessWidget {
   String? image;
   Color? color;

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lmc_app/features/signup/data/signup_response.dart';
+import '../../data/signup_response.dart';
 import '../../../../core/networking/api_service.dart';
 
 import '../../../../core/di/shared_pref.dart';

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/announsments/ui/widgets/announcements_list.dart';
-import '../../../../core/di/shared_pref.dart';
-import '../../../../core/helpers/shared_pref_helper.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/networking/api_constants.dart';
-import '../../../../core/theming/colors.dart';
-import '../../../../core/widgets/general_text_form_field.dart';
-import '../../../../core/widgets/glass_card.dart';
-import '../widgets/glass_inkwell.dart';
-import '../widgets/top_container.dart';
-import '../../../login/ui/widgets/bottom_blur_container.dart';
+import '../../../../../core/di/shared_pref.dart';
+import '../../../../../core/helpers/shared_pref_helper.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/networking/api_constants.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/widgets/general_text_form_field.dart';
+import '../../../../../core/widgets/glass_card.dart';
+import '../../../../guest_homePage/ui/widgets/glass_inkwell.dart';
+import '../../../../guest_homePage/ui/widgets/top_container.dart';
+import '../../../../login/ui/widgets/bottom_blur_container.dart';
 
-class GuestHomePageScreen extends StatelessWidget {
-  const GuestHomePageScreen({super.key});
+class LogisticHomepage extends StatelessWidget {
+  const LogisticHomepage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class GuestHomePageScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Hi User ....",
+                          "Hi Logistic",
                           style: TextStyle(
                             fontSize: 30.sp,
                             color: AppColors.backgroundColor,
@@ -115,22 +114,16 @@ class GuestHomePageScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GlassInkwell(
-                      firstRow: 'Take a',
-                      secondRow: 'placement',
-                      thirdRow: 'test',
-                      icon: 'assets/icons/placement_test.png',
-                    ),
-                    GlassInkwell(
-                      firstRow: 'Ask for a',
-                      secondRow: 'private',
-                      thirdRow: 'course',
-                      icon: 'assets/icons/private_course.png',
-                    ),
-                    GlassInkwell(
                       firstRow: 'Show',
-                      secondRow: 'upcomming',
-                      thirdRow: 'courses',
-                      icon: 'assets/icons/upcoming_courses.png',
+                      secondRow: 'my',
+                      thirdRow: 'tasks',
+                      icon: 'assets/icons/task.png',
+                    ),
+                    GlassInkwell(
+                      firstRow: 'Send',
+                      secondRow: 'invoice',
+                      thirdRow: ' ',
+                      icon: 'assets/icons/invoice.png',
                     ),
                   ],
                 ),
@@ -160,3 +153,4 @@ class GuestHomePageScreen extends StatelessWidget {
     );
   }
 }
+

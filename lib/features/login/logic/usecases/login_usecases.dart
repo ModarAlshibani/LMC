@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lmc_app/core/helpers/shared_pref_helper.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
+import '../../../../core/helpers/shared_pref_helper.dart';
+import '../../../../core/networking/api_constants.dart';
 import '../../../../core/networking/api_service.dart';
 
 import '../../../../core/di/shared_pref.dart';

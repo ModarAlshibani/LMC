@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/App_button.dart';
-import 'package:lmc_app/core/widgets/background.dart';
-import 'package:lmc_app/features/signup/logic/cubit/signup_cubit.dart';
-import 'package:lmc_app/features/signup/ui/widgets/name_email_password_confirm.dart';
-import 'package:lmc_app/features/signup/ui/widgets/signup_bloc_listener.dart';
-import 'package:lmc_app/features/signup/ui/widgets/signup_text.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/colors.dart';
+import '../../../../core/widgets/App_button.dart';
+import '../../../../core/widgets/background.dart';
+import '../../logic/cubit/signup_cubit.dart';
+import '../widgets/name_email_password_confirm.dart';
+import '../widgets/signup_bloc_listener.dart';
+import '../widgets/signup_text.dart';
 
 import '../../../login/ui/widgets/bottom_blur_container.dart';
 

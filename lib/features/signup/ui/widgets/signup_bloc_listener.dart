@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/features/login/logic/cubit/login_cubit.dart';
 
 import '../../logic/cubit/signup_cubit.dart';
 

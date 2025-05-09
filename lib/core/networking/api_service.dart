@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lmc_app/features/announsments/data/models/all_announsments.dart';
 
 import 'api_constants.dart';
 import 'network_error_handler.dart';
@@ -42,6 +43,30 @@ class ApiService {
       throw NetworkErrorHandler.handleError(e, context);
     } catch (e) {
       throw NetworkException('An unexpected error occurred.');
+    }
+  }
+
+  Future<List<Announcements>> getAllAnnouncements() async {
+    try {
+      print("inside the get announcements");
+      // إرسال الطلب للحصول على جميع الإعلانات من الـ API
+      final response = await dio.get(
+        '$baseUrl/getAllAnnouncements',
+      ); // Adjust endpoint if needed
+
+      // التحقق من حالة الاستجابة
+      if (response.statusCode == 200) {
+        // تحويل البيانات إلى كائن من AllAnnounsmentsModel
+        final data = AllAnnounsmentsModel.fromJson(response.data);
+        print("modzzzz:  " + data.announcements.toString());
+        return data.announcements ?? [];
+      } else {
+        throw Exception('Failed to load announcements');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
     }
   }
 }
