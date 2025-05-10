@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/logistic_app/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import '../../features/guest_homePage/ui/screens/guest_home_page_screen.dart';
 import '../../features/logistic_app/home_page/ui/screen/logistic_homepage.dart';
 import '../../features/logistic_app/send_invoice/ui/screens/send_invoice.dart';
@@ -39,7 +40,7 @@ class AppRouter {
         );
 
       case Routes.guest_homePage:
-      return MaterialPageRoute(
+        return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
                 create: (context) => getIt<AllAnnouncementsCubit>(),
@@ -55,10 +56,15 @@ class AppRouter {
               ),
         );
       case Routes.show_tasks:
-        return MaterialPageRoute(builder: (_) =>  ShowTasks());
-
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AllTasksCubit>(),
+                child: ShowTasks(),
+              ),
+        );
       case Routes.send_invoice:
-        return MaterialPageRoute(builder: (_) =>  SendInvoice());
+        return MaterialPageRoute(builder: (_) => SendInvoice());
 
       default:
         return MaterialPageRoute(

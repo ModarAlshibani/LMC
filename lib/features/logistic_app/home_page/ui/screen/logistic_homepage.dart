@@ -113,11 +113,14 @@ class LogisticHomepage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    GlassInkwell(
-                      firstRow: 'Show',
-                      secondRow: 'my',
-                      thirdRow: 'tasks',
-                      icon: 'assets/icons/task.png',
+                    InkWell(
+                      onTap: () => Navigator.pushNamed(context, '/show_tasks'),
+                      child: GlassInkwell(
+                        firstRow: 'Show',
+                        secondRow: 'my',
+                        thirdRow: 'tasks',
+                        icon: 'assets/icons/task.png',
+                      ),
                     ),
                     GlassInkwell(
                       firstRow: 'Send',
@@ -153,4 +156,3 @@ class LogisticHomepage extends StatelessWidget {
     );
   }
 }
-

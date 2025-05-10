@@ -4,16 +4,23 @@ import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 
-class AnnouncementOutside extends StatelessWidget {
-  const AnnouncementOutside({super.key, this.title, this.image, this.content});
-  final String? title;
-  final String? image;
+class TasksOutside extends StatelessWidget {
+  const TasksOutside({
+    super.key,
+    this.taskId,
+    this.content,
+    this.status,
+    this.deadline,
+  });
+  final String? taskId;
+  final String? status;
+  final String? deadline;
   final String? content;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _showDialog(context, image!, title!, content!),
+      onTap: () => _showTaskDetails(context, taskId!, content!),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
@@ -29,26 +36,29 @@ class AnnouncementOutside extends StatelessWidget {
           secondBlurOpacity: 0.25,
           child: Row(
             children: [
-              horizontalSpace(10.w),
               Container(
                 width: 130.w,
                 height: 130.h,
                 decoration: BoxDecoration(
-                  color: AppColors.lmcBlue,
                   borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/LMC-LOGO.png"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 child: SizedBox.shrink(),
               ),
-              horizontalSpace(20.w),
+
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      height: 20.h,
                       margin: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        title!,
+                        "Task id: $taskId",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 20,
@@ -58,6 +68,40 @@ class AnnouncementOutside extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
+
+                    Container(
+                      height: 20.h,
+                      margin: EdgeInsets.only(top: 4.h),
+                      child: Text(
+                        "Status: $status",
+                        style: TextStyle(
+                          color:
+                              status == "Pending"
+                                  ? const Color.fromARGB(255, 183, 85, 0)
+                                  : AppColors.lmcBlue,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+
+                    Container(
+                      height: 20.h,
+                      margin: EdgeInsets.only(top: 4.h),
+                      child: Text(
+                        "Deadline: $deadline",
+                        style: TextStyle(
+                          color: AppColors.lmcBlue,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+
                     Container(
                       margin: EdgeInsets.only(bottom: 10.h),
                       child: Text(
@@ -83,12 +127,7 @@ class AnnouncementOutside extends StatelessWidget {
   }
 }
 
-void _showDialog(
-  BuildContext context,
-  String image,
-  String title,
-  String content,
-) {
+void _showTaskDetails(BuildContext context, String taskId, String content) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -111,21 +150,21 @@ void _showDialog(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(
-                  width: 330.w,
-                  height: 200.h,
+                // Container(
+                //   width: 330.w,
+                //   height: 200.h,
 
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      image: NetworkImage(image),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(15),
+                //     image: DecorationImage(
+                //       image: NetworkImage(image),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(height: 5.h),
                 Text(
-                  title,
+                  taskId,
                   style: TextStyle(
                     fontSize: 18.sp,
                     color: Colors.white,

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/features/announsments/data/models/all_announsments.dart';
+import 'package:lmc_app/features/logistic_app/show_tasks/data/models/all_tasks_model.dart';
 
 import 'api_constants.dart';
 import 'network_error_handler.dart';
@@ -62,6 +64,31 @@ class ApiService {
         return data.announcements ?? [];
       } else {
         throw Exception('Failed to load announcements');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+
+  Future<List<AssignedTasks>> getAllTasks() async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("user tokkkkkkkken is: $token");
+      print("Fetching assigned tasks...");
+
+      final response = await dio.get(
+        '$baseUrl/staff/myTasks',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode == 200) {
+        final allTasksModel = AllTasksModel.fromJson(response.data);
+        return allTasksModel.assignedTasks ?? [];
+      } else {
+        throw Exception('Failed to load tasks');
       }
     } on DioException catch (e) {
       throw Exception('Dio error: ${e.message}');
