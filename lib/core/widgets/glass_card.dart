@@ -17,6 +17,9 @@ class GlassContainer extends StatelessWidget {
     required this.child,
     this.firstBlurOpacity,
     this.secondBlurOpacity,
+    this.withBorder,
+    this.sigmaX,
+    this.sigmaY,
   });
 
   final double width;
@@ -25,11 +28,14 @@ class GlassContainer extends StatelessWidget {
   final double topRight;
   final double bottomRight;
   final double bottomLeft;
+  final double? sigmaX;
+  final double? sigmaY;
   final Color firstColor;
   final Color secondColor;
   final Widget child;
   final double? firstBlurOpacity;
   final double? secondBlurOpacity;
+  final bool? withBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +57,10 @@ class GlassContainer extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1.5),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.2),
+          width: withBorder == false ? 0 : 1.5,
+        ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.only(
@@ -61,7 +70,7 @@ class GlassContainer extends StatelessWidget {
           bottomLeft: Radius.circular(bottomRight),
         ),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          filter: ImageFilter.blur(sigmaX: sigmaX ?? 10, sigmaY: sigmaY ?? 10),
           child: child,
         ),
       ),

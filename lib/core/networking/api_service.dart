@@ -96,4 +96,24 @@ class ApiService {
       throw Exception('Unknown error: $e');
     }
   }
+
+  Future<Response> markTaskAsDone(int taskId, BuildContext context) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("user tokkkkkkkken is: $token");
+      print("marking task $taskId as done...");
+
+      final response = await dio.post(
+        '$baseUrl/staff/completeUserTask/$taskId',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      print(response);
+      return response;
+    } on DioException catch (e) {
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
 }

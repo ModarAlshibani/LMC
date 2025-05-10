@@ -17,6 +17,7 @@ class AnnouncementOutside extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
+          withBorder: false,
           width: double.infinity,
           height: 140.h,
           topLeft: 10,
@@ -27,6 +28,8 @@ class AnnouncementOutside extends StatelessWidget {
           secondColor: AppColors.lmcBlue,
           firstBlurOpacity: 0.3,
           secondBlurOpacity: 0.25,
+          sigmaX: 100,
+          sigmaY: 100,
           child: Row(
             children: [
               horizontalSpace(10.w),
@@ -36,6 +39,10 @@ class AnnouncementOutside extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.lmcBlue,
                   borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: NetworkImage(image!),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 child: SizedBox.shrink(),
               ),

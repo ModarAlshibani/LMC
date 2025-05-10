@@ -25,6 +25,7 @@ class GlassInkwell extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           GlassContainer(
+            withBorder: false,
             width: 90,
             height: 90,
             topLeft: 15,

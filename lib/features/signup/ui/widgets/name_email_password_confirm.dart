@@ -36,7 +36,11 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
             }
           },
           hintText: "John Doe",
-          prefixIcon: Icon(Icons.person, size: 20, color: AppColors.greyBorder),
+          prefixIcon: Icon(
+            Icons.person,
+            size: 20,
+            color: AppColors.backgroundColor,
+          ),
         ),
         verticalSpace(10.h),
         GeneralTextFormField(
@@ -50,7 +54,7 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
           prefixIcon: Icon(
             Icons.email_outlined,
             size: 20,
-            color: AppColors.greyBorder,
+            color: AppColors.backgroundColor,
           ),
         ),
         verticalSpace(10.h),
@@ -63,7 +67,11 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
           },
           hintText: "Password",
           isObsecureText: true,
-          prefixIcon: Icon(Icons.lock, size: 20, color: AppColors.greyBorder),
+          prefixIcon: Icon(
+            Icons.lock,
+            size: 20,
+            color: AppColors.backgroundColor,
+          ),
         ),
         verticalSpace(10.h),
         GeneralTextFormField(
@@ -75,7 +83,11 @@ class _NameEmailPasswordConfirmState extends State<NameEmailPasswordConfirm> {
           },
           hintText: "Password confirmation",
           isObsecureText: true,
-          prefixIcon: Icon(Icons.lock, size: 20, color: AppColors.greyBorder),
+          prefixIcon: Icon(
+            Icons.lock,
+            size: 20,
+            color: AppColors.backgroundColor,
+          ),
         ),
       ],
     );

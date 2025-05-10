@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/helpers/spacing.dart';
+import 'package:lmc_app/core/networking/api_service.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 
@@ -20,25 +21,38 @@ class TasksOutside extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _showTaskDetails(context, taskId!, content!),
+      onTap:
+          () =>
+              _showTaskDetails(context, taskId!, content!, deadline!, status!),
       child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.lmcBlue,
+          // image: DecorationImage(
+          //   image: AssetImage("assets/images/container.png"),
+          // ),
+          borderRadius: BorderRadius.circular(10),
+        ),
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
           width: double.infinity,
-          height: 140.h,
+          height: 120.h,
           topLeft: 10,
           topRight: 10,
           bottomRight: 10,
           bottomLeft: 10,
-          firstColor: AppColors.lmcBlue,
-          secondColor: AppColors.lmcBlue,
-          firstBlurOpacity: 0.3,
-          secondBlurOpacity: 0.25,
+          firstColor: AppColors.lightLmcBlue,
+          secondColor: AppColors.lightLmcBlue,
+          firstBlurOpacity: 1,
+          secondBlurOpacity: 0.9,
+          withBorder: false,
+          sigmaX: 100,
+          sigmaY: 100,
           child: Row(
             children: [
+              horizontalSpace(10.w),
               Container(
-                width: 130.w,
-                height: 130.h,
+                width: 100.w,
+                height: 100.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
@@ -48,7 +62,7 @@ class TasksOutside extends StatelessWidget {
                 ),
                 child: SizedBox.shrink(),
               ),
-
+              horizontalSpace(10.w),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +75,7 @@ class TasksOutside extends StatelessWidget {
                         "Task id: $taskId",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                         softWrap: true,
@@ -77,7 +91,7 @@ class TasksOutside extends StatelessWidget {
                         style: TextStyle(
                           color:
                               status == "Pending"
-                                  ? const Color.fromARGB(255, 183, 85, 0)
+                                  ? const Color.fromARGB(255, 233, 142, 63)
                                   : AppColors.lmcBlue,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -94,7 +108,7 @@ class TasksOutside extends StatelessWidget {
                         "Deadline: $deadline",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w600,
                         ),
                         softWrap: true,
@@ -103,7 +117,7 @@ class TasksOutside extends StatelessWidget {
                     ),
 
                     Container(
-                      margin: EdgeInsets.only(bottom: 10.h),
+                      margin: EdgeInsets.only(bottom: 10.h, top: 4.h),
                       child: Text(
                         content!,
                         style: TextStyle(
@@ -118,7 +132,7 @@ class TasksOutside extends StatelessWidget {
                   ],
                 ),
               ),
-              horizontalSpace(10.w),
+              horizontalSpace(20.w),
             ],
           ),
         ),
@@ -127,7 +141,13 @@ class TasksOutside extends StatelessWidget {
   }
 }
 
-void _showTaskDetails(BuildContext context, String taskId, String content) {
+void _showTaskDetails(
+  BuildContext context,
+  String taskId,
+  String content,
+  String deadline,
+  String status,
+) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -141,30 +161,29 @@ void _showTaskDetails(BuildContext context, String taskId, String content) {
           topRight: 15,
           bottomRight: 15,
           bottomLeft: 15,
-          firstColor: AppColors.lmcOrange,
-          secondColor: AppColors.lmcBlue,
-          firstBlurOpacity: 0.25,
-          secondBlurOpacity: 0.55,
+          firstColor: AppColors.lightLmcBlue,
+          secondColor: AppColors.lightLmcBlue,
+          firstBlurOpacity: 0.45,
+          secondBlurOpacity: 0.35,
           child: Padding(
             padding: EdgeInsets.all(10.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // Container(
-                //   width: 330.w,
-                //   height: 200.h,
-
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(15),
-                //     image: DecorationImage(
-                //       image: NetworkImage(image),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
-                SizedBox(height: 5.h),
+                Container(
+                  width: 150.w,
+                  height: 150.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/LMC-LOGO.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10.h),
                 Text(
-                  taskId,
+                  "Task id: $taskId",
                   style: TextStyle(
                     fontSize: 18.sp,
                     color: Colors.white,
@@ -172,7 +191,27 @@ void _showTaskDetails(BuildContext context, String taskId, String content) {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(height: 5.h),
+                Text(
+                  "Task status: $status",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "Deadline: $deadline",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 5.h),
                 Container(
                   height: 85.h,
                   child: SingleChildScrollView(
@@ -188,25 +227,141 @@ void _showTaskDetails(BuildContext context, String taskId, String content) {
 
                 verticalSpace(10.h),
 
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); // إغلاق الـ Dialog
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.background2,
+                        minimumSize: Size(200.w, 40.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      child: Text(
+                        "Ok",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          color: AppColors.lmcBlue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (status != "Done") {
+                          Navigator.of(context).pop();
+                          _confirm(taskId, context);
+                        } else {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            status != "Done"
+                                ? AppColors.lmcOrange
+                                : AppColors.greyBorder,
+                        minimumSize: Size(200.w, 40.h),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      child: Text(
+                        status != "Done" ? "mark as done" : "This task is done",
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          color: AppColors.background2,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void _confirm(String taskId, BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        child: GlassContainer(
+          width: 350.w,
+          height: 230.h,
+          topLeft: 15,
+          topRight: 15,
+          bottomRight: 15,
+          bottomLeft: 15,
+          firstColor: AppColors.lightLmcBlue,
+          secondColor: AppColors.lightLmcBlue,
+          firstBlurOpacity: 0.45,
+          secondBlurOpacity: 0.35,
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "Are you sure you want to mark this task as done ?",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                verticalSpace(20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop(); // إغلاق الـ Dialog
+                    ApiService().markTaskAsDone(int.parse(taskId), context);
+                    Navigator.pushNamed(context, '/show_tasks');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lmcOrange,
+                    minimumSize: Size(200.w, 40.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 80.0,
-                      vertical: 12.0,
+                  ),
+                  child: Text(
+                    "mark as done",
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      color: AppColors.background2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.background2,
+                    minimumSize: Size(200.w, 40.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   child: Text(
-                    "Ok",
+                    "Back",
                     style: TextStyle(
                       fontSize: 15.sp,
-                      color: AppColors.backgroundColor,
+                      color: AppColors.lmcBlue,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

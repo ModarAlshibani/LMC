@@ -41,7 +41,10 @@ class GeneralTextFormField extends StatelessWidget {
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.greyBorder, width: 1.3),
+              borderSide: BorderSide(
+                color: AppColors.backgroundColor,
+                width: 1.3,
+              ),
               borderRadius: BorderRadius.circular(8.0),
             ),
         focusedBorder:
@@ -65,13 +68,13 @@ class GeneralTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         hintStyle:
             hintTextStyle ??
-            TextStyle(fontSize: 14.sp, color: AppColors.greyBorder),
+            TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
         hintText: hintText ?? "No hint text added",
       ),
       obscureText: isObsecureText ?? false,
 
       style: TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
-      cursorColor: AppColors.greyBorder,
+      cursorColor: AppColors.backgroundColor,
       validator: (value) {
         return validator!(value);
       },

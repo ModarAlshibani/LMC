@@ -21,8 +21,18 @@ class TasksList extends StatelessWidget {
         } else if (state is AllTasksSuccess) {
           print("state is: $state");
           // Only show the first 6 Tasks
-          final Tasks = state.tasks.toList();
+          final Tasks =
+              state.tasks.toList()..sort((a, b) {
+                if ((a.status == 'Pending') && (b.status != 'Pending'))
+                  return -1;
+                if ((a.status != 'Pending') && (b.status == 'Pending'))
+                  return 1;
+                return 0;
+              });
           return ListView.builder(
+            padding: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
+            shrinkWrap: true,
             itemCount: Tasks.length,
             itemBuilder: (context, index) {
               return TasksOutside(

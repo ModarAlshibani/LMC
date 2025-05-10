@@ -12,7 +12,7 @@ class GetAllTasksUseCase {
     try {
       // Call the API service to get all Tasks
       final tasks = await apiService.getAllTasks();
-      
+
       // Return the list of Tasks directly
       return tasks;
     } catch (e) {

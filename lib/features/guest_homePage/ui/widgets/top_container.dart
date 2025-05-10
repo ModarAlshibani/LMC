@@ -7,7 +7,8 @@ import '../../../../core/theming/colors.dart';
 
 class TopContainer extends StatelessWidget {
   final double? height;
-  const TopContainer({super.key, this.height});
+  final bool? border;
+  const TopContainer({super.key, this.height, this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,14 @@ class TopContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.lmcBlue,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(300),
-          bottomRight: Radius.circular(300),
+          bottomLeft: Radius.circular(500),
+          bottomRight: Radius.circular(500),
         ),
 
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1.5),
+        border: Border.all(
+          color: AppColors.lmcOrange.withOpacity(0.95),
+          width: border == true ? 20 : 0,
+        ),
       ),
     );
   }

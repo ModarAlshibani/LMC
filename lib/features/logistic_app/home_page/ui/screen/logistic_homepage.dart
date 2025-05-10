@@ -19,7 +19,7 @@ class LogisticHomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.background2,
       body: SafeArea(
         child: Stack(
           children: [

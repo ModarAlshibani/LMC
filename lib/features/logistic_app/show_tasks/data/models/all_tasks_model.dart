@@ -71,16 +71,17 @@ class CreatedTasks {
   String? updatedAt;
   List<Users>? users;
 
-  CreatedTasks(
-      {this.id,
-      this.creatorId,
-      this.description,
-      this.status,
-      this.deadline,
-      this.completedAt,
-      this.createdAt,
-      this.updatedAt,
-      this.users});
+  CreatedTasks({
+    this.id,
+    this.creatorId,
+    this.description,
+    this.status,
+    this.deadline,
+    this.completedAt,
+    this.createdAt,
+    this.updatedAt,
+    this.users,
+  });
 
   CreatedTasks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -149,21 +150,22 @@ class AssignedTasks {
   String? description;
   String? status;
   String? deadline;
-  Null? completedAt;
+  String? completedAt;
   String? createdAt;
   String? updatedAt;
   List<Users>? users;
 
-  AssignedTasks(
-      {this.id,
-      this.creatorId,
-      this.description,
-      this.status,
-      this.deadline,
-      this.completedAt,
-      this.createdAt,
-      this.updatedAt,
-      this.users});
+  AssignedTasks({
+    this.id,
+    this.creatorId,
+    this.description,
+    this.status,
+    this.deadline,
+    this.completedAt,
+    this.createdAt,
+    this.updatedAt,
+    this.users,
+  });
 
   AssignedTasks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -206,12 +208,13 @@ class Pivot {
   String? createdAt;
   String? updatedAt;
 
-  Pivot(
-      {this.taskId,
-      this.userId,
-      this.completed,
-      this.createdAt,
-      this.updatedAt});
+  Pivot({
+    this.taskId,
+    this.userId,
+    this.completed,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Pivot.fromJson(Map<String, dynamic> json) {
     taskId = json['TaskId'];
