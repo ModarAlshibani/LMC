@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/features/announsments/data/models/all_announsments.dart';
+import 'package:lmc_app/features/courses/data/models/available_courses_model.dart';
 import 'package:lmc_app/features/logistic_app/show_tasks/data/models/all_tasks_model.dart';
 
 import 'api_constants.dart';
@@ -114,6 +115,31 @@ class ApiService {
       throw NetworkErrorHandler.handleError(e, context);
     } catch (e) {
       throw NetworkException('An unexpected error occurred.');
+    }
+  }
+
+  Future<List<AvailableCourses>> getAvailableCourses() async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching available courses...");
+
+      final response = await dio.get(
+        '$baseUrl/guest/viewAvailableCourses',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode == 200) {
+        final coursesModel = AvailableCoursesModel.fromJson(response.data);
+        return coursesModel.availableCourses ?? [];
+      } else {
+        throw Exception('Failed to load available courses');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
     }
   }
 }

@@ -19,7 +19,7 @@ class LmcApp extends StatelessWidget {
         title: 'LMC App',
         theme: ThemeData(
           primaryColor: AppColors.lmcBlue,
-          scaffoldBackgroundColor: AppColors.backgroundColor,
+          scaffoldBackgroundColor: AppColors.background2,
           fontFamily: 'Poppins',
         ),
 

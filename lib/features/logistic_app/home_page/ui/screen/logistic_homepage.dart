@@ -24,10 +24,10 @@ class LogisticHomepage extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              top: -0,
+              top: -30,
               left: -140,
               right: -140,
-              child: TopContainer(height: 300.h),
+              child: TopContainer(height: 360.h, border: true),
             ),
             Positioned(
               top: 20.h,
