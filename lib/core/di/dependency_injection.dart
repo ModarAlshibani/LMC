@@ -1,15 +1,15 @@
 import 'package:get_it/get_it.dart';
 import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/core/networking/api_service.dart';
-import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/announsments/logic/usecases/get_all_announcements_usecase.dart';
-import 'package:lmc_app/features/logistic_app/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
-import 'package:lmc_app/features/logistic_app/show_tasks/logic/usecases/all_tasks_usecases.dart';
-import 'package:lmc_app/features/signup/logic/cubit/signup_cubit.dart';
-import 'package:lmc_app/features/signup/logic/usecases/signup_usecases.dart';
+import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
+import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
+import 'package:lmc_app/features/logistic_features/show_tasks/logic/usecases/all_tasks_usecases.dart';
+import 'package:lmc_app/features/for_all/signup/logic/cubit/signup_cubit.dart';
+import 'package:lmc_app/features/for_all/signup/logic/usecases/signup_usecases.dart';
 
-import '../../features/login/logic/cubit/login_cubit.dart';
-import '../../features/login/logic/usecases/login_usecases.dart';
+import '../../features/for_all/login/logic/cubit/login_cubit.dart';
+import '../../features/for_all/login/logic/usecases/login_usecases.dart';
 
 final GetIt getIt = GetIt.instance;
 

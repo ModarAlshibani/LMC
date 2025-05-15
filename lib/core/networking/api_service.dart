@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lmc_app/core/di/shared_pref.dart';
-import 'package:lmc_app/features/announsments/data/models/all_announsments.dart';
-import 'package:lmc_app/features/courses/data/models/available_courses_model.dart';
-import 'package:lmc_app/features/logistic_app/show_tasks/data/models/all_tasks_model.dart';
+import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
+import 'package:lmc_app/features/for_all/courses/data/models/available_courses_model.dart';
+import 'package:lmc_app/features/logistic_features/show_tasks/data/models/all_tasks_model.dart';
 
 import 'api_constants.dart';
 import 'network_error_handler.dart';
@@ -117,7 +117,7 @@ class ApiService {
       throw NetworkException('An unexpected error occurred.');
     }
   }
-
+// ----------------------------------------------------------------------------
   Future<List<AvailableCourses>> getAvailableCourses() async {
     try {
       final localStorage = LocalStorage();
@@ -142,4 +142,7 @@ class ApiService {
       throw Exception('Unknown error: $e');
     }
   }
+
+  // ----------------------------------------------------------------------------
+
 }

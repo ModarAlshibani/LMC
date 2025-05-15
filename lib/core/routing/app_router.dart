@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/logistic_app/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
-import '../../features/guest_homePage/ui/screens/guest_home_page_screen.dart';
-import '../../features/logistic_app/home_page/ui/screen/logistic_homepage.dart';
-import '../../features/logistic_app/send_invoice/ui/screens/send_invoice.dart';
-import '../../features/logistic_app/show_tasks/ui/screens/show_tasks.dart';
-import '../../features/signup/logic/cubit/signup_cubit.dart';
+import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
+import '../../features/guest_features/guest_homePage/ui/screens/guest_home_page_screen.dart';
+import '../../features/logistic_features/home_page/ui/screen/logistic_homepage.dart';
+import '../../features/logistic_features/send_invoice/ui/screens/send_invoice.dart';
+import '../../features/logistic_features/show_tasks/ui/screens/show_tasks.dart';
+import '../../features/for_all/signup/logic/cubit/signup_cubit.dart';
 
-import '../../features/login/logic/cubit/login_cubit.dart';
-import '../../features/login/ui/screens/login_screen.dart';
-import '../../features/onboarding/ui/screens/onboarding_screen.dart';
-import '../../features/signup/ui/screens/signup_screen.dart';
+import '../../features/for_all/login/logic/cubit/login_cubit.dart';
+import '../../features/for_all/login/ui/screens/login_screen.dart';
+import '../../features/for_all/onboarding/ui/screens/onboarding_screen.dart';
+import '../../features/for_all/signup/ui/screens/signup_screen.dart';
 import '../di/dependency_injection.dart';
 import 'routes.dart';
 
