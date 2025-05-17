@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/ui/widgets/tasks_outside.dart';
 
-class TasksList extends StatelessWidget {
+class DoneTasksList extends StatelessWidget {
+  const DoneTasksList({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Trigger fetch when the widget builds
@@ -22,10 +24,10 @@ class TasksList extends StatelessWidget {
 
           // Filter to show only tasks with status 'Pending'
           final pendingTasks =
-              state.tasks.where((task) => task.status == 'Pending').toList();
+              state.tasks.where((task) => task.status == 'Done').toList();
 
           if (pendingTasks.isEmpty) {
-            return Center(child: Text('No pending tasks found.'));
+            return Center(child: Text('No Done tasks found.'));
           }
 
           return ListView.builder(
@@ -46,7 +48,7 @@ class TasksList extends StatelessWidget {
           );
         }
 
-        return Center(child: Text('No Tasks found.'));
+        return Center(child: Text('No Done Tasks found.'));
       },
     );
   }

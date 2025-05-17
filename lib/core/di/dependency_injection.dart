@@ -3,6 +3,9 @@ import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/core/networking/api_service.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
+import 'package:lmc_app/features/for_all/courses/data/models/available_courses_model.dart';
+import 'package:lmc_app/features/for_all/courses/logic/cubit/cubit/available_courses_cubit.dart';
+import 'package:lmc_app/features/for_all/courses/logic/usecases/available_courses_usecase.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/usecases/all_tasks_usecases.dart';
 import 'package:lmc_app/features/for_all/signup/logic/cubit/signup_cubit.dart';
@@ -44,5 +47,12 @@ void setupLocator() {
   );
   getIt.registerFactory(
     () => AllTasksCubit(getIt<GetAllTasksUseCase>()), // Register the cubit
+  );
+
+   getIt.registerLazySingleton(
+    () => GetAvailableCoursesUseCase(getIt<ApiService>()), // Register the use case
+  );
+   getIt.registerFactory(
+    () => AvailableCoursesCubit(getIt<GetAvailableCoursesUseCase>()), // Register the cubit
   );
 }

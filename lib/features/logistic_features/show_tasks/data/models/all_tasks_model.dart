@@ -67,7 +67,7 @@ class AssignedTasks {
   String? status;
   String? deadline;
   int? requiresInvoice;
-  Null? completedAt;
+  String? completedAt;
   String? createdAt;
   String? updatedAt;
   List<Users>? users;
@@ -127,7 +127,7 @@ class CreatedTasks {
   String? description;
   String? status;
   String? deadline;
-  Null? completedAt;
+  String? completedAt;
   String? createdAt;
   String? updatedAt;
   List<Users>? users;

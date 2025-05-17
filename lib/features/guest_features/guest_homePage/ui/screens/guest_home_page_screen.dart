@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../../../../core/di/shared_pref.dart';
@@ -126,11 +127,18 @@ class GuestHomePageScreen extends StatelessWidget {
                       thirdRow: 'course',
                       icon: 'assets/icons/private_course.png',
                     ),
-                    GlassInkwell(
-                      firstRow: 'Show',
-                      secondRow: 'upcomming',
-                      thirdRow: 'courses',
-                      icon: 'assets/icons/upcoming_courses.png',
+                    InkWell(
+                      onTap:
+                          () => Navigator.pushReplacementNamed(
+                            context,
+                            Routes.available_courses,
+                          ),
+                      child: GlassInkwell(
+                        firstRow: 'Show',
+                        secondRow: 'upcomming',
+                        thirdRow: 'courses',
+                        icon: 'assets/icons/upcoming_courses.png',
+                      ),
                     ),
                   ],
                 ),
