@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
+import 'package:lmc_app/features/student_features/navBar.dart';
+import 'package:lmc_app/features/student_features/student_homePage_screen.dart';
 import '../../features/guest_features/guest_homePage/ui/screens/guest_home_page_screen.dart';
 import '../../features/logistic_features/home_page/ui/screen/logistic_homepage.dart';
 import '../../features/logistic_features/send_invoice/ui/screens/send_invoice.dart';
@@ -39,6 +41,15 @@ class AppRouter {
               ),
         );
 
+      case Routes.navBar:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<AllAnnouncementsCubit>(),
+            child: NavBar(),
+          ),
+        );
+
       case Routes.guest_homePage:
         return MaterialPageRoute(
           builder:
@@ -64,7 +75,16 @@ class AppRouter {
               ),
         );
       case Routes.send_invoice:
-        return MaterialPageRoute(builder: (_) => SendInvoice());
+        return MaterialPageRoute(builder: (_) => SendInvoice()
+        );
+        case Routes.student_homePage:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AllAnnouncementsCubit>(),
+                child: StudentHomePageScreen(),
+              ),
+        );
 
       default:
         return MaterialPageRoute(

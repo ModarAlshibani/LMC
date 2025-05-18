@@ -8,4 +8,6 @@ class Routes{
   static const String logistic_homePage = '/logistic_homePage';
   static const String show_tasks = '/show_tasks';
   static const String send_invoice = '/send_invoice';
+  static const String student_homePage = '/student_homePage';
+  static const String navBar = '/navbar';
 }

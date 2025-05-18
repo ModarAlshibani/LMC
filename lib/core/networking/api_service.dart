@@ -145,4 +145,29 @@ class ApiService {
 
   // ----------------------------------------------------------------------------
 
+  Future<String> getUserName() async{
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching available courses...");
+
+      final response = await dio.get(
+        '$baseUrl/login',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode == 200) {
+        final userModel = User.fromJson(response.data);
+        return userModel.name!;
+      } else {
+        throw Exception('Failed to load available courses');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    } 
+  }
+
 }
