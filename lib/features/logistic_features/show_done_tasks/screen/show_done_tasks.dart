@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
+import 'package:lmc_app/features/logistic_features/show_done_tasks/widgets/done_tasks_list.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/ui/widgets/tasks_list.dart';
 
-class ShowTasks extends StatelessWidget {
-  const ShowTasks({super.key});
+class ShowDoneTasks extends StatelessWidget {
+  const ShowDoneTasks({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class ShowTasks extends StatelessWidget {
             right: 30.w,
             left: 30.w,
             bottom: 20,
-            child: TasksList(),
+            child: DoneTasksList(),
           ),
         ],
       ),

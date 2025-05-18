@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/theming/colors.dart';
@@ -108,7 +109,8 @@ class LogisticHomepage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/show_tasks'),
+                      onTap:
+                          () => Navigator.pushNamed(context, Routes.show_tasks),
                       child: GlassInkwell(
                         firstRow: 'Show',
                         secondRow: 'my',
@@ -116,11 +118,15 @@ class LogisticHomepage extends StatelessWidget {
                         icon: 'assets/icons/task.png',
                       ),
                     ),
-                    GlassInkwell(
-                      firstRow: 'Send',
-                      secondRow: 'invoice',
-                      thirdRow: ' ',
-                      icon: 'assets/icons/invoice.png',
+                    InkWell(
+                      onTap:
+                          () => Navigator.pushNamed(context, Routes.done_tasks),
+                      child: GlassInkwell(
+                        firstRow: 'Show',
+                        secondRow: 'done',
+                        thirdRow: 'Tasks',
+                        icon: 'assets/icons/invoice.png',
+                      ),
                     ),
                   ],
                 ),

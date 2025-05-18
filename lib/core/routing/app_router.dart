@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/for_all/courses/logic/cubit/cubit/available_courses_cubit.dart';
+import 'package:lmc_app/features/for_all/courses/ui/screens/upcomming_courses.dart';
+import 'package:lmc_app/features/logistic_features/show_done_tasks/screen/show_done_tasks.dart';
+import 'package:lmc_app/features/logistic_features/show_done_tasks/widgets/done_tasks_list.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/student_features/navBar.dart';
 import 'package:lmc_app/features/student_features/student_homePage_screen.dart';
@@ -74,6 +78,15 @@ class AppRouter {
                 child: ShowTasks(),
               ),
         );
+      case Routes.done_tasks:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AllTasksCubit>(),
+                child: ShowDoneTasks(),
+              ),
+        );
+
       case Routes.send_invoice:
         return MaterialPageRoute(builder: (_) => SendInvoice()
         );
@@ -83,6 +96,15 @@ class AppRouter {
               (_) => BlocProvider(
                 create: (context) => getIt<AllAnnouncementsCubit>(),
                 child: StudentHomePageScreen(),
+              ),
+        );
+
+      case Routes.available_courses:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AvailableCoursesCubit>(),
+                child: AvailableCourses(),
               ),
         );
 
