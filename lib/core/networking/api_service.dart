@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+
 import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
 import 'package:lmc_app/features/for_all/courses/data/models/available_courses_model.dart';
@@ -117,7 +122,8 @@ class ApiService {
       throw NetworkException('An unexpected error occurred.');
     }
   }
-// ----------------------------------------------------------------------------
+
+  // ----------------------------------------------------------------------------
   Future<List<AvailableCourses>> getAvailableCourses() async {
     try {
       final localStorage = LocalStorage();
@@ -143,6 +149,42 @@ class ApiService {
     }
   }
 
-  // ----------------------------------------------------------------------------
+  Future<Response> sendInvoice({
+    required int taskId,
+    required double amount,
+    required File imageFile,
+    required BuildContext context,
+  }) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      final fileName = basename(imageFile.path);
 
+      final formData = FormData.fromMap({
+        'TaskId': taskId,
+        'Amount': amount,
+        'Image': await MultipartFile.fromFile(
+          imageFile.path,
+          filename: fileName,
+        ),
+      });
+
+      final response = await dio.post(
+        '$baseUrl/logistic/createInvoice',
+        data: formData,
+        options: Options(headers: {
+           'Accept': 'application/json',
+          'Authorization': 'Bearer $token'}),
+      );
+      markTaskAsDone(taskId, context);
+      return response;
+    } on DioException catch (e) {
+      print(e.response.toString());
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
+
+  // ----------------------------------------------------------------------------
 }

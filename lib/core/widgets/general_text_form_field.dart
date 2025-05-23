@@ -15,7 +15,7 @@ class GeneralTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.fillColor,
-    this.hintTextStyle,
+    this.hintTextStyle, this.inputTextStyle,
   });
 
   final InputBorder? focusedBorder;
@@ -23,11 +23,13 @@ class GeneralTextFormField extends StatelessWidget {
   final bool? isObsecureText;
   final String? hintText;
   final TextStyle? hintTextStyle;
+  final TextStyle? inputTextStyle;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final Function(String?)? validator;
   final Color? fillColor;
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class GeneralTextFormField extends StatelessWidget {
       ),
       obscureText: isObsecureText ?? false,
 
-      style: TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
+      style: inputTextStyle ?? TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
       cursorColor: AppColors.backgroundColor,
       validator: (value) {
         return validator!(value);

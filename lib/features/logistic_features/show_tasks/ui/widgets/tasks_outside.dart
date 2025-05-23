@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/networking/api_service.dart';
+import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 
@@ -29,7 +30,7 @@ class TasksOutside extends StatelessWidget {
       onTap:
           () => _showTaskDetails(
             context,
-            id.toString(),
+            id!,
             description!,
             deadline!,
             status!,
@@ -154,7 +155,7 @@ class TasksOutside extends StatelessWidget {
 
 void _showTaskDetails(
   BuildContext context,
-  String taskId,
+  int taskId,
   String content,
   String deadline,
   String status,
@@ -264,8 +265,19 @@ void _showTaskDetails(
                     ElevatedButton(
                       onPressed: () {
                         if (status != "Done") {
-                          Navigator.of(context).pop();
-                          _confirm(taskId, context);
+                          if (requireInvoice == 1) {
+                            print("navigate to the send invoice screen");
+                            Navigator.pushReplacementNamed(
+                              context,
+                              Routes.send_invoice,
+                              arguments: {'taskId': taskId, 'content': content},
+                            );
+                          } else {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                            print("Mark task as done");
+                            _confirm(taskId.toString(), context);
+                          }
                         } else {
                           Navigator.of(context).pop();
                         }
@@ -281,7 +293,9 @@ void _showTaskDetails(
                         ),
                       ),
                       child: Text(
-                        requireInvoice == 1 && status != "Done"  ? "Send invoice" : "Mark as done",
+                        requireInvoice == 1 && status != "Done"
+                            ? "Send invoice"
+                            : "Mark as done",
                         style: TextStyle(
                           fontSize: 15.sp,
                           color: AppColors.background2,
@@ -338,8 +352,9 @@ void _confirm(String taskId, BuildContext context) {
                 verticalSpace(20),
                 ElevatedButton(
                   onPressed: () {
+                    Navigator.of(context).pop();
                     ApiService().markTaskAsDone(int.parse(taskId), context);
-                    Navigator.pushNamed(context, '/show_tasks');
+                    Navigator.pushNamed(context, Routes.show_tasks);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lmcOrange,
@@ -349,7 +364,6 @@ void _confirm(String taskId, BuildContext context) {
                     ),
                   ),
                   child: Text(
-                    
                     "mark as done",
                     style: TextStyle(
                       fontSize: 15.sp,
