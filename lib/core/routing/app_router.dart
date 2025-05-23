@@ -8,7 +8,7 @@ import 'package:lmc_app/features/logistic_features/show_done_tasks/screen/show_d
 import 'package:lmc_app/features/logistic_features/show_done_tasks/widgets/done_tasks_list.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/student_features/navBar.dart';
-import 'package:lmc_app/features/student_features/student_homePage_screen.dart';
+
 import '../../features/guest_features/guest_homePage/ui/screens/guest_home_page_screen.dart';
 import '../../features/logistic_features/home_page/ui/screen/logistic_homepage.dart';
 import '../../features/logistic_features/send_invoice/ui/screens/send_invoice_screen.dart';
@@ -88,8 +88,17 @@ class AppRouter {
               ),
         );
 
-      case Routes.send_invoice:
-        return MaterialPageRoute(builder: (_) => SendInvoice());
+     case Routes.send_invoice:
+  final args = settings.arguments as Map<String, dynamic>;
+  final taskId = args['taskId'] as int;
+  final content = args['content'] as String;
+
+  return MaterialPageRoute(
+    builder: (_) => BlocProvider(
+      create: (context) => getIt<SendInvoiceCubit>(),
+      child: SendInvoiceScreen(taskId: taskId, content: content),
+    ),
+  );
 
       case Routes.available_courses:
         return MaterialPageRoute(
