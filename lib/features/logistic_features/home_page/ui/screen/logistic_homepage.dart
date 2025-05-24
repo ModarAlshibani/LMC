@@ -1,22 +1,31 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
-import '../../../../../core/di/shared_pref.dart';
-import '../../../../../core/helpers/shared_pref_helper.dart';
+
 import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/networking/api_constants.dart';
+import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/general_text_form_field.dart';
-import '../../../../../core/widgets/glass_card.dart';
+import '../../../../for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../../../guest_features/guest_homePage/ui/widgets/glass_inkwell.dart';
 import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
-import '../../../../for_all/login/ui/widgets/bottom_blur_container.dart';
 
-class LogisticHomepage extends StatelessWidget {
+class LogisticHomepage extends StatefulWidget {
   const LogisticHomepage({super.key});
 
+  @override
+  State<LogisticHomepage> createState() => _LogisticHomepageState();
+}
+
+
+class _LogisticHomepageState extends State<LogisticHomepage> {
+
+  @override
+  void initState() {
+    super.initState();
+    printDeviceToken(); // ✅ This prints the token when the screen loads
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,5 +169,19 @@ class LogisticHomepage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> printDeviceToken() async {
+  try {
+    await FirebaseMessaging.instance.requestPermission();
+    String? token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      print('📱 Device FCM Token: $token');
+    } else {
+      print('❌ Failed to get FCM token');
+    }
+  } catch (e) {
+    print('⚠️ Error getting FCM token: $e');
   }
 }
