@@ -8,6 +8,7 @@ import 'package:lmc_app/features/logistic_features/send_invoice/logic/cubit/send
 import 'package:lmc_app/features/logistic_features/show_done_tasks/screen/show_done_tasks.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/teacher_features/teacher_homepage/teacher_homepage.dart';
+import 'package:lmc_app/features/teacher_features/teacher_navbar.dart';
 
 import '../../features/for_all/login/logic/cubit/login_cubit.dart';
 import '../../features/for_all/login/ui/screens/login_screen.dart';
@@ -100,7 +101,10 @@ class AppRouter {
               ),
         );
 
- case Routes.teacher_homepage:
+      case Routes.teacher_navbar:
+        return MaterialPageRoute(builder: (_) => TeacherNavBar());
+
+      case Routes.teacher_homepage:
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(

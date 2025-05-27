@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses/data/model/my_courses_teacher_model.dart';
 import 'package:path/path.dart';
 
 import 'package:lmc_app/core/di/shared_pref.dart';
@@ -187,4 +188,29 @@ class ApiService {
   }
 
   // ----------------------------------------------------------------------------
+  //--------------------Teacher Functions---------------------------------------
+   Future<List<MyCourses>> getTeacherCourses() async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching available courses...");
+
+      final response = await dio.get(
+        '$baseUrl/teacher/reviewMyCourses',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode == 200) {
+        final coursesModel = MyCoursesTeacherModel.fromJson(response.data);
+        return coursesModel.myCourses ?? [];
+      } else {
+        throw Exception('Failed to load your courses');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
 }

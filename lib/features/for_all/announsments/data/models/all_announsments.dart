@@ -48,7 +48,7 @@ class Announcements {
     creatorId = json['CreatorId'];
     title = json['Title'];
     content = json['Content'];
-    photo = json['Photo'];
+    photo = json['Media'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     creator =
@@ -61,7 +61,7 @@ class Announcements {
     data['CreatorId'] = this.creatorId;
     data['Title'] = this.title;
     data['Content'] = this.content;
-    data['Photo'] = this.photo;
+    data['Media'] = this.photo;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     if (this.creator != null) {
