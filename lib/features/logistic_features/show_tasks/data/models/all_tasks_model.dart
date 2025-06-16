@@ -1,3 +1,5 @@
+import 'package:lmc_app/features/for_all/login/data/models/login_response.dart';
+
 class AllTasksModel {
   User? user;
   List<CreatedTasks>? createdTasks;
@@ -38,27 +40,7 @@ class AllTasksModel {
   }
 }
 
-class User {
-  int? id;
-  String? name;
-  String? email;
 
-  User({this.id, this.name, this.email});
-
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    email = json['email'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    return data;
-  }
-}
 
 class AssignedTasks {
   int? id;

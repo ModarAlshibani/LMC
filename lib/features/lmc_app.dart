@@ -22,9 +22,8 @@ class LmcApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.background2,
           fontFamily: 'Poppins',
         ),
-
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.navBar,
+        initialRoute: Routes.loginScreen,
       ),
     );
   }

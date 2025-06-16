@@ -3,8 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
 import 'package:lmc_app/features/for_all/courses/data/models/available_courses_model.dart';
+import 'package:lmc_app/features/for_all/login/data/models/login_response.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/data/models/all_tasks_model.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
 
+import '../../features/student_features/show_teachers/data/models/teacher_model.dart';
 import 'api_constants.dart';
 import 'network_error_handler.dart';
 
@@ -73,6 +77,34 @@ class ApiService {
     }
   }
 
+  Future<List<Teachers>> getTeachersList() async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("user tokkkkkkkken is: $token");
+      print("Fetching teachers list...");
+
+      final response = await dio.get(
+        '$baseUrl/student/viewTeachers',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      print("Raw API response: ${response.data}");
+      // التحقق من حالة الاستجابة
+      if (response.statusCode == 200) {
+        // تحويل البيانات إلى كائن من TeacherModel
+        final data = TeacherModel.fromJson(response.data);
+        print("modzzzz:  " + data.teachers.toString());
+        return data.teachers ?? [];
+      } else {
+        throw Exception('Failed to load teachers list');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+
   Future<List<AssignedTasks>> getAllTasks() async {
     try {
       final localStorage = LocalStorage();
@@ -97,6 +129,8 @@ class ApiService {
       throw Exception('Unknown error: $e');
     }
   }
+
+  //=============================================================================
 
   Future<Response> markTaskAsDone(int taskId, BuildContext context) async {
     try {
@@ -145,7 +179,7 @@ class ApiService {
 
   // ----------------------------------------------------------------------------
 
-  Future<String> getUserName() async{
+  Future<List<MyCourses>> getStudentMyCourses() async {
     try {
       final localStorage = LocalStorage();
       final token = await localStorage.getToken();
@@ -153,13 +187,71 @@ class ApiService {
       print("Fetching available courses...");
 
       final response = await dio.get(
-        '$baseUrl/login',
+        '$baseUrl/student/viewEnrolledCourses',
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 
       if (response.statusCode == 200) {
-        final userModel = User.fromJson(response.data);
-        return userModel.name!;
+        final coursesModel = MyCoursesModel.fromJson(response.data);
+        print('Full API response: ${response.data}');
+        return coursesModel.myCourses ?? [];
+      } else {
+        throw Exception('Failed to load available courses');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+
+//----------------------------------------------------------------------------------
+
+ Future<List<Lesson>> getLessons(int courseId) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching Lessons for the $courseId course...");
+
+      final response = await dio.get(
+        '$baseUrl/student/viewMyLessons/$courseId',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      
+      if (response.statusCode == 200) {
+        final lessonsModel = LessonsModel.fromJson(response.data);
+        print('Full API response: ${response.data}');
+        return lessonsModel.myLessons ?? [];
+      } else {
+        throw Exception('Failed to load lessons');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+
+//----------------------------------------------------------------------------------
+
+  Future<User> getUserName() async{
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching available courses...");
+
+      final response = await dio.get(
+        '$baseUrl/profile',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.statusCode == 200) {
+        final userJson = response.data['user'];
+        final userModel = User.fromJson(userJson);
+        print("Response data: ${response.data}");
+        return User.fromJson(userJson);
       } else {
         throw Exception('Failed to load available courses');
       }

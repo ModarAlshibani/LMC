@@ -1,6 +1,6 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/data/models/all_tasks_model.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/usecases/all_tasks_usecases.dart';
 

@@ -4,8 +4,8 @@ import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/for_all/courses/ui/widgets/available_courses_list.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
 
-class AvailableCourses extends StatelessWidget {
-  const AvailableCourses({super.key});
+class AvailableCoursesScreen extends StatelessWidget {
+  const AvailableCoursesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

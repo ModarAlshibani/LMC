@@ -44,7 +44,9 @@ class User {
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     role = json['role'];
-    permissions = json['permissions'].cast<String>();
+     permissions = json['permissions'] != null
+      ? List<String>.from(json['permissions'])
+      : [];
   }
 
   Map<String, dynamic> toJson() {
