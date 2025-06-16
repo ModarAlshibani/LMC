@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lmc_app/features/for_all/courses/data/models/available_courses_model.dart';
-import 'package:lmc_app/features/for_all/courses/logic/usecases/available_courses_usecase.dart';
+import 'package:lmc_app/features/for_all/available_courses/data/models/available_courses_model.dart';
+import 'package:lmc_app/features/for_all/available_courses/logic/usecases/available_courses_usecase.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses/data/model/my_courses_teacher_model.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses/logic/usecases/my_courses_teacher_usecase.dart';
 

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/for_all/available_courses/ui/widgets/available_courses_list.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/ui/widgets/teacher_courses_list.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/widgets/my_courses_list.dart';
 
-class MyCoursesTeacherScreen extends StatelessWidget {
-  const MyCoursesTeacherScreen({super.key});
+class StudentMyCoursesScreen extends StatelessWidget {
+  const StudentMyCoursesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class MyCoursesTeacherScreen extends StatelessWidget {
             right: 50.w,
             child: Center(
               child: Text(
-                "Available Courses",
+                "My Courses",
                 style: TextStyle(
                   color: AppColors.backgroundColor,
                   fontSize: 35,
@@ -42,7 +41,7 @@ class MyCoursesTeacherScreen extends StatelessWidget {
             right: 20.w,
             left: 20.w,
             bottom: 20,
-            child: TeacherCoursesList(),
+            child: MyCoursesList(),
           ),
         ],
       ),

@@ -2,11 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/for_all/courses/logic/cubit/cubit/available_courses_cubit.dart';
-import 'package:lmc_app/features/for_all/courses/ui/screens/upcomming_courses.dart';
+import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
+import 'package:lmc_app/features/for_all/available_courses/ui/screens/upcomming_courses.dart';
 import 'package:lmc_app/features/logistic_features/send_invoice/logic/cubit/send_invoice_cubit.dart';
 import 'package:lmc_app/features/logistic_features/show_done_tasks/screen/show_done_tasks.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_lessons/logic/cubit/lessons_cubit.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_lessons/ui/screens/lessons_list.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_cubit.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/screens/student_my_course_details.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/screens/student_my_courses_screen.dart';
+import 'package:lmc_app/features/student_features/navBar.dart';
+import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
+import 'package:lmc_app/features/student_features/show_teachers/logic/cubit/show_teachers_cubit.dart';
+import 'package:lmc_app/features/student_features/show_teachers/ui/screens/show_teachers_screen.dart';
+import 'package:lmc_app/features/student_features/show_teachers/ui/screens/teacher_profile_screen.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses/data/model/my_courses_teacher_model.dart';
 import 'package:lmc_app/features/teacher_features/teacher_homepage/teacher_homepage.dart';
 import 'package:lmc_app/features/teacher_features/teacher_navbar.dart';
 
@@ -112,6 +124,67 @@ class AppRouter {
                 child: TeacherHomepage(),
               ),
         );
+
+
+      case Routes.show_teachers:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<ShowTeachersCubit>(),
+            child: ShowTeachersScreen(),
+          ),
+        );
+
+        case Routes.show_teacher_profile:
+        final teacher = settings.arguments as Teachers;
+        return MaterialPageRoute(
+          builder:
+              (_) => TeacherProfileScreen(teacher: teacher),
+          
+        );
+
+        case Routes.lessons_list:
+        final courseId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<LessonsCubit>()
+            ..fetchLessons(courseId),
+            child: LessonsList(),
+          ),
+        );
+
+
+        //--------------------------------------------------------
+
+      case Routes.navBar:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<AllAnnouncementsCubit>(),
+            child: NavBar(),
+          ),
+        );
+
+
+
+        case Routes.student_my_courses:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<StudentMyCoursesCubit>(),
+            child: StudentMyCoursesScreen(),
+          ),
+        );
+
+        case Routes.student_my_course_details:
+        final course = settings.arguments as MyCoursesStu;
+        return MaterialPageRoute(
+          builder:
+              (_) => StudentMyCourseDetails(course: course),
+          
+        );
+        //----------------------------------------------------------
 
       default:
         return MaterialPageRoute(

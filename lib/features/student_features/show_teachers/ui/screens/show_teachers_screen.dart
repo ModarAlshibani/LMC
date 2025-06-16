@@ -1,15 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/for_all/available_courses/ui/widgets/available_courses_list.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/ui/widgets/teacher_courses_list.dart';
 
-class MyCoursesTeacherScreen extends StatelessWidget {
-  const MyCoursesTeacherScreen({super.key});
+import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
+import '../widgets/teachers_list.dart';
 
+class ShowTeachersScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.background2,
       body: Stack(
@@ -27,22 +27,23 @@ class MyCoursesTeacherScreen extends StatelessWidget {
             right: 50.w,
             child: Center(
               child: Text(
-                "Available Courses",
+                "LMC Teachers",
                 style: TextStyle(
                   color: AppColors.backgroundColor,
-                  fontSize: 35,
+                  fontSize: 45,
                   fontWeight: FontWeight.w800,
                 ),
               ),
             ),
           ),
+          
 
           Positioned(
-            top: 220.h,
-            right: 20.w,
-            left: 20.w,
+            top: 230.h,
+            right: 30.w,
+            left: 30.w,
             bottom: 20,
-            child: TeacherCoursesList(),
+            child: TeachersList(),
           ),
         ],
       ),

@@ -9,4 +9,4 @@ void main() async {
   await Firebase.initializeApp();
   setupLocator();
   runApp(LmcApp(appRouter: AppRouter()));
-}
+} 

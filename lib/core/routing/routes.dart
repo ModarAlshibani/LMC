@@ -12,4 +12,12 @@ class Routes {
   static const String done_tasks = '/done_tasks';
   static const String teacher_homepage = '/teacher_homepage';
   static const String teacher_navbar = '/teacher_navbar';
+  static const String navBar = '/navbar';
+  static const String show_teachers = '/show_teachers';
+  static const String show_teacher_profile = '/show_teacher_profile';
+  static const String student_my_courses = '/student_my_courses';
+  static const String student_my_course_details = '/student_my_course_details';
+  static const String lessons_list = '/lessons_list';
+
+
 }

@@ -3,29 +3,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/core/networking/api_constants.dart';
 import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcement_outside.dart';
 import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
   
-class TeacherCoursesList extends StatelessWidget {
+class AvailableCoursesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    context.read<MyCoursesTeacherCubit>().fetchMyCoursesTeacher();
-    return BlocBuilder<MyCoursesTeacherCubit, MyCoursesTeacherState>(
+    context.read<AvailableCoursesCubit>().fetchAvailableCourses();
+    return BlocBuilder<AvailableCoursesCubit, AvailableCoursesState>(
       builder: (context, state) {
-        if (state is MyCoursesTeacherLoading) {
+        if (state is AvailableCoursesLoading) {
           print("state is: $state");
           return Center(child: CircularProgressIndicator());
-        } else if (state is MyCoursesTeacherFailure) {
+        } else if (state is AvailableCoursesFailure) {
           print("state is: $state");
           return Center(child: Text('Error: ${state}'));
-        } else if (state is MyCoursesTeacherSuccess) {
+        } else if (state is AvailableCoursesSuccess) {
           print("state is: $state");
-          final coursesList = state.MyCoursesTeacher.toList();
+          final coursesList = state.availableCourses.toList();
           return ListView.builder(
             itemCount: coursesList.length,
             itemBuilder: (context, index) {
               return AnnouncementOutside(
-                title: coursesList[index].level ?? 'No Level',
-                image: coursesList[index].photo ?.replaceAll(
+                title: coursesList[index].teacherName ?? 'No Level',
+                image: coursesList[index].photo?.replaceAll(
                   'localhost',
                   ApiConstants.ip,
                 ),
