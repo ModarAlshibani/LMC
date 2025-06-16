@@ -46,6 +46,15 @@ class AppRouter {
               ),
         );
 
+      case Routes.navBar:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (context) => getIt<AllAnnouncementsCubit>(),
+            child: NavBar(),
+          ),
+        );
+
       case Routes.guest_homePage:
         return MaterialPageRoute(
           builder:

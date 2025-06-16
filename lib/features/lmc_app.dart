@@ -24,7 +24,7 @@ class LmcApp extends StatelessWidget {
         ),
 
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.loginScreen,
+        initialRoute: Routes.navBar,
       ),
     );
   }

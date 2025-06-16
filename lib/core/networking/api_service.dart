@@ -188,29 +188,5 @@ class ApiService {
   }
 
   // ----------------------------------------------------------------------------
-  //--------------------Teacher Functions---------------------------------------
-   Future<List<MyCourses>> getTeacherCourses() async {
-    try {
-      final localStorage = LocalStorage();
-      final token = await localStorage.getToken();
-      print("User token: $token");
-      print("Fetching available courses...");
 
-      final response = await dio.get(
-        '$baseUrl/teacher/reviewMyCourses',
-        options: Options(headers: {'Authorization': 'Bearer $token'}),
-      );
-
-      if (response.statusCode == 200) {
-        final coursesModel = MyCoursesTeacherModel.fromJson(response.data);
-        return coursesModel.myCourses ?? [];
-      } else {
-        throw Exception('Failed to load your courses');
-      }
-    } on DioException catch (e) {
-      throw Exception('Dio error: ${e.message}');
-    } catch (e) {
-      throw Exception('Unknown error: $e');
-    }
-  }
 }
