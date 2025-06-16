@@ -27,7 +27,7 @@ class Announcements {
   int? creatorId;
   String? title;
   String? content;
-  String? media;
+  String? photo;
   String? createdAt;
   String? updatedAt;
   Creator? creator;
@@ -37,7 +37,7 @@ class Announcements {
     this.creatorId,
     this.title,
     this.content,
-    this.media,
+    this.photo,
     this.createdAt,
     this.updatedAt,
     this.creator,

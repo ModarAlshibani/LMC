@@ -25,7 +25,7 @@ class AnnouncementsList extends StatelessWidget {
             itemBuilder: (context, index) {
               return AnnouncementOutside(
                 title: announcements[index].title ?? 'No Title',
-                image: announcements[index].media!.replaceAll(
+                image: announcements[index].photo!.replaceAll(
                   'localhost',
                   ApiConstants.ip,
                 ),
