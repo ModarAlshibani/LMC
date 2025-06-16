@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+<<<<<<< Updated upstream:lib/features/logistic_features/home_page/ui/screen/logistic_homepage.dart
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../../../../core/helpers/spacing.dart';
@@ -7,6 +8,14 @@ import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/general_text_form_field.dart';
 import '../../../../guest_features/guest_homePage/ui/widgets/glass_inkwell.dart';
 import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
+=======
+import 'package:lmc_app/features/announsments/ui/widgets/announcements_list.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/widgets/general_text_form_field.dart';
+import '../../../../guest_homePage/ui/widgets/glass_inkwell.dart';
+import '../../../../guest_homePage/ui/widgets/top_container.dart';
+>>>>>>> Stashed changes:lib/features/logistic_app/home_page/ui/screen/logistic_homepage.dart
 
 class LogisticHomepage extends StatelessWidget {
   const LogisticHomepage({super.key});

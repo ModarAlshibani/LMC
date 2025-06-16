@@ -66,11 +66,21 @@ dependencies:
   cached_network_image: ^3.3.1
   # reading and writing simple key-value pairs
   shared_preferences: ^2.2.3
+<<<<<<< Updated upstream
   # easy way to add shimmer effect
   shimmer: ^3.0.0
 #  rive: ^0.12.0
   equatable:
   curved_navigation_bar: ^1.0.6
+=======
+  # provides API to store data in secure storage.
+  flutter_secure_storage: ^9.0.0
+  # easy way to add shimmer effect
+  shimmer: ^3.0.0
+#  rive: ^0.12.0
+  equatable: ^2.0.7
+
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_lints: ^5.0.0

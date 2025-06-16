@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+<<<<<<< Updated upstream
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/courses/logic/cubit/cubit/available_courses_cubit.dart';
 import 'package:lmc_app/features/for_all/courses/ui/screens/upcomming_courses.dart';
@@ -22,6 +23,16 @@ import '../../features/logistic_features/home_page/ui/screen/logistic_homepage.d
 import '../../features/logistic_features/send_invoice/ui/screens/send_invoice.dart';
 import '../../features/logistic_features/show_tasks/ui/screens/show_tasks.dart';
 import '../../features/for_all/signup/logic/cubit/signup_cubit.dart';
+=======
+import 'package:lmc_app/features/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/logistic_app/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
+import 'package:lmc_app/features/student_app/home_page/student_homepage.dart';
+import '../../features/guest_homePage/ui/screens/guest_home_page_screen.dart';
+import '../../features/logistic_app/home_page/ui/screen/logistic_homepage.dart';
+import '../../features/logistic_app/send_invoice/ui/screens/send_invoice.dart';
+import '../../features/logistic_app/show_tasks/ui/screens/show_tasks.dart';
+import '../../features/signup/logic/cubit/signup_cubit.dart';
+>>>>>>> Stashed changes
 
 import '../../features/for_all/login/logic/cubit/login_cubit.dart';
 import '../../features/for_all/login/ui/screens/login_screen.dart';
@@ -121,6 +132,7 @@ class AppRouter {
           builder:
               (_) => BlocProvider(
                 create: (context) => getIt<AllAnnouncementsCubit>(),
+<<<<<<< Updated upstream
                 child: StudentHomePageScreen(),
               ),
         );
@@ -161,6 +173,11 @@ class AppRouter {
             child: LessonsList(),
           ),
         );
+=======
+                child: StudentHomepage(),
+              ),
+        );
+>>>>>>> Stashed changes
 
       default:
         return MaterialPageRoute(

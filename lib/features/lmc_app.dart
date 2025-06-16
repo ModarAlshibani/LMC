@@ -23,7 +23,7 @@ class LmcApp extends StatelessWidget {
           fontFamily: 'Poppins',
         ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.loginScreen,
+        initialRoute: Routes.student_homePage,
       ),
     );
   }
