@@ -1,6 +1,6 @@
 // for strings (const strings)
 
-class Routes{
+class Routes {
   static const String onboardingScreen = '/onboardingScreen';
   static const String loginScreen = '/loginScreen';
   static const String signUp = '/signUp';
@@ -10,4 +10,6 @@ class Routes{
   static const String send_invoice = '/send_invoice';
   static const String available_courses = '/available_courses';
   static const String done_tasks = '/done_tasks';
+  static const String student_homePage = '/done_tasks';
+  static const String teacher_navbar = '/teacher_navbar';
 }
