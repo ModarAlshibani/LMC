@@ -12,6 +12,8 @@ import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/usecases/all_tasks_usecases.dart';
 import 'package:lmc_app/features/for_all/signup/logic/cubit/signup_cubit.dart';
 import 'package:lmc_app/features/for_all/signup/logic/usecases/signup_usecases.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses/logic/usecases/my_courses_teacher_usecase.dart';
 
 import '../../features/for_all/login/logic/cubit/login_cubit.dart';
 import '../../features/for_all/login/logic/usecases/login_usecases.dart';
@@ -63,4 +65,15 @@ void setupLocator() {
   );
   getIt.registerLazySingleton(() => SendInvoiceUseCase(getIt<ApiService>()));
   getIt.registerFactory(() => SendInvoiceCubit(getIt<SendInvoiceUseCase>()));
+
+  getIt.registerLazySingleton(
+    () => GetMyCoursesTeacherUseCase(
+      getIt<ApiService>(),
+    ), // Register the use case
+  );
+  getIt.registerFactory(
+    () => MyCoursesTeacherCubit(
+      getIt<GetMyCoursesTeacherUseCase>(),
+    ), // Register the cubit
+  );
 }

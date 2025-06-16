@@ -5,7 +5,7 @@ import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 
 class AnnouncementOutside extends StatelessWidget {
-  const AnnouncementOutside({super.key, this.title, this.image, this.content});
+  const  AnnouncementOutside({super.key, this.title, this.image, this.content});
   final String? title;
   final String? image;
   final String? content;

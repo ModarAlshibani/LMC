@@ -20,7 +20,7 @@ class LoginBlocListener extends StatelessWidget {
             Navigator.pushReplacementNamed(context, Routes.guest_homePage);
           } else if (state.user?.role == 'Student') {
           } else if (state.user?.role == 'Teacher') {
-            Navigator.pushReplacementNamed(context, Routes.teacher_homepage);
+            Navigator.pushReplacementNamed(context, Routes.teacher_navbar);
           } else if (state.user?.role == 'Logistic') {
             Navigator.pushReplacementNamed(context, Routes.logistic_homePage);
           }

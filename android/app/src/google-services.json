@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286485648728",
+    "project_id": "lmc-institute-647ba",
+    "storage_bucket": "lmc-institute-647ba.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286485648728:android:666bdf6149fca96d52012d",
+        "android_client_info": {
+          "package_name": "com.example.lmc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAibwOZ2nvkmMwRLzQe9F1vUr6ZZ5Fx1ys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
