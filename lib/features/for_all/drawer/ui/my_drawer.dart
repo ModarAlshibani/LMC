@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/features/for_all/login/data/models/login_response.dart';
+import '../../login/data/models/login_response.dart';
 
 import '../../../../core/theming/colors.dart' show AppColors;
 

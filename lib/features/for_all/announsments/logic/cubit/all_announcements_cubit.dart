@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
-import 'package:lmc_app/features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
+
+import '../../data/models/all_announsments.dart';
+import '../usecases/get_all_announcements_usecase.dart';
 
 part 'all_announcements_state.dart';
 

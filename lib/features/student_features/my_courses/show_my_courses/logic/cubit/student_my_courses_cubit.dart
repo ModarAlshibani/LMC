@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_state.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/usecases/student_my_courses_usecase.dart';
+import 'student_my_courses_state.dart';
+import '../usecases/student_my_courses_usecase.dart';
 
 
 

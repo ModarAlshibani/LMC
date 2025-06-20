@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/networking/api_constants.dart';
+import '../../../../../../core/routing/routes.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/widgets/glass_card.dart';
+import '../../data/models/stu_my_courses_model.dart';
 
 class MyCourseOutside extends StatelessWidget {
   final MyCoursesStu course;

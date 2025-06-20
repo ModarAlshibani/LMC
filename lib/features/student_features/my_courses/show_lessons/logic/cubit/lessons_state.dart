@@ -1,6 +1,7 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
+
+import '../../data/models/lessons_model.dart';
 
 abstract class LessonsState extends Equatable {
   const LessonsState();

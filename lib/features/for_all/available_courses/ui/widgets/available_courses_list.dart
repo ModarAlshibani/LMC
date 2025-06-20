@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcement_outside.dart';
-import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
+import '../../../../../core/networking/api_constants.dart';
+import '../../../announsments/ui/widgets/announcement_outside.dart';
+import '../../logic/cubit/cubit/available_courses_cubit.dart';
   
 class AvailableCoursesList extends StatelessWidget {
   @override

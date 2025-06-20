@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/for_all/available_courses/ui/widgets/available_courses_list.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
+import '../../../../../core/theming/colors.dart';
+import '../widgets/available_courses_list.dart';
+import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
 
 class AvailableCourses extends StatelessWidget {
   const AvailableCourses({super.key});

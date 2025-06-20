@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/logic/cubit/lessons_cubit.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/logic/cubit/lessons_state.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/ui/widgets/lesson_outside.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../logic/cubit/lessons_cubit.dart';
+import '../../logic/cubit/lessons_state.dart';
+import '../widgets/lesson_outside.dart';
 
 class LessonsList extends StatelessWidget{
   @override

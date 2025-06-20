@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/features/student_features/show_teachers/ui/widgets/teacher_outside.dart';
+import 'teacher_outside.dart';
 
 import '../../logic/cubit/show_teachers_cubit.dart';
 

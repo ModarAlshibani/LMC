@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcement_outside.dart';
+
+import '../../../../../core/networking/api_constants.dart';
+import '../../logic/cubit/all_announcements_cubit.dart';
+import 'announcement_outside.dart';
 
 class AnnouncementsList extends StatelessWidget {
   @override

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcement_outside.dart';
-import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/ui/widgets/teacher_course_outside.dart';
+import '../../logic/cubit/my_courses_teacher_cubit.dart';
+import 'teacher_course_outside.dart';
   
 class TeacherCoursesList extends StatelessWidget {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
+import '../../../../../core/theming/colors.dart';
 
 import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
 import '../widgets/teachers_list.dart';

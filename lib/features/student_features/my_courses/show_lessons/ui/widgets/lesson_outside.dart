@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/widgets/glass_card.dart';
+import '../../data/models/lessons_model.dart';
 
 class LessonOutside extends StatelessWidget {
   final Lesson lesson;

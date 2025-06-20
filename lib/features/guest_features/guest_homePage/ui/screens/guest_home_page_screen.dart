@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
-import '../../../../../core/di/shared_pref.dart';
-import '../../../../../core/helpers/shared_pref_helper.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/general_text_form_field.dart';
-import '../../../../../core/widgets/glass_card.dart';
 import '../widgets/glass_inkwell.dart';
 import '../widgets/top_container.dart';
-import '../../../../for_all/login/ui/widgets/bottom_blur_container.dart';
 
 class GuestHomePageScreen extends StatelessWidget {
   const GuestHomePageScreen({super.key});

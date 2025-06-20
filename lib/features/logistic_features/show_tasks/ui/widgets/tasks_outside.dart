@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/networking/api_service.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/networking/api_service.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/widgets/glass_card.dart';
 
 class TasksOutside extends StatelessWidget {
   const TasksOutside({

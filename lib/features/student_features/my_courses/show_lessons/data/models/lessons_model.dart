@@ -1,4 +1,4 @@
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
+import '../../../show_my_courses/data/models/stu_my_courses_model.dart';
 
 class LessonsModel {
   String? message;

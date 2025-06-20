@@ -1,5 +1,5 @@
-import 'package:lmc_app/core/networking/api_service.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
+import '../../../../../../core/networking/api_service.dart';
+import '../../data/models/lessons_model.dart';
 
 class GetLessonsUsecase {
   final ApiService apiService;

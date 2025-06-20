@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../data/models/teacher_model.dart';
 
 class TeacherProfileScreen extends StatelessWidget{
   

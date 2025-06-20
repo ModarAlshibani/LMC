@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/logistic_features/show_done_tasks/widgets/done_tasks_list.dart';
+
+import '../../../../core/theming/colors.dart';
+import '../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
+import '../widgets/done_tasks_list.dart';
 
 class ShowDoneTasks extends StatelessWidget {
   const ShowDoneTasks({super.key});

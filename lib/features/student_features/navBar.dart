@@ -1,13 +1,13 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/di/dependency_injection.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
-import 'package:lmc_app/features/student_features/notes/ui/screens/my_notes.dart';
-import 'package:lmc_app/features/student_features/home_page/ui/screen/student_homePage_screen.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_cubit.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/screens/student_my_courses_screen.dart';
+import '../../core/di/dependency_injection.dart';
+import '../../core/theming/colors.dart';
+import '../for_all/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'notes/ui/screens/my_notes.dart';
+import 'home_page/ui/screen/student_homePage_screen.dart';
+import 'my_courses/show_my_courses/logic/cubit/student_my_courses_cubit.dart';
+import 'my_courses/show_my_courses/ui/screens/student_my_courses_screen.dart';
 import 'package:lmc_app/features/for_all/drawer/ui/my_drawer.dart'; // adjust if needed
 
 class NavBar extends StatefulWidget {

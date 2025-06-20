@@ -1,16 +1,18 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/App_button.dart';
-import 'package:lmc_app/core/widgets/general_text_form_field.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/logistic_features/send_invoice/logic/cubit/send_invoice_cubit.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/widgets/App_button.dart';
+import '../../../../../core/widgets/general_text_form_field.dart';
+import '../../../../../core/widgets/glass_card.dart';
+import '../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
+import '../../logic/cubit/send_invoice_cubit.dart';
 
 class SendInvoiceScreen extends StatefulWidget {
   final int taskId;

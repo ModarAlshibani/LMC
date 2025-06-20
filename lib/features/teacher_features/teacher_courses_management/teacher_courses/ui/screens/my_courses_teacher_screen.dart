@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/for_all/available_courses/ui/widgets/available_courses_list.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/ui/widgets/teacher_courses_list.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../guest_features/guest_homePage/ui/widgets/top_container.dart';
+import '../widgets/teacher_courses_list.dart';
 
 class MyCoursesTeacherScreen extends StatelessWidget {
   const MyCoursesTeacherScreen({super.key});

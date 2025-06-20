@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
-import 'package:lmc_app/features/logistic_features/show_tasks/ui/widgets/tasks_outside.dart';
+import '../../logic/cubit/cubit/all_tasks_cubit.dart';
+import 'tasks_outside.dart';
 
 class TasksList extends StatelessWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import '../../data/signup_response.dart';
-import '../../../../../core/networking/api_service.dart';
 
 import '../../../../../core/di/shared_pref.dart';
+import '../../../../../core/networking/api_service.dart';
+import '../../data/signup_response.dart';
 
 class SignupUseCase {
   final ApiService apiService;

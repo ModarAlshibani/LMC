@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lmc_app/features/logistic_features/send_invoice/logic/usecase/send_invoice_usecase.dart';
+
+import '../usecase/send_invoice_usecase.dart';
 
 part 'send_invoice_state.dart';
 

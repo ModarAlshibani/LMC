@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_cubit.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_state.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/widgets/my_course_outside.dart';
+import '../../logic/cubit/student_my_courses_cubit.dart';
+import '../../logic/cubit/student_my_courses_state.dart';
+import 'my_course_outside.dart';
   
 class MyCoursesList extends StatelessWidget {
   @override

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
-import 'package:lmc_app/core/networking/api_service.dart';
+import '../../data/models/all_announsments.dart';
+import '../../../../../core/networking/api_service.dart';
 
 class GetAllAnnouncementsUseCase {
   final ApiService apiService;

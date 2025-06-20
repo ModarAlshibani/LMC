@@ -1,6 +1,6 @@
 
 import 'package:equatable/equatable.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
+import '../../data/models/tacher_course_lessons_model.dart';
 
 
 abstract class TeacherLessonsState extends Equatable {

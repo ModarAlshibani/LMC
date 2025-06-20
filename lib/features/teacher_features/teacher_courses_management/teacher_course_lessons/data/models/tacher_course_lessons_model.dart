@@ -176,7 +176,7 @@ class User {
   int? roleId;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
 
   User(
       {this.id,

@@ -2,14 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/helpers/validators.dart';
 import '../../../../../core/networking/network_error_handler.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/glass_card.dart';
 import '../../data/signup_response.dart';
 import '../usecases/signup_usecases.dart';
-
-
 
 part 'signup_state.dart';
 

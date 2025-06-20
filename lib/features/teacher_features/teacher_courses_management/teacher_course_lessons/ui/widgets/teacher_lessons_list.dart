@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-
-import 'package:lmc_app/features/student_features/my_courses/show_lessons/ui/widgets/lesson_outside.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_state.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/ui/widgets/lesson_outside.dart';
+import '../../logic/cubit/teacher_lessons_cubit.dart';
+import '../../logic/cubit/teacher_lessons_state.dart';
+import 'lesson_outside.dart';
 
 class TeacherLessonsList extends StatelessWidget {
   @override

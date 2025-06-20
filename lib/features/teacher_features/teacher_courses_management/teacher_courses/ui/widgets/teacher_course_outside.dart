@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/data/model/my_courses_teacher_model.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/routing/routes.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/widgets/glass_card.dart';
+import '../../data/model/my_courses_teacher_model.dart';
 
 class TeacherCourseOutside extends StatelessWidget {
   const TeacherCourseOutside({

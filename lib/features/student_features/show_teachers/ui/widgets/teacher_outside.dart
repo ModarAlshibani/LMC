@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
+import '../../../../../core/networking/api_constants.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/widgets/glass_card.dart';
+import '../../data/models/teacher_model.dart';
 
 class TeacherOutside extends StatelessWidget {
   final Teachers teacher;

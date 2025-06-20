@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_state.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/usecases/teacher_lessons_usescase.dart';
+
+import '../usecases/teacher_lessons_usescase.dart';
+import 'teacher_lessons_state.dart';
 
 class TeacherLessonsCubit extends Cubit<TeacherLessonsState> {
   final GetTeacherLessonsUsecase getLessonsUsecase;

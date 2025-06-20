@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
+import '../../../../../../core/routing/routes.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../data/models/stu_my_courses_model.dart';
 
 class StudentMyCourseDetails extends StatelessWidget{
   
