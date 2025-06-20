@@ -86,7 +86,7 @@ class MyCourses {
 class CourseSchedule {
   int? id;
   int? courseId;
-  Null? roomId;
+  int? roomId;
   String? startEnroll;
   String? endEnroll;
   String? enrollStatus;

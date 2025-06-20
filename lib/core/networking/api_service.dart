@@ -5,13 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
 import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/data/model/my_courses_teacher_model.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/data/model/my_courses_teacher_model.dart';
 import 'package:path/path.dart';
 
 import 'package:lmc_app/core/di/shared_pref.dart';
 import 'package:lmc_app/features/for_all/announsments/data/models/all_announsments.dart';
 import 'package:lmc_app/features/for_all/available_courses/data/models/available_courses_model.dart';
-import 'package:lmc_app/features/logistic_features/show_tasks/data/models/all_tasks_model.dart';
+import 'package:lmc_app/features/logistic_features/show_tasks/data/models/all_tasks_model.dart' hide User;
 
 import '../../features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart' hide MyCourses;
 import 'api_constants.dart';
@@ -312,6 +313,32 @@ class ApiService {
   
 //----------------------------------------------------------------------------------
 
+ Future<List<Lessons>> getTeacherLessons(int courseId) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching Lessons for the $courseId course...");
+
+      final response = await dio.get(
+        '$baseUrl/getCourseLessons/$courseId',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+      
+      if (response.statusCode == 200) {
+        final lessonsModel = TacherCourseLessonsModel.fromJson(response.data);
+        print('Full API response: ${response.data}');
+        return lessonsModel.lessons ?? [];
+      } else {
+        throw Exception('Failed to load lessons');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+//----------------------------------------------------------------------------------
   Future<User> getUserName() async{
     try {
       final localStorage = LocalStorage();

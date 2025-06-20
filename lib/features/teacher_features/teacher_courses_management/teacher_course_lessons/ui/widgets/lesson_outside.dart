@@ -3,19 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
+import 'package:lmc_app/features/student_features/my_courses/show_lessons/data/models/lessons_model.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
 
-class AnnouncementOutside extends StatelessWidget {
-  const AnnouncementOutside({super.key, this.level, this.image, this.description});
-  final String? level;
-  final String? image;
-  final String? description;
+class TeacherLessonOutside extends StatelessWidget {
+  final Lessons lessons;
+
+  const TeacherLessonOutside({super.key, required this.lessons});
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        print("course $level pressed");
-      },
+      //onTap: () => Navigator.pushNamed(context, Routes.student_my_course_details, arguments: course,),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
@@ -41,10 +41,10 @@ class AnnouncementOutside extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.lmcBlue,
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(image!),
-                    fit: BoxFit.cover,
-                  ),
+                  // image: DecorationImage(
+                  //   image: NetworkImage(course.photo?.replaceAll('localhost', ApiConstants.ip) ?? 'assets/images/LMC-LOGO.png'),
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
                 child: SizedBox.shrink(),
               ),
@@ -57,7 +57,7 @@ class AnnouncementOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        level!,
+                        "${lessons.title!} course",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 20,
@@ -70,7 +70,7 @@ class AnnouncementOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(bottom: 10.h),
                       child: Text(
-                        description!,
+                        "date: ${lessons.date!}",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 14,

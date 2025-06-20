@@ -18,8 +18,10 @@ import 'package:lmc_app/features/student_features/my_courses/show_my_courses/log
 import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/usecases/student_my_courses_usecase.dart';
 import 'package:lmc_app/features/student_features/show_teachers/logic/cubit/show_teachers_cubit.dart';
 import 'package:lmc_app/features/student_features/show_teachers/logic/usecases/get_teachers_list.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/logic/usecases/my_courses_teacher_usecase.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_cubit.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/usecases/teacher_lessons_usescase.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/logic/usecases/my_courses_teacher_usecase.dart';
 
 import '../../features/for_all/login/logic/cubit/login_cubit.dart';
 import '../../features/for_all/login/logic/usecases/login_usecases.dart';
@@ -83,31 +85,43 @@ void setupLocator() {
     ), // Register the cubit
   );
 
-
   ///----------------------------------------------------------------
-   
 
- getIt.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => GetLessonsUsecase(getIt<ApiService>()), // Register the use case
   );
-   getIt.registerFactory(
+  getIt.registerFactory(
     () => LessonsCubit(getIt<GetLessonsUsecase>()), // Register the cubit
   );
-//===============================================================================
+
+  ///----------------------------------------------------------------
+
   getIt.registerLazySingleton(
-        () => GetTeachersListUsecase(getIt<ApiService>()), // Register the use case
+    () =>
+        GetTeacherLessonsUsecase(getIt<ApiService>()), // Register the use case
   );
   getIt.registerFactory(
-        () => ShowTeachersCubit(
+    () => TeacherLessonsCubit(
+      getIt<GetTeacherLessonsUsecase>(),
+    ), // Register the cubit
+  );
+  //===============================================================================
+  getIt.registerLazySingleton(
+    () => GetTeachersListUsecase(getIt<ApiService>()), // Register the use case
+  );
+  getIt.registerFactory(
+    () => ShowTeachersCubit(
       getIt<GetTeachersListUsecase>(),
     ), // Register the cubit
   );
-//===============================================================================
+  //===============================================================================
   getIt.registerLazySingleton(
-        () => GetStudentMyCoursesUsecase(getIt<ApiService>()), // Register the use case
+    () => GetStudentMyCoursesUsecase(
+      getIt<ApiService>(),
+    ), // Register the use case
   );
   getIt.registerFactory(
-        () => StudentMyCoursesCubit(
+    () => StudentMyCoursesCubit(
       getIt<GetStudentMyCoursesUsecase>(),
     ), // Register the cubit
   );

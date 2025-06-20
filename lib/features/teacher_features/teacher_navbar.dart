@@ -5,9 +5,8 @@ import 'package:lmc_app/core/di/dependency_injection.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/show_my_courses_screen.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/ui/screens/my_courses_teacher_screen.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/ui/screens/my_courses_teacher_screen.dart';
 import 'package:lmc_app/features/teacher_features/teacher_homepage/teacher_homepage.dart';
 
 class TeacherNavBar extends StatefulWidget {
