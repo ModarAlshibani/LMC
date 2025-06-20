@@ -18,8 +18,10 @@ class Routes {
   static const String student_my_courses = '/student_my_courses';
   static const String student_my_course_details = '/student_my_course_details';
   static const String lessons_list = '/lessons_list';
+  static const String teacher_lessons_details = '/teacher_lessons_details';
   static const String teacher_lessons_list = '/teacher_lessons_list';
-   static const String teacher_my_course_details = '/teacher_my_course_details';
-
-
+  static const String teacher_lessons_flashcards =
+      '/teacher_lessons_flashcards';
+  static const String teacher_my_course_details = '/teacher_my_course_details';
+  static const String add_flashcard = '/add_flashcard';
 }

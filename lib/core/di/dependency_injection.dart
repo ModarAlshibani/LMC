@@ -1,4 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/logic/cubit/add_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/logic/usecase/add_flashcard_usecase.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/cubit/teacher_lesson_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/usecase/taecher_lesson_flashcards_usecase.dart';
 import '../../features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import '../../features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
 import '../../features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
@@ -112,6 +116,21 @@ void setupLocator() {
       getIt<GetTeachersListUsecase>(),
     ), // Register the cubit
   );
+  //===============================================================================
+  getIt.registerLazySingleton(
+    () => TeacherLessonFlashcardsUsecase(
+      getIt<ApiService>(),
+    ), // Register the use case
+  );
+  getIt.registerFactory(
+    () => TeacherLessonFlashcardsCubit(
+      getIt<TeacherLessonFlashcardsUsecase>(),
+    ), // Register the cubit
+  );
+  //===============================================================================
+  getIt.registerLazySingleton(() => AddFlashcardUseCase(getIt<ApiService>()));
+  getIt.registerFactory(() => AddFlashcardCubit(getIt<AddFlashcardUseCase>()));
+
   //===============================================================================
   getIt.registerLazySingleton(
     () => GetStudentMyCoursesUsecase(

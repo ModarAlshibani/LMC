@@ -11,7 +11,7 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height!.h ?? 270.h,
+      height: height!.h ?? 270.h, 
       decoration: BoxDecoration(
         color: AppColors.lmcBlue,
         borderRadius: BorderRadius.only(

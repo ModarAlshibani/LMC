@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/routing/routes.dart';
-import '../../../../../../core/helpers/spacing.dart';
-import '../../../../../../core/theming/colors.dart';
-import '../../../../../../core/widgets/glass_card.dart';
-import '../../data/models/tacher_course_lessons_model.dart';
+import 'package:lmc_app/core/theming/colors.dart';
+import 'package:lmc_app/core/widgets/glass_card.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/data/models/teacher_lesson_flashcards_model.dart';
 
-class TeacherLessonOutside extends StatelessWidget {
-  final Lessons lessons;
+class TeacherLessonFlashcardsOutside extends StatelessWidget {
+  final FlashCards flashCard;
 
-  const TeacherLessonOutside({super.key, required this.lessons});
-
+  const TeacherLessonFlashcardsOutside({super.key, required this.flashCard});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, Routes.teacher_lessons_details, arguments: lessons,),
+      onTap: () => print(flashCard.id),
+      // onTap: () => Navigator.pushNamed(context, Routes.teacher_lessons_details, arguments: flashCard,),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
@@ -41,10 +41,7 @@ class TeacherLessonOutside extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.lmcBlue,
                   borderRadius: BorderRadius.circular(10),
-                  // image: DecorationImage(
-                  //   image: NetworkImage(course.photo?.replaceAll('localhost', ApiConstants.ip) ?? 'assets/images/LMC-LOGO.png'),
-                  //   fit: BoxFit.cover,
-                  // ),
+               
                 ),
                 child: SizedBox.shrink(),
               ),
@@ -57,7 +54,7 @@ class TeacherLessonOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        "${lessons.title!} course",
+                        flashCard.content!,
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 20,
@@ -70,10 +67,10 @@ class TeacherLessonOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(bottom: 10.h),
                       child: Text(
-                        "date: ${lessons.date!}",
+                        flashCard.translation!,
                         style: TextStyle(
                           color: AppColors.lmcBlue,
-                          fontSize: 14,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
                         softWrap: true,
