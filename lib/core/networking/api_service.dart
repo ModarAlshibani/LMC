@@ -260,6 +260,78 @@ class ApiService {
       throw NetworkException('An unexpected error occurred.');
     }
   }
+  // ----------------------------------------------------------------------------
+
+  Future<Response> EditFlashcard({
+    required int flashcardId,
+    required String content,
+    required String translation,
+
+    required BuildContext context,
+  }) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+
+      final formData = FormData.fromMap({
+        'FlashcardId': flashcardId,
+        'Content': content,
+        'Translation': translation,
+      });
+
+      final response = await dio.post(
+        '$baseUrl/teacher/editFlashcard',
+        data: formData,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      print(e.response.toString());
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
+  // ----------------------------------------------------------------------------
+
+  Future<Response> DeleteFlashcard( {
+    required int flashcardId,
+    required BuildContext context,
+  }) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+
+      final formData = FormData.fromMap({
+        'FlashcardId': flashcardId,
+
+      });
+
+      final response = await dio.post(
+        '$baseUrl/teacher/deleteFlashcard',
+        data: formData,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      print(e.response.toString());
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
 
   // ----------------------------------------------------------------------------
 

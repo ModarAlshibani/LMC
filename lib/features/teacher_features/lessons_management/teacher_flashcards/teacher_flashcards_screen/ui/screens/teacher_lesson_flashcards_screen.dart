@@ -40,7 +40,7 @@ class TeacherLessonFlashcardsScreen extends StatelessWidget {
           ),
 
           Positioned(
-            top: 220.h,
+            top: 240.h,
             right: 20.w,
             left: 20.w,
             bottom: 20,
@@ -48,8 +48,8 @@ class TeacherLessonFlashcardsScreen extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: 30,
-            right: 30,
+            bottom: 20,
+            right: 20,
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.lmcOrange,
