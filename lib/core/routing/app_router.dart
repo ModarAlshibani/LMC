@@ -17,6 +17,11 @@ import 'package:lmc_app/features/teacher_features/lessons_management/teacher_fla
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/cubit/teacher_lesson_flashcard_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/ui/screens/teacher_lesson_flashcards_screen.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_lesson_details/ui/screens/teacher_lesson_details.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/ui/screens/add_selftest_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/screens/teacher_selftests_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/widgets/selftests_list.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_cubit.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/ui/screens/teacher_lessons_screen.dart';
@@ -191,6 +196,19 @@ class AppRouter {
         );
       //--------------------------------------------------------
 
+      case Routes.teacher_selftests_screen:
+        final lessonId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        getIt<SelfTestsCubit>()..fetchSelfTests(lessonId),
+                child: TeacherSelfTestsScreen(lessonId: lessonId),
+              ),
+        );
+      //--------------------------------------------------------
+
       case Routes.navBar:
         return MaterialPageRoute(
           builder:
@@ -232,7 +250,7 @@ class AppRouter {
                 courseSchedule: courseSchedule,
               ),
         );
-
+      // --------------------------------------------------------------------------------------------------------------------------
       case Routes.add_flashcard:
         final lessonId = settings.arguments as int;
 
@@ -243,24 +261,37 @@ class AppRouter {
                 child: AddFlashcardScreen(lessonId: lessonId),
               ),
         );
-      case Routes.edit_flashcard:
-  final args = settings.arguments as Map<String, Object?>;
-  final lessonId = args['lessonId'] as int;
-  final flashcardId = args['flashcardId'] as int;
-  final oldContent = args['oldContent'] as String;
-  final oldTranslation = args['oldTranslation'] as String;
+      // --------------------------------------------------------------------------------------------------------------------------
+      case Routes.add_selftest:
+        final lessonId = settings.arguments as int;
 
-  return MaterialPageRoute(
-    builder: (_) => BlocProvider(
-      create: (context) => getIt<EditFlashcardCubit>(),
-      child: EditFlashcardScreen(
-        lessonId: lessonId,
-        flashcardId: flashcardId,
-        oldContent: oldContent,
-        oldTranslation: oldTranslation,
-      ),
-    ),
-  );
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AddSelfTestCubit>(),
+                child: AddSelfTestScreen(lessonId: lessonId),
+              ),
+        );
+
+      case Routes.edit_flashcard:
+        final args = settings.arguments as Map<String, Object?>;
+        final lessonId = args['lessonId'] as int;
+        final flashcardId = args['flashcardId'] as int;
+        final oldContent = args['oldContent'] as String;
+        final oldTranslation = args['oldTranslation'] as String;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<EditFlashcardCubit>(),
+                child: EditFlashcardScreen(
+                  lessonId: lessonId,
+                  flashcardId: flashcardId,
+                  oldContent: oldContent,
+                  oldTranslation: oldTranslation,
+                ),
+              ),
+        );
 
       default:
         return MaterialPageRoute(

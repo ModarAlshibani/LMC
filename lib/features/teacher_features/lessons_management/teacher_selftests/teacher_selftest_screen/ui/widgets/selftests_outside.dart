@@ -1,36 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/networking/api_constants.dart';
-import '../../../../../../core/helpers/spacing.dart';
-import '../../../../../../core/routing/routes.dart';
-import '../../../../../../core/theming/colors.dart';
-import '../../../../../../core/widgets/glass_card.dart';
-import '../../data/model/my_courses_teacher_model.dart';
+import 'package:lmc_app/core/helpers/spacing.dart';
+import 'package:lmc_app/core/routing/routes.dart';
+import 'package:lmc_app/core/theming/colors.dart';
+import 'package:lmc_app/core/widgets/glass_card.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/data/models/selftests_model.dart';
 
-class TeacherCourseOutside extends StatelessWidget {
-  const TeacherCourseOutside({
-    super.key,
+class SelfTestsOutside extends StatelessWidget {
+  final SelfTests selfTest;
 
-    required this.myCourses,
-    required this.courseSchedule,
-  });
-
-  final MyCourses myCourses;
-  final CourseSchedule courseSchedule;
+  const SelfTestsOutside({super.key, required this.selfTest});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        print(myCourses.photo?.replaceFirst('localhost', ApiConstants.ip));
-
-        Navigator.pushNamed(
-          context,
-          Routes.teacher_my_course_details,
-          arguments: {'course': myCourses, 'schedule': courseSchedule},
-        );
-      },
-
+      onTap: () => print("self test printed"),
+      // () => Navigator.pushNamed(context, Routes.teacher_selftests_screen, arguments: course,),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(
@@ -50,26 +35,8 @@ class TeacherCourseOutside extends StatelessWidget {
           child: Row(
             children: [
               horizontalSpace(10.w),
-              Container(
-                width: 130.w,
-                height: 130.h,
-                decoration: BoxDecoration(
-                  color: AppColors.lmcBlue,
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      myCourses.photo!.replaceFirst(
-                        'localhost',
-                        ApiConstants.ip,
-                      ),
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: SizedBox.shrink(),
-              ),
-              horizontalSpace(20.w),
 
+              horizontalSpace(20.w),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +45,7 @@ class TeacherCourseOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        myCourses.level!,
+                        selfTest.title!,
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 20,
@@ -91,7 +58,7 @@ class TeacherCourseOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(bottom: 10.h),
                       child: Text(
-                        myCourses.description!,
+                        selfTest.description!,
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 14,

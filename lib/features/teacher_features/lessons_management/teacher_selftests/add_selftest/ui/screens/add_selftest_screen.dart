@@ -10,66 +10,57 @@ import 'package:lmc_app/core/widgets/App_button.dart';
 import 'package:lmc_app/core/widgets/general_text_form_field.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/edit_flashcard/logic/cubit/edit_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
 
-class EditFlashcardScreen extends StatefulWidget {
+class AddSelfTestScreen extends StatefulWidget {
   final int lessonId;
-  final int flashcardId;
-  final String oldContent;
-  final String oldTranslation;
-  const EditFlashcardScreen({
-    Key? key,
-    required this.flashcardId,
-    required this.oldContent,
-    required this.oldTranslation,
-    required this.lessonId,
-  }) : super(key: key);
+  const AddSelfTestScreen({Key? key, required this.lessonId}) : super(key: key);
 
   @override
-  State<EditFlashcardScreen> createState() => _EditFlashcardScreenState();
+  State<AddSelfTestScreen> createState() => _AddSelfTestScreenState();
 }
 
-class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
-  final TextEditingController _contentController = TextEditingController();
-  final TextEditingController _translationController = TextEditingController();
+class _AddSelfTestScreenState extends State<AddSelfTestScreen> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
-  void _editFlashcard(BuildContext context) {
-    final content = _contentController.text;
-    final translation = _translationController.text;
+  void _addSelfTest(BuildContext context) {
+    final title = _titleController.text;
+    final description = _descriptionController.text;
 
-    if (content == null || translation == null) {
+    if (title == null || description == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Content and Translation can't be empty!")),
+        SnackBar(content: Text("title and description can't be empty!")),
       );
       return;
     }
 
-    context.read<EditFlashcardCubit>().EditFlashcard(
-      flashcardId: widget.flashcardId,
-      content: content,
-      translation: translation,
+    context.read<AddSelfTestCubit>().AddSelfTests(
+      lessonId: widget.lessonId,
+      title: title,
+      description: description,
       context: context,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<EditFlashcardCubit, EditFlashcardState>(
+    return BlocConsumer<AddSelfTestCubit, AddSelfTestState>(
       listener: (context, state) {
-        if (state is EditFlashcardSuccess) {
+        if (state is AddSelfTestSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("Flashcard Edited successfully"),
+              content: Text("SelfTest added successfully"),
               backgroundColor: AppColors.lmcOrange,
             ),
           );
           Navigator.pop(context);
           Navigator.pushReplacementNamed(
             context,
-            Routes.teacher_lessons_flashcards,
+            Routes.teacher_selftests_screen,
             arguments: widget.lessonId,
           );
-        } else if (state is EditFlashcardFailure) {
+        } else if (state is AddSelfTestFailure) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.error)));
@@ -92,7 +83,7 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
                 right: 50.w,
                 child: Center(
                   child: Text(
-                    "Edit Flashcard",
+                    "Add Selftest",
                     style: TextStyle(
                       color: AppColors.backgroundColor,
                       fontSize: 45,
@@ -124,7 +115,7 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          "Edit the new flashcard data:",
+                          "Add teh new SelfTest data:",
                           style: TextStyle(
                             color: AppColors.lmcBlue,
                             fontSize: 16.sp,
@@ -135,7 +126,7 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
                     ),
                     verticalSpace(20.h),
                     GeneralTextFormField(
-                      hintText: widget.oldContent,
+                      hintText: "SelfTest title",
                       hintTextStyle: TextStyle(color: AppColors.greyBorder),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -161,12 +152,12 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
                         color: AppColors.lmcBlue,
                         size: 25.sp,
                       ),
-                      controller: _contentController,
+                      controller: _titleController,
                     ),
                     verticalSpace(20.h),
 
                     GeneralTextFormField(
-                      hintText: widget.oldTranslation,
+                      hintText: "title description",
                       hintTextStyle: TextStyle(color: AppColors.greyBorder),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -192,22 +183,22 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
                         color: AppColors.lmcBlue,
                         size: 25.sp,
                       ),
-                      controller: _translationController,
+                      controller: _descriptionController,
                     ),
 
                     verticalSpace(20.h),
 
                     verticalSpace(20.h),
-                    if (state is EditFlashcardLoading)
+                    if (state is AddSelfTestLoading)
                       CircularProgressIndicator()
                     else
                       AppTextButton(
-                        buttonText: "Edit Flashcard",
+                        buttonText: "Add SelfTest",
                         textStyle: TextStyle(
                           fontSize: 16,
                           color: AppColors.background2,
                         ),
-                        onPressed: () => _editFlashcard(context),
+                        onPressed: () => _addSelfTest(context),
                         backgroundColor: AppColors.lmcBlue,
                       ),
                   ],

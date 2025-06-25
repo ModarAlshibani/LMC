@@ -24,5 +24,7 @@ class Routes {
       '/teacher_lessons_flashcards';
   static const String teacher_my_course_details = '/teacher_my_course_details';
   static const String add_flashcard = '/add_flashcard';
-  static const String edit_flashcard = '/edir_flashcard';
+  static const String add_selftest = '/add_selftest';
+  static const String edit_flashcard = '/edit_flashcard';
+  static const String teacher_selftests_screen = '/teacher_selftests_screen';
 }

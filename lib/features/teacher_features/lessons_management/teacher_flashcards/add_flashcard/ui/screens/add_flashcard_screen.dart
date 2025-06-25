@@ -55,8 +55,8 @@ class _AddFlashcardScreenState extends State<AddFlashcardScreen> {
               backgroundColor: AppColors.lmcOrange,
             ),
           );
-
-          Navigator.pushReplacementNamed(
+          Navigator.pop(context);
+          Navigator.popAndPushNamed(
             context,
             Routes.teacher_lessons_flashcards,
             arguments: widget.lessonId,

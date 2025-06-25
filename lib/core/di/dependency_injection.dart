@@ -5,6 +5,10 @@ import 'package:lmc_app/features/teacher_features/lessons_management/teacher_fla
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/edit_flashcard/logic/usecase/edit_flashcard_usecase.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/cubit/teacher_lesson_flashcard_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/usecase/taecher_lesson_flashcards_usecase.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/usecase/add_selftests_usecase.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/usecase/selftest_usecase.dart';
 import '../../features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import '../../features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
 import '../../features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
@@ -129,14 +133,31 @@ void setupLocator() {
       getIt<TeacherLessonFlashcardsUsecase>(),
     ), // Register the cubit
   );
-  //===============================================================================
-  getIt.registerLazySingleton(() => AddFlashcardUseCase(getIt<ApiService>()));
-  getIt.registerFactory(() => AddFlashcardCubit(getIt<AddFlashcardUseCase>()));
-  //===============================================================================
-  getIt.registerLazySingleton(() => EditFlashcardUseCase(getIt<ApiService>()));
-  getIt.registerFactory(() => EditFlashcardCubit(getIt<EditFlashcardUseCase>()));
 
   //===============================================================================
+
+  getIt.registerLazySingleton(() => AddFlashcardUseCase(getIt<ApiService>()));
+  getIt.registerFactory(() => AddFlashcardCubit(getIt<AddFlashcardUseCase>()));
+
+  //===============================================================================
+
+  getIt.registerLazySingleton(() => EditFlashcardUseCase(getIt<ApiService>()));
+  getIt.registerFactory(
+    () => EditFlashcardCubit(getIt<EditFlashcardUseCase>()),
+  );
+
+  //===============================================================================
+
+  getIt.registerLazySingleton(() => SelfTestsUsecase(getIt<ApiService>()));
+  getIt.registerFactory(() => SelfTestsCubit(getIt<SelfTestsUsecase>()));
+
+  //===============================================================================
+
+  getIt.registerLazySingleton(() => AddSelfTestsUseCase(getIt<ApiService>()));
+  getIt.registerFactory(() => AddSelfTestCubit(getIt<AddSelfTestsUseCase>()));
+
+  //===============================================================================
+
   getIt.registerLazySingleton(
     () => GetStudentMyCoursesUsecase(
       getIt<ApiService>(),

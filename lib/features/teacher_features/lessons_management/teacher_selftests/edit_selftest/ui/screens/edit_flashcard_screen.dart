@@ -63,7 +63,7 @@ class _EditFlashcardScreenState extends State<EditFlashcardScreen> {
               backgroundColor: AppColors.lmcOrange,
             ),
           );
-          Navigator.pop(context);
+
           Navigator.pushReplacementNamed(
             context,
             Routes.teacher_lessons_flashcards,

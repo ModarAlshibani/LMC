@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/logic/cubit/add_flashcard_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/data/models/teacher_lesson_flashcards_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/data/models/selftests_model.dart';
 import 'package:path/path.dart';
 
 import '../../features/for_all/announsments/data/models/all_announsments.dart';
@@ -262,6 +262,44 @@ class ApiService {
   }
   // ----------------------------------------------------------------------------
 
+  Future<Response> AddSelfTest({
+    required int lessonId,
+    required String title,
+    required String description,
+
+    required BuildContext context,
+  }) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+
+      final formData = FormData.fromMap({
+        'LessonId': lessonId,
+        'Title': title,
+        'Description': description,
+      });
+
+      final response = await dio.post(
+        '$baseUrl/teacher/addSelfTest',
+        data: formData,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      print(e.response.toString());
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
+  // ----------------------------------------------------------------------------
+
   Future<Response> EditFlashcard({
     required int flashcardId,
     required String content,
@@ -300,7 +338,7 @@ class ApiService {
   }
   // ----------------------------------------------------------------------------
 
-  Future<Response> DeleteFlashcard( {
+  Future<Response> DeleteFlashcard({
     required int flashcardId,
     required BuildContext context,
   }) async {
@@ -308,10 +346,7 @@ class ApiService {
       final localStorage = LocalStorage();
       final token = await localStorage.getToken();
 
-      final formData = FormData.fromMap({
-        'FlashcardId': flashcardId,
-
-      });
+      final formData = FormData.fromMap({'FlashcardId': flashcardId});
 
       final response = await dio.post(
         '$baseUrl/teacher/deleteFlashcard',
@@ -354,6 +389,37 @@ class ApiService {
         return flashcardsModel.flashCards ?? [];
       } else {
         throw Exception('Failed to load flashcards');
+      }
+    } on DioException catch (e) {
+      throw Exception('Dio error: ${e.message}');
+    } catch (e) {
+      throw Exception('Unknown error: $e');
+    }
+  }
+  // ----------------------------------------------------------------------------
+
+  Future<List<SelfTests>> getSelfTests(int lessonId) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+      print("User token: $token");
+      print("Fetching available courses...");
+
+      final response = await dio.get(
+        '$baseUrl/teacher-student/getSelfTestsByLesson/$lessonId',
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final selfTestModel = SelfTestsModel.fromJson(response.data);
+        return selfTestModel.selfTests ?? [];
+      } else {
+        throw Exception('Failed to load self tests');
       }
     } on DioException catch (e) {
       throw Exception('Dio error: ${e.message}');

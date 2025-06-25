@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
 
@@ -41,6 +42,25 @@ class TeacherLessonDetails extends StatelessWidget {
                 height: 60,
                 width: 300,
                 child: Center(child: Text("Lesson's Flashcards")),
+              ),
+            ),
+          ),
+
+          verticalSpace(30),
+
+          InkWell(
+            onTap:
+                () => Navigator.pushNamed(
+                  context,
+                  Routes.teacher_selftests_screen,
+                  arguments: lesson_details.id,
+                ),
+            child: Center(
+              child: Container(
+                color: AppColors.lmcOrange,
+                height: 60,
+                width: 300,
+                child: Center(child: Text("Lesson's Selftests")),
               ),
             ),
           ),

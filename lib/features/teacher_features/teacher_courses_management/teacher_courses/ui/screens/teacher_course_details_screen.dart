@@ -19,7 +19,7 @@ class TeacherMyCourseDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
