@@ -97,7 +97,7 @@ class _UploadMediaState extends State<UploadMedia> {
   }
 
   Widget _buildMediaPreview(PlatformFile file) {
-    if (file.extension == 'jpg' || file.extension == 'png') {
+    if (file.extension == 'jpg' || file.extension == 'png') { 
       return ClipRRect(
         borderRadius: BorderRadius.circular(12.r),
         child: Image.file(File(file.path!), fit: BoxFit.cover),

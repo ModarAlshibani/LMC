@@ -7,7 +7,7 @@ import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/App_button.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/widgets/adabtive_text_field.dart';
+import 'package:lmc_app/core/widgets/adabtive_text_field.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
 
 class TranslationQuestionForm extends StatefulWidget {

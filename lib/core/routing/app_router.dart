@@ -22,7 +22,7 @@ import 'package:lmc_app/features/teacher_features/lessons_management/teacher_sel
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/screens/add_selftest_questions_screen.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/screens/mcq_question_form.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/selftest_details/teacher_selftest_details.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/selftest_details/ui/screens/teacher_selftest_details.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/cubit/selftests_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/screens/teacher_selftests_screen.dart';
