@@ -12,16 +12,12 @@ import 'package:lmc_app/core/widgets/glass_card.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
 
-class AddSelfTestScreen extends StatefulWidget {
+class AddSelfTestScreen extends StatelessWidget {
   final int lessonId;
-  const AddSelfTestScreen({Key? key, required this.lessonId}) : super(key: key);
+  AddSelfTestScreen({Key? key, required this.lessonId}) : super(key: key);
 
-  @override
-  State<AddSelfTestScreen> createState() => _AddSelfTestScreenState();
-}
-
-class _AddSelfTestScreenState extends State<AddSelfTestScreen> {
   final TextEditingController _titleController = TextEditingController();
+
   final TextEditingController _descriptionController = TextEditingController();
 
   void _addSelfTest(BuildContext context) {
@@ -36,7 +32,7 @@ class _AddSelfTestScreenState extends State<AddSelfTestScreen> {
     }
 
     context.read<AddSelfTestCubit>().AddSelfTests(
-      lessonId: widget.lessonId,
+      lessonId: lessonId,
       title: title,
       description: description,
       context: context,
@@ -58,7 +54,7 @@ class _AddSelfTestScreenState extends State<AddSelfTestScreen> {
           Navigator.pushReplacementNamed(
             context,
             Routes.teacher_selftests_screen,
-            arguments: widget.lessonId,
+            arguments: lessonId,
           );
         } else if (state is AddSelfTestFailure) {
           ScaffoldMessenger.of(

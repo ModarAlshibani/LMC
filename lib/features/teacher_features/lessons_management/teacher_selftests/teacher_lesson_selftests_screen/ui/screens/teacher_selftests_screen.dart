@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/widgets/selftests_list.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/widgets/selftests_list.dart';
 
 class TeacherSelfTestsScreen extends StatelessWidget {
   final int lessonId;

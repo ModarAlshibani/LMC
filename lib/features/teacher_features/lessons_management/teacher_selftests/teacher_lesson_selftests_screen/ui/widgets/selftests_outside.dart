@@ -4,7 +4,7 @@ import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/data/models/selftests_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
 
 class SelfTestsOutside extends StatelessWidget {
   final SelfTests selfTest;
@@ -14,8 +14,13 @@ class SelfTestsOutside extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print("self test printed"),
-      // () => Navigator.pushNamed(context, Routes.teacher_selftests_screen, arguments: course,),
+      onTap:
+          // () => print("self test printed"),
+          () => Navigator.pushNamed(
+            context,
+            Routes.teacher_selftests_details,
+            arguments: selfTest,
+          ),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(

@@ -19,9 +19,14 @@ import 'package:lmc_app/features/teacher_features/lessons_management/teacher_fla
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_lesson_details/ui/screens/teacher_lesson_details.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/ui/screens/add_selftest_screen.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/cubit/selftests_cubit.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/screens/teacher_selftests_screen.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/widgets/selftests_list.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/screens/add_selftest_questions_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/screens/mcq_question_form.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/selftest_details/teacher_selftest_details.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/screens/teacher_selftests_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/widgets/selftests_list.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_cubit.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/ui/screens/teacher_lessons_screen.dart';
@@ -206,6 +211,26 @@ class AppRouter {
                         getIt<SelfTestsCubit>()..fetchSelfTests(lessonId),
                 child: TeacherSelfTestsScreen(lessonId: lessonId),
               ),
+        );
+      //--------------------------------------------------------
+
+      case Routes.add_selftest_question:
+        final selfTest = settings.arguments as SelfTests;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AddSelfTestQuestionCubit>(),
+                child: AddSelftestQuestionScreen(selfTest: selfTest),
+              ),
+        );
+      //--------------------------------------------------------
+   
+
+      case Routes.teacher_selftests_details:
+        final selfTest = settings.arguments as SelfTests;
+        return MaterialPageRoute(
+          builder: (_) => TeacherSelfTestDetails(selfTest: selfTest),
         );
       //--------------------------------------------------------
 

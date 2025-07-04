@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/data/models/teacher_lesson_flashcards_model.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/data/models/selftests_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
 import 'package:path/path.dart';
 
 import '../../features/for_all/announsments/data/models/all_announsments.dart';
@@ -19,6 +21,9 @@ import '../../features/teacher_features/teacher_courses_management/teacher_cours
 import '../di/shared_pref.dart';
 import 'api_constants.dart';
 import 'network_error_handler.dart';
+
+import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
 
 class ApiService {
   final Dio dio = Dio();
@@ -300,6 +305,61 @@ class ApiService {
   }
   // ----------------------------------------------------------------------------
 
+  Future<Response> AddSelfTestQuestion({
+    required int selfTestId,
+    File? media,
+    required String questionText,
+    required String type,
+    List<String>? choices,
+    required String correctAnswer,
+
+    required BuildContext context,
+  }) async {
+    try {
+      final localStorage = LocalStorage();
+      final token = await localStorage.getToken();
+
+      final formData = FormData();
+
+      formData.fields.addAll([
+        MapEntry('SelfTestId', selfTestId.toString()),
+        MapEntry('QuestionText', questionText),
+        MapEntry('Type', type),
+        MapEntry('CorrectAnswer', correctAnswer),
+        MapEntry('Choices', jsonEncode(choices)),
+      ]);
+
+      if (media != null) {
+        final mimeType = lookupMimeType(media.path!);
+        final multipartFile = await MultipartFile.fromFile(
+          media.path!,
+          filename: media.path!.split('/').last,
+          contentType: mimeType != null ? MediaType.parse(mimeType) : null,
+        );
+
+        formData.files.add(MapEntry('Media', multipartFile));
+      }
+      final response = await dio.post(
+        '$baseUrl/teacher/addSelfTestQuestion',
+        data: formData,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      print(e.response.toString());
+      throw NetworkErrorHandler.handleError(e, context);
+    } catch (e) {
+      throw NetworkException('An unexpected error occurred.');
+    }
+  }
+  // ----------------------------------------------------------------------------
+
   Future<Response> EditFlashcard({
     required int flashcardId,
     required String content,
@@ -414,7 +474,8 @@ class ApiService {
           },
         ),
       );
-
+      print(response.statusCode);
+      print(response.toString());
       if (response.statusCode == 200) {
         final selfTestModel = SelfTestsModel.fromJson(response.data);
         return selfTestModel.selfTests ?? [];

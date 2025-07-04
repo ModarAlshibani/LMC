@@ -15,7 +15,8 @@ class GeneralTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.fillColor,
-    this.hintTextStyle, this.inputTextStyle,
+    this.hintTextStyle,
+    this.inputTextStyle,
   });
 
   final InputBorder? focusedBorder;
@@ -30,12 +31,14 @@ class GeneralTextFormField extends StatelessWidget {
   final Function(String?)? validator;
   final Color? fillColor;
 
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        labelText: hintText ?? "",
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        labelStyle: TextStyle(fontSize: 16.sp, color: AppColors.lmcBlue),
         fillColor: fillColor ?? AppColors.backgroundColor.withOpacity(0),
         filled: true,
         isDense: true,
@@ -58,24 +61,14 @@ class GeneralTextFormField extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(8.0),
             ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 1.3),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 1.3),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        hintStyle:
-            hintTextStyle ??
-            TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
-        hintText: hintText ?? "No hint text added",
       ),
       obscureText: isObsecureText ?? false,
 
-      style: inputTextStyle ?? TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
+      style:
+          inputTextStyle ??
+          TextStyle(fontSize: 14.sp, color: AppColors.backgroundColor),
       cursorColor: AppColors.backgroundColor,
       validator: (value) {
         return validator!(value);

@@ -27,4 +27,6 @@ class Routes {
   static const String add_selftest = '/add_selftest';
   static const String edit_flashcard = '/edit_flashcard';
   static const String teacher_selftests_screen = '/teacher_selftests_screen';
+  static const String teacher_selftests_details = '/teacher_selftests_details';
+  static const String add_selftest_question = '/add_selftest_question';
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/cubit/selftests_cubit.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/ui/widgets/selftests_outside.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/widgets/selftests_outside.dart';
 
 class TeacherSelfTestsList extends StatelessWidget {
 

@@ -31,8 +31,13 @@ class SelfTests {
   String? createdAt;
   List<Questions>? questions;
 
-  SelfTests(
-      {this.id, this.title, this.description, this.createdAt, this.questions});
+  SelfTests({
+    this.id,
+    this.title,
+    this.description,
+    this.createdAt,
+    this.questions,
+  });
 
   SelfTests.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -63,7 +68,7 @@ class SelfTests {
 class Questions {
   int? id;
   int? selfTestId;
-  Null? media;
+  String? media;
   String? questionText;
   String? type;
   List<String>? choices;
@@ -71,16 +76,17 @@ class Questions {
   String? createdAt;
   String? updatedAt;
 
-  Questions(
-      {this.id,
-      this.selfTestId,
-      this.media,
-      this.questionText,
-      this.type,
-      this.choices,
-      this.correctAnswer,
-      this.createdAt,
-      this.updatedAt});
+  Questions({
+    this.id,
+    this.selfTestId,
+    this.media,
+    this.questionText,
+    this.type,
+    this.choices,
+    this.correctAnswer,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   Questions.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -88,23 +94,36 @@ class Questions {
     media = json['Media'];
     questionText = json['QuestionText'];
     type = json['Type'];
-    choices = json['Choices'].cast<String>();
+
+    final rawChoices = json['Choices'];
+    if (rawChoices is List) {
+      choices = rawChoices.cast<String>();
+    } else if (rawChoices is String) {
+      if (rawChoices.toLowerCase() == "null") {
+        choices = null;
+      } else {
+        choices = rawChoices.split(','); // fallback if stringified list
+      }
+    } else {
+      choices = null;
+    }
+
     correctAnswer = json['CorrectAnswer'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['SelfTestId'] = this.selfTestId;
-    data['Media'] = this.media;
-    data['QuestionText'] = this.questionText;
-    data['Type'] = this.type;
-    data['Choices'] = this.choices;
-    data['CorrectAnswer'] = this.correctAnswer;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['SelfTestId'] = selfTestId;
+    data['Media'] = media;
+    data['QuestionText'] = questionText;
+    data['Type'] = type;
+    data['Choices'] = choices;
+    data['CorrectAnswer'] = correctAnswer;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

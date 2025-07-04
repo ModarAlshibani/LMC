@@ -7,8 +7,10 @@ import 'package:lmc_app/features/teacher_features/lessons_management/teacher_fla
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/usecase/taecher_lesson_flashcards_usecase.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/usecase/add_selftests_usecase.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/cubit/selftests_cubit.dart';
-import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_selftest_screen/logic/usecase/selftest_usecase.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/usecase/add_selftest_usecase.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/usecase/selftest_usecase.dart';
 import '../../features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import '../../features/for_all/announsments/logic/usecases/get_all_announcements_usecase.dart';
 import '../../features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
@@ -155,6 +157,11 @@ void setupLocator() {
 
   getIt.registerLazySingleton(() => AddSelfTestsUseCase(getIt<ApiService>()));
   getIt.registerFactory(() => AddSelfTestCubit(getIt<AddSelfTestsUseCase>()));
+
+  //===============================================================================
+
+  getIt.registerLazySingleton(() => AddSelfTestQuestionsUseCase(getIt<ApiService>()));
+  getIt.registerFactory(() => AddSelfTestQuestionCubit(getIt<AddSelfTestQuestionsUseCase>()));
 
   //===============================================================================
 
