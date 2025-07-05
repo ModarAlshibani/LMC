@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lmc_app/core/helpers/states_widgets.dart';
 
 import '../../../../../core/networking/api_constants.dart';
 import '../../logic/cubit/all_announcements_cubit.dart';
@@ -13,7 +14,9 @@ class AnnouncementsList extends StatelessWidget {
       builder: (context, state) {
         if (state is AllAnnouncementsLoading) {
           print("state is: $state");
-          return Center(child: CircularProgressIndicator());
+          return StateWidgets.buildLoadingState(
+            message: "Loading Announcements",
+          );
         } else if (state is AllAnnouncementsFailure) {
           print("state is: $state");
           return Center(child: Text('Error: ${state.error}'));

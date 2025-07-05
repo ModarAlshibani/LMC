@@ -14,62 +14,113 @@ class TeacherSelfTestsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background2,
-      body: Stack(
-        children: [
-          Positioned(
-            top: -110.h,
-            left: -30.w,
-            right: -30.w,
-            child: TopContainer(height: 300.h, border: true),
-          ),
-
-          Positioned(
-            top: 80.h,
-            left: 50.w,
-            right: 50.w,
-            child: Center(
-              child: Text(
-                "Lesson's Selftests",
-                style: TextStyle(
-                  color: AppColors.backgroundColor,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 240.h,
-            right: 20.w,
-            left: 20.w,
-            bottom: 20,
-            child: TeacherSelfTestsList(),
-          ),
-
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.lmcOrange,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: IconButton(
-                highlightColor: AppColors.lmcBlue,
-                // onPressed: () => print(lessonId.toString()),
-                onPressed:
-                    () => Navigator.pushNamed(
-                      context,
-                      Routes.add_selftest,
-                      arguments: lessonId,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      padding: EdgeInsets.all(8.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.lmcBlue.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Icon(
+                        Icons.arrow_back_ios_new,
+                        color: AppColors.background2,
+                        size: 20.sp,
+                      ),
                     ),
-
-                icon: Icon(Icons.add, size: 45, color: AppColors.background2),
+                  ),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Text(
+                      "Lesson Self Tests",
+                      style: TextStyle(
+                        color: AppColors.lmcBlue,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                borderRadius: BorderRadius.circular(24.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 16,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Add new self test",
+                    style: TextStyle(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.lmcBlue,
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.lmcOrange.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: IconButton(
+                      onPressed:
+                          () => Navigator.pushNamed(
+                            context,
+                            Routes.add_selftest,
+                            arguments: lessonId,
+                          ),
+
+                      icon: Icon(
+                        Icons.add,
+                        size: 24.sp,
+                        color: AppColors.lmcOrange,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 40.h),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.backgroundColor,
+                  borderRadius: BorderRadius.circular(24.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 16,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: TeacherSelfTestsList(lessonId: lessonId),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

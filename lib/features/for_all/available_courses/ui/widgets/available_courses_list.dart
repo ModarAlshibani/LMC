@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lmc_app/core/helpers/states_widgets.dart';
 import '../../../../../core/networking/api_constants.dart';
 import '../../../announsments/ui/widgets/announcement_outside.dart';
 import '../../logic/cubit/cubit/available_courses_cubit.dart';
-  
+
 class AvailableCoursesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,9 @@ class AvailableCoursesList extends StatelessWidget {
       builder: (context, state) {
         if (state is AvailableCoursesLoading) {
           print("state is: $state");
-          return Center(child: CircularProgressIndicator());
+          return StateWidgets.buildLoadingState(
+            message: "Loading self tests...",
+          );
         } else if (state is AvailableCoursesFailure) {
           print("state is: $state");
           return Center(child: Text('Error: ${state}'));

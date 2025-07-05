@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lmc_app/core/helpers/states_widgets.dart';
 
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/routing/routes.dart';
@@ -192,7 +193,9 @@ class _SendInvoiceScreenState extends State<SendInvoiceScreen> {
                         ),
                     verticalSpace(20.h),
                     if (state is SendInvoiceLoading)
-                      CircularProgressIndicator()
+                      StateWidgets.buildLoadingState(
+                        message: "Loading self tests...",
+                      )
                     else
                       AppTextButton(
                         buttonText: "Send Invoice",

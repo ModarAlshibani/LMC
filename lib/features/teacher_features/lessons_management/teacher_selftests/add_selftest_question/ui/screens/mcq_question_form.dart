@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:lmc_app/core/helpers/spacing.dart';
+import 'package:lmc_app/core/helpers/states_widgets.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/core/widgets/App_button.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
@@ -199,7 +200,9 @@ class _McqQuestionFormState extends State<McqQuestionForm> {
 
                     verticalSpace(20.h),
                     if (state is AddSelfTestQuestionLoading)
-                      CircularProgressIndicator()
+                      StateWidgets.buildLoadingState(
+                        message: "Adding question",
+                      )
                     else
                       AppTextButton(
                         buttonText: "Add Question",
