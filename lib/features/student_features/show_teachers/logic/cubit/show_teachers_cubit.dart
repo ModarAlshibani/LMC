@@ -16,9 +16,9 @@ class ShowTeachersCubit extends Cubit<ShowTeachersState> {
 
     try {
       final teachers = await getTeachersListUsecase.execute();
-      emit(ShowTeachersSuccess(teachers));
-    } catch (error) {
-      emit(ShowTeachersFailure(error.toString()));
-    }
+      if (!isClosed) emit(ShowTeachersSuccess(teachers));
+      } catch (error) {
+        if (!isClosed) emit(ShowTeachersFailure(error.toString()));
+      }
   }
 }

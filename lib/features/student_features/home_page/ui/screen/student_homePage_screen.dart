@@ -20,12 +20,12 @@ class StudentHomePageScreen extends StatefulWidget {
 
 class _StudentHomePageScreenState extends State<StudentHomePageScreen> {
   bool isDrawerOpen = false;
-  // late Future<User> user;
+  late Future<User> user;
 
   @override
   void initState() {
     super.initState();
-    // user = ApiService().getUserName();
+    user = ApiService().getUserName();
   }
 
   void toggleDrawer() {
@@ -37,6 +37,7 @@ class _StudentHomePageScreenState extends State<StudentHomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
@@ -67,22 +68,22 @@ class _StudentHomePageScreenState extends State<StudentHomePageScreen> {
                               iconSize: 30,
                               color: AppColors.backgroundColor,
                             ),
-                            // FutureBuilder<User>(
-                            //     future: user,
-                            //     builder: (context, userInfo){
-                            //       if(userInfo.hasData){
-                            //         return Text("Hi ${userInfo.data!.name}...",
-                            //           style: TextStyle(
-                            //               color: AppColors.backgroundColor,
-                            //               fontSize: 25,
-                            //               fontWeight: FontWeight.w900),);
-                            //       } else if(userInfo.hasError){
-                            //         return Text("${userInfo.error}");
-                            //       }else{
-                            //         return const Center(child: CircularProgressIndicator(),);
-                            //       }
-                            //     }
-                            // ),
+                            FutureBuilder<User>(
+                                future: user,
+                                builder: (context, userInfo){
+                                  if(userInfo.hasData){
+                                    return Text("Hi ${userInfo.data!.name}...",
+                                      style: TextStyle(
+                                          color: AppColors.backgroundColor,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w900),);
+                                  } else if(userInfo.hasError){
+                                    return Text("${userInfo.error}");
+                                  }else{
+                                    return const Center(child: CircularProgressIndicator(),);
+                                  }
+                                }
+                            ),
                             Icon(
                               Icons.circle_notifications_outlined,
                               size: 50,
@@ -170,11 +171,18 @@ class _StudentHomePageScreenState extends State<StudentHomePageScreen> {
                           icon: 'assets/icons/private_course.png',
                         ),
                       ),
-                      GlassInkwell(
-                        firstRow: 'Show',
-                        secondRow: 'upcomming',
-                        thirdRow: 'courses',
-                        icon: 'assets/icons/upcoming_courses.png',
+                      InkWell(
+                        onTap:
+                            () => Navigator.pushNamed(
+                              context,
+                              Routes.available_courses,
+                            ),
+                        child: GlassInkwell(
+                          firstRow: 'Show',
+                          secondRow: 'upcomming',
+                          thirdRow: 'courses',
+                          icon: 'assets/icons/upcoming_courses.png',
+                        ),
                       ),
                     ],
                   ),

@@ -16,7 +16,7 @@ class MyCourseOutside extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, Routes.student_my_course_details, arguments: course,),
+      onTap: () => Navigator.pushNamed(context, Routes.lessons_list, arguments: course.id,),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8),
         child: GlassContainer(

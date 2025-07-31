@@ -8,71 +8,67 @@ class AvailableCoursesModel {
     message = json['message'];
     if (json['Available Courses'] != null) {
       availableCourses = <AvailableCourses>[];
-      json['Available Courses'].forEach((v) {
-        availableCourses!.add(new AvailableCourses.fromJson(v));
+      (json['Available Courses'] as List).forEach((v) {
+        availableCourses!.add(AvailableCourses.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    if (this.availableCourses != null) {
+    final Map<String, dynamic> data = {};
+    data['message'] = message;
+    if (availableCourses != null) {
       data['Available Courses'] =
-          this.availableCourses!.map((v) => v.toJson()).toList();
+          availableCourses!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
-
 class AvailableCourses {
   int? id;
   String? teacherName;
-  int? languageId;
+  String? languageName;
   String? description;
   String? photo;
   String? status;
   String? level;
-  List<CourseSchedule>? courseSchedule;
+  CourseSchedule? courseSchedule;
 
-  AvailableCourses(
-      {this.id,
-      this.teacherName,
-      this.languageId,
-      this.description,
-      this.photo,
-      this.status,
-      this.level,
-      this.courseSchedule});
+  AvailableCourses({
+    this.id,
+    this.teacherName,
+    this.languageName,
+    this.description,
+    this.photo,
+    this.status,
+    this.level,
+    this.courseSchedule,
+  });
 
   AvailableCourses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     teacherName = json['TeacherName'];
-    languageId = json['LanguageId'];
+    languageName = json['LanguageName'];
     description = json['Description'];
     photo = json['Photo'];
     status = json['Status'];
     level = json['Level'];
-    if (json['course_schedule'] != null) {
-      courseSchedule = <CourseSchedule>[];
-      json['course_schedule'].forEach((v) {
-        courseSchedule!.add(new CourseSchedule.fromJson(v));
-      });
-    }
+    courseSchedule = json['course_schedule'] != null
+        ? CourseSchedule.fromJson(json['course_schedule'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['TeacherName'] = this.teacherName;
-    data['LanguageId'] = this.languageId;
-    data['Description'] = this.description;
-    data['Photo'] = this.photo;
-    data['Status'] = this.status;
-    data['Level'] = this.level;
-    if (this.courseSchedule != null) {
-      data['course_schedule'] =
-          this.courseSchedule!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['TeacherName'] = teacherName;
+    data['LanguageName'] = languageName;
+    data['Description'] = description;
+    data['Photo'] = photo;
+    data['Status'] = status;
+    data['Level'] = level;
+    if (courseSchedule != null) {
+      data['course_schedule'] = courseSchedule!.toJson();
     }
     return data;
   }
@@ -80,61 +76,42 @@ class AvailableCourses {
 
 class CourseSchedule {
   int? id;
-  int? courseId;
-  int? roomId;
-  String? startEnroll;
-  String? endEnroll;
   String? startDate;
   String? endDate;
+  List<String>? days;
   String? startTime;
   String? endTime;
-  List<String>? courseDays;
-  String? createdAt;
-  String? updatedAt;
+  dynamic numberOfRoom;
 
-  CourseSchedule(
-      {this.id,
-      this.courseId,
-      this.roomId,
-      this.startEnroll,
-      this.endEnroll,
-      this.startDate,
-      this.endDate,
-      this.startTime,
-      this.endTime,
-      this.courseDays,
-      this.createdAt,
-      this.updatedAt});
+  CourseSchedule({
+    this.id,
+    this.startDate,
+    this.endDate,
+    this.days,
+    this.startTime,
+    this.endTime,
+    this.numberOfRoom,
+  });
 
   CourseSchedule.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    courseId = json['CourseId'];
-    roomId = json['RoomId'];
-    startEnroll = json['Start_Enroll'];
-    endEnroll = json['End_Enroll'];
     startDate = json['Start_Date'];
     endDate = json['End_Date'];
+    days = json['Days'] != null ? List<String>.from(json['Days']) : null;
     startTime = json['Start_Time'];
     endTime = json['End_Time'];
-    courseDays = json['CourseDays'].cast<String>();
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    numberOfRoom = json['NumberOfRoom'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['CourseId'] = this.courseId;
-    data['RoomId'] = this.roomId;
-    data['Start_Enroll'] = this.startEnroll;
-    data['End_Enroll'] = this.endEnroll;
-    data['Start_Date'] = this.startDate;
-    data['End_Date'] = this.endDate;
-    data['Start_Time'] = this.startTime;
-    data['End_Time'] = this.endTime;
-    data['CourseDays'] = this.courseDays;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['Start_Date'] = startDate;
+    data['End_Date'] = endDate;
+    data['Days'] = days;
+    data['Start_Time'] = startTime;
+    data['End_Time'] = endTime;
+    data['NumberOfRoom'] = numberOfRoom;
     return data;
   }
 }

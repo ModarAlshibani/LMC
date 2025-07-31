@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/features/for_all/drawer/ui/my_drawer.dart';
 
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/general_text_form_field.dart';
-import '../../../core/routing/routes.dart';
 import '../../for_all/announsments/ui/widgets/announcements_list.dart';
 import '../../guest_features/guest_homePage/ui/widgets/glass_inkwell.dart';
 import '../../guest_features/guest_homePage/ui/widgets/top_container.dart';
@@ -15,7 +15,8 @@ class TeacherHomepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.background2,
+      drawer: MyDrawer(),
       body: SafeArea(
         child: Stack(
           children: [
@@ -34,6 +35,32 @@ class TeacherHomepage extends StatelessWidget {
                   Container(
                     child: Row(
                       children: [
+                        // Menu Button
+                        Builder(
+                          builder:
+                              (context) => GestureDetector(
+                                onTap: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 15.w),
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: Colors.white.withOpacity(0.3),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.menu,
+                                    size: 30,
+                                    color: AppColors.backgroundColor,
+                                  ),
+                                ),
+                              ),
+                        ),
                         Text(
                           "Hi Teacher ....",
                           style: TextStyle(
@@ -42,7 +69,7 @@ class TeacherHomepage extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                           ),
                         ),
-                        horizontalSpace(150.w),
+                        horizontalSpace(100.w),
                         Icon(
                           Icons.circle_notifications_outlined,
                           size: 50,
@@ -115,11 +142,16 @@ class TeacherHomepage extends StatelessWidget {
                       thirdRow: 'classroom',
                       icon: 'assets/icons/placement_test.png',
                     ),
-                    GlassInkwell(
-                      firstRow: 'Send',
-                      secondRow: 'a',
-                      thirdRow: 'Task',
-                      icon: 'assets/icons/private_course.png',
+                    InkWell(
+                      onTap: (){
+                        print("navigate to complaints screen");
+                      },
+                      child: GlassInkwell(
+                        firstRow: 'Submit',
+                        secondRow: 'a',
+                        thirdRow: 'Complaint',
+                        icon: 'assets/icons/private_course.png',
+                      ),
                     ),
                   ],
                 ),

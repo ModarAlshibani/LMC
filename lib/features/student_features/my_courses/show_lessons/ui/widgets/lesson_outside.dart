@@ -56,7 +56,7 @@ class LessonOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 10.h),
                       child: Text(
-                        "${lesson.title!} course",
+                        "${lesson.title!}",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 20,
@@ -69,7 +69,7 @@ class LessonOutside extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(bottom: 10.h),
                       child: Text(
-                        "level ${lesson.date!}",
+                        "${lesson.date!}",
                         style: TextStyle(
                           color: AppColors.lmcBlue,
                           fontSize: 14,

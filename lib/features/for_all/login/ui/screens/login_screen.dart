@@ -87,12 +87,13 @@ class LoginScreen extends StatelessWidget {
                   AppTextButton(
                     buttonText: "Login",
                     onPressed: () {
+                      final safeContext = context;
                       final email = emailController.text;
                       final password = passwordController.text;
                       context.read<LoginCubit>().login(
                         email,
                         password,
-                        context,
+                        safeContext,
                       );
                     },
                     textStyle: TextStyle(

@@ -4,21 +4,52 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/available_courses/logic/cubit/cubit/available_courses_cubit.dart';
 import 'package:lmc_app/features/for_all/available_courses/ui/screens/upcomming_courses.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/languages/logic/cubit/language_cubit.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/languages/logic/usecases/language_usecase.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/lmc_info/logic/cubit/lmc_info_cubit.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/lmc_info/logic/usecases/lmc_info_usecase.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/lmc_info/ui/screens/lmc_info_screen.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/my_profile/logic/cubit/my_profile_cubit.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/my_profile/logic/usecases/my_profile_usecase.dart';
+import 'package:lmc_app/features/for_all/drawer/drawer_navigations/my_profile/ui/screens/my_profile_screen.dart';
 import 'package:lmc_app/features/logistic_features/send_invoice/logic/cubit/send_invoice_cubit.dart';
 import 'package:lmc_app/features/logistic_features/show_done_tasks/screen/show_done_tasks.dart';
 import 'package:lmc_app/features/logistic_features/show_tasks/logic/cubit/cubit/all_tasks_cubit.dart';
 import 'package:lmc_app/features/student_features/my_courses/show_lessons/logic/cubit/lessons_cubit.dart';
 import 'package:lmc_app/features/student_features/my_courses/show_lessons/ui/screens/lessons_list.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/data/models/stu_my_courses_model.dart';
 import 'package:lmc_app/features/student_features/my_courses/show_my_courses/logic/cubit/student_my_courses_cubit.dart';
-import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/screens/student_my_course_details.dart';
 import 'package:lmc_app/features/student_features/my_courses/show_my_courses/ui/screens/student_my_courses_screen.dart';
 import 'package:lmc_app/features/student_features/navBar.dart';
 import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
 import 'package:lmc_app/features/student_features/show_teachers/logic/cubit/show_teachers_cubit.dart';
 import 'package:lmc_app/features/student_features/show_teachers/ui/screens/show_teachers_screen.dart';
 import 'package:lmc_app/features/student_features/show_teachers/ui/screens/teacher_profile_screen.dart';
-import 'package:lmc_app/features/teacher_features/teacher_courses/data/model/my_courses_teacher_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/attendance_and_marks/logic/cubit/enter_bonus_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/attendance_and_marks/logic/cubit/get_students_names_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/attendance_and_marks/logic/cubit/mark_attendance_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/attendance_and_marks/ui/screens/attendance_and_marks_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/send_task_to_sec/logic/cubit/send_task_to_sec_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/send_task_to_sec/ui/send_task_to_sec_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/logic/cubit/add_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/ui/screens/add_flashcard_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/edit_flashcard/logic/cubit/edit_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/edit_flashcard/ui/screens/edit_flashcard_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/logic/cubit/teacher_lesson_flashcard_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/teacher_flashcards_screen/ui/screens/teacher_lesson_flashcards_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_lesson_details/ui/screens/teacher_lesson_details.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/logic/cubit/add_selftest_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest/ui/screens/add_selftest_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/logic/cubit/add_selftest_question_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/add_selftest_question/ui/screens/add_selftest_questions_screen.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/selftest_details/ui/screens/teacher_selftest_details.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/data/models/selftests_model.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/logic/cubit/selftests_cubit.dart';
+import 'package:lmc_app/features/teacher_features/lessons_management/teacher_selftests/teacher_lesson_selftests_screen/ui/screens/teacher_selftests_screen.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/logic/cubit/teacher_lessons_cubit.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/ui/screens/teacher_lessons_screen.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/data/model/my_courses_teacher_model.dart';
+import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/ui/screens/teacher_course_details_screen.dart';
 import 'package:lmc_app/features/teacher_features/teacher_homepage/teacher_homepage.dart';
 import 'package:lmc_app/features/teacher_features/teacher_navbar.dart';
 
@@ -143,6 +174,8 @@ class AppRouter {
           
         );
 
+        //----------------------------------------------------------
+
         case Routes.lessons_list:
         final courseId = settings.arguments as int;
         return MaterialPageRoute(
@@ -152,6 +185,81 @@ class AppRouter {
             ..fetchLessons(courseId),
             child: LessonsList(),
           ),
+        );
+
+         //--------------------------------------------------------
+
+      case Routes.teacher_lessons_list:
+        final courseId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        getIt<TeacherLessonsCubit>()..fetchLessons(courseId),
+                child: TeacherLessonsScreen(),
+              ),
+        );
+      //--------------------------------------------------------
+      //--------------------------------------------------------
+
+      case Routes.teacher_lessons_flashcards:
+        final lessonId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        getIt<TeacherLessonFlashcardsCubit>()
+                          ..fetchLessonFlashcards(lessonId),
+                child: TeacherLessonFlashcardsScreen(lessonId: lessonId),
+              ),
+        );
+      //--------------------------------------------------------
+
+      case Routes.teacher_selftests_screen:
+        final lessonId = settings.arguments as int;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        getIt<SelfTestsCubit>()..fetchSelfTests(lessonId),
+                child: TeacherSelfTestsScreen(lessonId: lessonId),
+              ),
+        );
+      //--------------------------------------------------------
+
+      case Routes.add_selftest_question:
+        final selfTest = settings.arguments as SelfTests;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AddSelfTestQuestionCubit>(),
+                child: AddSelftestQuestionScreen(selfTest: selfTest),
+              ),
+        );
+      //--------------------------------------------------------
+   
+
+      case Routes.send_task_to_sec:
+        final lesson = settings.arguments as Lessons;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<SendTaskToSecCubit>(),
+                child: SendTaskToSecScreen(lesson: lesson),
+              ),
+        );
+      //--------------------------------------------------------
+   
+
+      case Routes.teacher_selftests_details:
+        final selfTest = settings.arguments as SelfTests;
+        return MaterialPageRoute(
+          builder: (_) => TeacherSelfTestDetails(selfTest: selfTest),
         );
 
 
@@ -166,7 +274,7 @@ class AppRouter {
           ),
         );
 
-
+        //---------------------------------------------------------
 
         case Routes.student_my_courses:
         return MaterialPageRoute(
@@ -177,14 +285,130 @@ class AppRouter {
           ),
         );
 
-        case Routes.student_my_course_details:
-        final course = settings.arguments as MyCoursesStu;
+        //----------------------------------------------------------
+      case Routes.teacher_lessons_details:
+        final lesson = settings.arguments as Lessons;
+        return MaterialPageRoute(
+          builder: (_) => TeacherLessonDetails(lesson_details: lesson),
+        );
+
+        //----------------------------------------------------------
+      case Routes.teacher_my_course_details:
+        final args = settings.arguments as Map<String, dynamic>;
+        final course = args['course'] as MyCourses;
+        final courseSchedule = args['schedule'] as CourseSchedule;
         return MaterialPageRoute(
           builder:
-              (_) => StudentMyCourseDetails(course: course),
-          
+              (_) => TeacherMyCourseDetails(
+                course: course,
+                courseSchedule: courseSchedule,
+              ),
+        );
+
+
+        // --------------------------------------------------------------------------------------------------------------------------
+      case Routes.add_flashcard:
+        final lessonId = settings.arguments as int;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AddFlashcardCubit>(),
+                child: AddFlashcardScreen(lessonId: lessonId),
+              ),
+        );
+      // --------------------------------------------------------------------------------------------------------------------------
+      case Routes.add_selftest:
+        final lessonId = settings.arguments as int;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<AddSelfTestCubit>(),
+                child: AddSelfTestScreen(lessonId: lessonId),
+              ),
+        );
+
+      case Routes.edit_flashcard:
+        final args = settings.arguments as Map<String, Object?>;
+        final lessonId = args['lessonId'] as int;
+        final flashcardId = args['flashcardId'] as int;
+        final oldContent = args['oldContent'] as String;
+        final oldTranslation = args['oldTranslation'] as String;
+
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => getIt<EditFlashcardCubit>(),
+                child: EditFlashcardScreen(
+                  lessonId: lessonId,
+                  flashcardId: flashcardId,
+                  oldContent: oldContent,
+                  oldTranslation: oldTranslation,
+                ),
+              ),
         );
         //----------------------------------------------------------
+
+        case Routes.lmc_info:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (_) => LmcInfoCubit(getIt<GetLmcInfoUsecase>())..fetchLmcInfo(),
+            child: LmcInfoScreen(),
+          ),
+        );
+
+        //----------------------------------------------------------
+
+        case Routes.my_profile:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (_) => MyProfileCubit(getIt<GetMyProfileUsecase>())..fetchMyInfo(),
+            child: MyProfileScreen(),
+          ),
+        );
+
+     
+
+     
+        //----------------------------------------------------------
+        
+        case Routes.languages_list:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+            create: (_) => LanguageCubit(getIt<GetLanguageUsecase>())..fetchLanguages(),
+            child: LmcInfoScreen(),
+          ),
+        );
+
+     
+        //----------------------------------------------------------
+
+        case Routes.attendance_and_marks_screen:
+        final lesson = settings.arguments as Lessons;
+        return MaterialPageRoute(
+    builder: (_) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<GetStudentsNamesCubit>()
+            ..fetchStudentsNames(lesson.id!),
+        ),
+        BlocProvider(
+          create: (context) => getIt<MarkAttendanceCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<EnterBonusCubit>(),
+        ),
+      ],
+      child: AttendanceAndMarksScreen(lesson: lesson),
+    ),
+  );
+
+
+
 
       default:
         return MaterialPageRoute(

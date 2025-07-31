@@ -15,9 +15,9 @@ class AllAnnouncementsCubit extends Cubit<AllAnnouncementsState> {
 
     try {
       final announcements = await getAllAnnouncementsUseCase.execute();
-      emit(AllAnnouncementsSuccess(announcements));
+      if (!isClosed) emit(AllAnnouncementsSuccess(announcements));
     } catch (error) {
-      emit(AllAnnouncementsFailure(error.toString()));
+      if (!isClosed) emit(AllAnnouncementsFailure(error.toString()));
     }
   }
 }

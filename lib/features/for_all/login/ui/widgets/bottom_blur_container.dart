@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/colors.dart';
 
+// ignore: must_be_immutable
 class BottomBlurContainer extends StatelessWidget {
   double? height;
    BottomBlurContainer({super.key,this.height });

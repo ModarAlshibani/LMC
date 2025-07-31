@@ -57,6 +57,7 @@ class NetworkErrorHandler {
   }
 
   static void _showDialog(BuildContext context, String errorMessage) {
+     if (context is Element && !context.mounted) return;
     showDialog(
       context: context,
       builder: (BuildContext context) {

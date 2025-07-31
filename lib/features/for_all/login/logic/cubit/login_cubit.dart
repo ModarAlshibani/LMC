@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -63,15 +64,21 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       // إرسال طلب تسجيل الدخول
       final loginData = await loginUseCase.execute(email, password, context);
-      emit(LoginSuccess(token: loginData.token, user: loginData.user));
+      
+      if (!isClosed) {
+        emit(LoginSuccess(token: loginData.token, user: loginData.user));
+        }
     } catch (error) {
-      NetworkErrorHandler.handleError(error, context); // معالجة الخطأ
-      emit(LoginFailure(error: error.toString()));
+      NetworkErrorHandler.handleError(error, context);
+      if (!isClosed) {
+        emit(LoginFailure(error: error.toString()));
+        }
     }
   }
 
   // دالة لعرض الـ Dialog
   void _showDialog(BuildContext context, String errorMessage) {
+     if (context is Element && !context.mounted) return;
     showDialog(
       context: context,
       builder: (BuildContext context) {

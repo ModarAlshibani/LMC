@@ -29,14 +29,17 @@ class User {
   String? emailVerifiedAt;
   String? role;
   List<String>? permissions;
+  OtherInfo? otherInfo;
 
-  User(
-      {this.id,
-        this.name,
-        this.email,
-        this.emailVerifiedAt,
-        this.role,
-        this.permissions});
+  User({
+    this.id,
+    this.name,
+    this.email,
+    this.emailVerifiedAt,
+    this.role,
+    this.permissions,
+    this.otherInfo,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -44,7 +47,14 @@ class User {
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
     role = json['role'];
-    permissions = json['permissions'].cast<String>();
+    permissions =
+        json['permissions'] != null
+            ? List<String>.from(json['permissions'])
+            : [];
+    otherInfo =
+        json['Other Info'] != null
+            ? new OtherInfo.fromJson(json['Other Info'])
+            : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +65,28 @@ class User {
     data['email_verified_at'] = this.emailVerifiedAt;
     data['role'] = this.role;
     data['permissions'] = this.permissions;
+    if (this.otherInfo != null) {
+      data['Other Info'] = this.otherInfo!.toJson();
+    }
+    return data;
+  }
+}
+
+class OtherInfo {
+  Null? photo;
+  Null? description;
+
+  OtherInfo({this.photo, this.description});
+
+  OtherInfo.fromJson(Map<String, dynamic> json) {
+    photo = json['Photo'];
+    description = json['Description'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Photo'] = this.photo;
+    data['Description'] = this.description;
     return data;
   }
 }
