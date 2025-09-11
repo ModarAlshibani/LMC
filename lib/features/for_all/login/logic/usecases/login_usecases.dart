@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../../../../core/helpers/shared_pref_helper.dart';
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/networking/api_service.dart';
@@ -30,6 +31,12 @@ class LoginUseCase {
         if (loginData.token != null) {
           await localStorage.saveToken(loginData.token!);
           await saveUserToken(loginData.token ?? '');
+
+        final user = response.data['user'];
+        if (user != null && user['role'] != null) {
+        final role = user['role']; // typically "Student" or "Teacher"
+        await saveUserRole(role);
+  }  
         }
         print("Login Done");
         return loginData;
@@ -44,4 +51,9 @@ class LoginUseCase {
 
 Future<void> saveUserToken(String token) async {
   await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
+}
+
+Future<void> saveUserRole(String role) async {
+  const storage = FlutterSecureStorage();
+  await storage.write(key: 'userRole', value: role);
 }

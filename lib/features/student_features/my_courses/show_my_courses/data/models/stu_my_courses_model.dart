@@ -28,31 +28,35 @@ class MyCoursesModelStu {
 class MyCoursesStu {
   int? id;
   String? teacherName;
-  int? languageId;
+  String? language;
   String? description;
   String? photo;
   String? status;
   String? level;
+  String? roomNumber;
   List<CourseSchedule>? courseSchedule;
+
 
   MyCoursesStu(
       {this.id,
       this.teacherName,
-      this.languageId,
+      this.language,
       this.description,
       this.photo,
       this.status,
       this.level,
+      this.roomNumber,
       this.courseSchedule});
 
   MyCoursesStu.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    teacherName = json['TeacherName'];
-    languageId = json['LanguageId'];
+    teacherName = json['Teacher Name'];
+    language = json['Language'];
     description = json['Description'];
     photo = json['Photo'];
     status = json['Status'];
     level = json['Level'];
+    roomNumber = json['Room Number'];
     if (json['course_schedule'] != null) {
       courseSchedule = <CourseSchedule>[];
       json['course_schedule'].forEach((v) {
@@ -64,12 +68,13 @@ class MyCoursesStu {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['TeacherName'] = this.teacherName;
-    data['LanguageId'] = this.languageId;
+    data['Teacher Name'] = this.teacherName;
+    data['Language'] = this.language;
     data['Description'] = this.description;
     data['Photo'] = this.photo;
     data['Status'] = this.status;
     data['Level'] = this.level;
+    data['Room Number'] = this.roomNumber;
     if (this.courseSchedule != null) {
       data['course_schedule'] =
           this.courseSchedule!.map((v) => v.toJson()).toList();

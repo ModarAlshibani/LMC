@@ -81,12 +81,40 @@ dependencies:
   just_audio_background: ^0.0.1-beta.17
   mime: ^2.0.0
   http_parser: ^4.1.2
+  mockito: ^5.4.5
+  bloc:
+  firebase_messaging: ^14.7.10
+  flutter_launcher_icons: ^0.14.4
+  table_calendar:
+  url_launcher: ^6.3.0
+  share_plus: ^10.0.0
+  path_provider: ^2.1.4
+  open_filex: ^4.5.0
+  permission_handler: ^11.3.1
+  http: ^0.13.6
+  pdf: 
+  printing: 
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-
+  bloc_test:
+  
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/LMC-LOGO.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/LMC-LOGO.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/LMC-LOGO.png"
+    icon_size: 48
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

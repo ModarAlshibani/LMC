@@ -6,19 +6,17 @@ class LoginResponse {
   LoginResponse({this.message, this.token, this.user});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    token = json['token'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    message = json['message'] as String?;
+    token = json['token'] as String?;
+    user = json['user'] != null ? User.fromJson(json['user'] as Map<String, dynamic>) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
-    data['token'] = this.token;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    return data;
+    final map = <String, dynamic>{};
+    map['message'] = message;
+    map['token'] = token;
+    if (user != null) map['user'] = user!.toJson();
+    return map;
   }
 }
 
@@ -26,7 +24,7 @@ class User {
   int? id;
   String? name;
   String? email;
-  String? emailVerifiedAt;
+  String? emailVerifiedAt; // keep as String?
   String? role;
   List<String>? permissions;
   OtherInfo? otherInfo;
@@ -41,52 +39,53 @@ class User {
     this.otherInfo,
   });
 
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
-    role = json['role'];
-    permissions =
-        json['permissions'] != null
-            ? List<String>.from(json['permissions'])
-            : [];
-    otherInfo =
-        json['Other Info'] != null
-            ? new OtherInfo.fromJson(json['Other Info'])
-            : null;
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      emailVerifiedAt: json['email_verified_at'] as String?, // API returns ISO string or null
+      role: json['role'] as String?,
+      permissions: (json['permissions'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      // Note: key has a space: "Other Info"
+      otherInfo: json['Other Info'] != null
+          ? OtherInfo.fromJson(json['Other Info'] as Map<String, dynamic>)
+          : null,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['role'] = this.role;
-    data['permissions'] = this.permissions;
-    if (this.otherInfo != null) {
-      data['Other Info'] = this.otherInfo!.toJson();
-    }
-    return data;
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['name'] = name;
+    map['email'] = email;
+    map['email_verified_at'] = emailVerifiedAt;
+    map['role'] = role;
+    if (permissions != null) map['permissions'] = permissions;
+    if (otherInfo != null) map['Other Info'] = otherInfo!.toJson();
+    return map;
   }
 }
 
 class OtherInfo {
-  Null? photo;
-  Null? description;
+  String? photo;       // maps "Photo"
+  String? description; // maps "Description"
 
   OtherInfo({this.photo, this.description});
 
-  OtherInfo.fromJson(Map<String, dynamic> json) {
-    photo = json['Photo'];
-    description = json['Description'];
+  factory OtherInfo.fromJson(Map<String, dynamic> json) {
+    return OtherInfo(
+      photo: json['Photo'] as String?,
+      description: json['Description'] as String?,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Photo'] = this.photo;
-    data['Description'] = this.description;
-    return data;
+    return {
+      'Photo': photo,
+      'Description': description,
+    };
   }
 }

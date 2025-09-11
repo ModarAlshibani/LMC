@@ -16,6 +16,7 @@ class GeneralTextFormField extends StatelessWidget {
     this.validator,
     this.fillColor,
     this.hintTextStyle, this.inputTextStyle,
+    this.onChanged
   });
 
   final InputBorder? focusedBorder;
@@ -29,12 +30,14 @@ class GeneralTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String?)? validator;
   final Color? fillColor;
+  final ValueChanged<String>? onChanged;
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+       onChanged: onChanged,
       decoration: InputDecoration(
         fillColor: fillColor ?? AppColors.backgroundColor.withOpacity(0),
         filled: true,

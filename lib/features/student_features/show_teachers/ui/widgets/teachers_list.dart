@@ -1,51 +1,25 @@
+// lib/features/student_features/show_teachers/ui/widgets/teachers_list.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/features/student_features/show_teachers/data/models/teacher_model.dart';
 import 'package:lmc_app/features/student_features/show_teachers/ui/widgets/teacher_outside.dart';
-import '../../logic/cubit/show_teachers_cubit.dart';
 
 class TeachersList extends StatelessWidget {
+  final List<Teachers> teachers;
+  const TeachersList({super.key, required this.teachers});
+
   @override
   Widget build(BuildContext context) {
-    context.read<ShowTeachersCubit>().fetchAllTeachers();
-
-    return BlocBuilder<ShowTeachersCubit, ShowTeachersState>(
-      builder: (context, state) {
-        if (state is ShowTeachersLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is ShowTeachersFailure) {
-          return Center(child: Text('Error: ${state.error}'));
-        } else if (state is ShowTeachersSuccess) {
-          final teachers = state.teachers; 
-          final isOdd = teachers.length % 2 != 0;
-          final itemCount = teachers.length ~/ 2 + (isOdd ? 1 : 0); 
-
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            itemCount: itemCount,
-            itemBuilder: (context, index) {
-              final int firstIndex = index * 2;
-              final int secondIndex = firstIndex + 1;
-
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TeacherOutside(teacher: teachers[firstIndex]),
-                    const SizedBox(width: 20),
-                    if (secondIndex < teachers.length)
-                      TeacherOutside(teacher: teachers[secondIndex])
-                    else
-                      const SizedBox(width: 150), // to maintain alignment
-                  ],
-                ),
-              );
-            },
-          );
-        }
-
-        return const Center(child: Text('No Teachers found.'));
-      },
+    return GridView.builder(
+      padding: EdgeInsets.zero,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12.w,
+        mainAxisSpacing: 12.h,
+        childAspectRatio: 145 / 180,
+      ),
+      itemCount: teachers.length,
+      itemBuilder: (_, i) => TeacherOutside(teacher: teachers[i]),
     );
   }
 }

@@ -1,26 +1,46 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/networking/api_service.dart';
 import 'package:lmc_app/core/routing/routes.dart';
-import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
 import 'package:lmc_app/features/for_all/announsments/ui/widgets/announcements_list.dart';
-import '../../../../../core/di/shared_pref.dart';
-import '../../../../../core/helpers/shared_pref_helper.dart';
+import 'package:lmc_app/features/for_all/drawer/ui/my_drawer.dart';
+import 'package:lmc_app/features/for_all/login/data/models/login_response.dart';
+import 'package:lmc_app/features/guest_features/drawer/ui/guest_drawer.dart';
 import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/widgets/general_text_form_field.dart';
-import '../../../../../core/widgets/glass_card.dart';
 import '../widgets/glass_inkwell.dart';
 import '../widgets/top_container.dart';
-import '../../../../for_all/login/ui/widgets/bottom_blur_container.dart';
 
-class GuestHomePageScreen extends StatelessWidget {
+class GuestHomePageScreen extends StatefulWidget {
   const GuestHomePageScreen({super.key});
+
+  @override
+  State<GuestHomePageScreen> createState() => _GuestHomePageScreenState();
+}
+
+class _GuestHomePageScreenState extends State<GuestHomePageScreen> {
+  bool isDrawerOpen = false;
+  late Future<User> user;
+
+  @override
+  void initState() {
+    super.initState();
+    user = ApiService().getUserName();
+  }
+
+  void toggleDrawer() {
+    setState(() {
+      isDrawerOpen = !isDrawerOpen;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: GuestDrawer(),
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Stack(
@@ -40,14 +60,29 @@ class GuestHomePageScreen extends StatelessWidget {
                   Container(
                     child: Row(
                       children: [
-                        Text(
-                          "Hi User ....",
-                          style: TextStyle(
-                            fontSize: 30.sp,
-                            color: AppColors.backgroundColor,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
+                        IconButton(
+                              onPressed: toggleDrawer,
+                              icon: Icon(Icons.menu),
+                              iconSize: 30,
+                              color: AppColors.backgroundColor,
+                            ),
+                        
+                            FutureBuilder<User>(
+                                future: user,
+                                builder: (context, userInfo){
+                                  if(userInfo.hasData){
+                                    return Text("Hi ${userInfo.data!.name}...",
+                                      style: TextStyle(
+                                          color: AppColors.backgroundColor,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w900),);
+                                  } else if(userInfo.hasError){
+                                    return Text("${userInfo.error}");
+                                  }else{
+                                    return const Center(child: CircularProgressIndicator(),);
+                                  }
+                                }
+                            ),
                         horizontalSpace(150.w),
                         Icon(
                           Icons.circle_notifications_outlined,
@@ -115,21 +150,35 @@ class GuestHomePageScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    GlassInkwell(
-                      firstRow: 'Take a',
-                      secondRow: 'placement',
-                      thirdRow: 'test',
-                      icon: 'assets/icons/placement_test.png',
-                    ),
-                    GlassInkwell(
-                      firstRow: 'Ask for a',
-                      secondRow: 'private',
-                      thirdRow: 'course',
-                      icon: 'assets/icons/private_course.png',
+                    InkWell(
+                      onTap:
+                          () => Navigator.pushNamed(
+                            context,
+                            Routes.placement_test_screen,
+                          ),
+                      child: GlassInkwell(
+                        firstRow: 'Take a',
+                        secondRow: 'placement',
+                        thirdRow: 'test',
+                        icon: 'assets/icons/placement_test.png',
+                      ),
                     ),
                     InkWell(
                       onTap:
-                          () => Navigator.pushReplacementNamed(
+                          () => Navigator.pushNamed(
+                            context,
+                            Routes.private_course,
+                          ),
+                      child: GlassInkwell(
+                        firstRow: 'Ask for a',
+                        secondRow: 'private',
+                        thirdRow: 'course',
+                        icon: 'assets/icons/private_course.png',
+                      ),
+                    ),
+                    InkWell(
+                      onTap:
+                          () => Navigator.pushNamed(
                             context,
                             Routes.available_courses,
                           ),
@@ -162,9 +211,41 @@ class GuestHomePageScreen extends StatelessWidget {
               right: 30,
               child: Container(height: 320, child: AnnouncementsList()),
             ),
+            if (isDrawerOpen)
+            GestureDetector(
+              onTap: toggleDrawer,
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 300),
+                opacity: 1.0,
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                  child: Container(
+                    color: Colors.black.withOpacity(0.2),
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ),
+            ),
+
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+            top: 0,
+            bottom: 0,
+            left: isDrawerOpen ? 0 : -300,
+            child: Container(
+              width: 300,
+              height: double.infinity,
+              color: AppColors.backgroundColor,
+              child: GuestDrawer(),
+            ),
+          ),
           ],
         ),
       ),
+      
     );
+    
   }
 }

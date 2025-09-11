@@ -6,7 +6,8 @@ import '../core/theming/colors.dart';
 
 class LmcApp extends StatelessWidget {
   final AppRouter appRouter;
-  const LmcApp({super.key, required this.appRouter});
+    final String initialRoute;
+  const LmcApp({super.key, required this.appRouter, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class LmcApp extends StatelessWidget {
         ),
 
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.loginScreen,
+        initialRoute: initialRoute,
       ),
     );
   }

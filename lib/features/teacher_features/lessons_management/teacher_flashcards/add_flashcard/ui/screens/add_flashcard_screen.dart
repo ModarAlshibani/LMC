@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lmc_app/core/helpers/spacing.dart';
 import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/core/theming/colors.dart';
-import 'package:lmc_app/core/widgets/App_button.dart';
 import 'package:lmc_app/core/widgets/general_text_form_field.dart';
-import 'package:lmc_app/core/widgets/glass_card.dart';
-import 'package:lmc_app/features/guest_features/guest_homePage/ui/widgets/top_container.dart';
+import 'package:lmc_app/core/widgets/custom_app_bar.dart';
 import 'package:lmc_app/features/teacher_features/lessons_management/teacher_flashcards/add_flashcard/logic/cubit/add_flashcard_cubit.dart';
 
 class AddFlashcardScreen extends StatefulWidget {
@@ -26,10 +21,10 @@ class _AddFlashcardScreenState extends State<AddFlashcardScreen> {
   final TextEditingController _translationController = TextEditingController();
 
   void _addFlashcard(BuildContext context) {
-    final content = _contentController.text;
-    final translation = _translationController.text;
+    final content = _contentController.text.trim();
+    final translation = _translationController.text.trim();
 
-    if (content == null || translation == null) {
+    if (content.isEmpty || translation.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Content and Translation can't be empty!")),
       );
@@ -69,143 +64,226 @@ class _AddFlashcardScreenState extends State<AddFlashcardScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Stack(
-            children: [
-              Positioned(
-                top: -110.h,
-                left: -30.w,
-                right: -30.w,
-                child: TopContainer(height: 300.h, border: true),
-              ),
+          backgroundColor: AppColors.background2,
+          resizeToAvoidBottomInset: true,
+          body: SafeArea(
+            child: Column(
+              children: [
+                CustomAppBar(title: "Add Flashcard"),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 10.h,
+                      ),
+                      padding: EdgeInsets.all(20.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.backgroundColor,
+                        borderRadius: BorderRadius.circular(24.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 16,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: MediaQuery.of(context).size.height - 200.h,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Info section
+                              Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(16.w),
+                                decoration: BoxDecoration(
+                                  color: AppColors.lmcBlue.withOpacity(0.05),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  border: Border.all(
+                                    color: AppColors.lmcBlue.withOpacity(0.1),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Text(
+                                  "Add new flashcard data to help students learn better",
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.lmcBlue,
+                                  ),
+                                ),
+                              ),
 
-              Positioned(
-                top: 90.h,
-                left: 50.w,
-                right: 50.w,
-                child: Center(
-                  child: Text(
-                    "Add Flashcard",
-                    style: TextStyle(
-                      color: AppColors.backgroundColor,
-                      fontSize: 45,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ),
+                              SizedBox(height: 24.h),
 
-              Positioned(
-                top: 250.h,
-                left: 30.w,
-                right: 30.w,
-                child: Column(
-                  children: [
-                    GlassContainer(
-                      width: double.infinity,
-                      height: 100.h,
-                      topLeft: 15,
-                      topRight: 15,
-                      bottomRight: 15,
-                      bottomLeft: 15,
-                      firstColor: AppColors.lmcBlue,
-                      secondColor: AppColors.lightLmcBlue,
-                      firstBlurOpacity: 0.25,
-                      secondBlurOpacity: 0.15,
-                      withBorder: false,
+                              Text(
+                                "Flashcard Content",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.lmcBlue,
+                                ),
+                              ),
+                              SizedBox(height: 16.h),
 
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          "Add teh new flashcard data:",
-                          style: TextStyle(
-                            color: AppColors.lmcBlue,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
+                              GeneralTextFormField(
+                                controller: _contentController,
+                                hintText: "Enter flashcard content",
+                                hintTextStyle: TextStyle(
+                                  color: AppColors.lmcBlue.withOpacity(0.7),
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: AppColors.lmcBlue.withOpacity(0.2),
+                                    width: 1.3,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: AppColors.lmcOrange.withOpacity(0.8),
+                                    width: 1.3,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                ),
+                                inputTextStyle: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.lmcBlue,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.lightbulb_outline,
+                                  color: AppColors.lmcBlue.withOpacity(0.7),
+                                  size: 24.sp,
+                                ),
+                              ),
+
+                              SizedBox(height: 24.h),
+
+                              Text(
+                                "Content Translation",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.lmcBlue,
+                                ),
+                              ),
+                              SizedBox(height: 16.h),
+
+                              GeneralTextFormField(
+                                controller: _translationController,
+                                hintText: "Enter content translation",
+                                hintTextStyle: TextStyle(
+                                  color: AppColors.lmcBlue.withOpacity(0.7),
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: AppColors.lmcBlue.withOpacity(0.2),
+                                    width: 1.3,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: AppColors.lmcOrange.withOpacity(0.8),
+                                    width: 1.3,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                ),
+                                inputTextStyle: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.lmcBlue,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.translate,
+                                  color: AppColors.lmcBlue.withOpacity(0.7),
+                                  size: 24.sp,
+                                ),
+                              ),
+
+                              Spacer(),
+
+                              // Add some bottom padding for keyboard space
+                              SizedBox(height: 20.h),
+
+                              // Button or Loading Indicator
+                              if (state is AddFlashcardLoading)
+                                Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lmcOrange.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(16.r),
+                                    border: Border.all(
+                                      color: AppColors.lmcOrange.withOpacity(
+                                        0.3,
+                                      ),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.lmcOrange,
+                                    ),
+                                  ),
+                                )
+                              else
+                                Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.lmcOrange,
+                                    borderRadius: BorderRadius.circular(16.r),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColors.lmcOrange.withOpacity(
+                                          0.3,
+                                        ),
+                                        blurRadius: 12,
+                                        offset: Offset(0, 4),
+                                      ),
+                                    ],
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () => _addFlashcard(context),
+                                    style: TextButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 16.h,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          16.r,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "Add Flashcard",
+                                      style: TextStyle(
+                                        color: AppColors.backgroundColor,
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    verticalSpace(20.h),
-                    GeneralTextFormField(
-                      hintText: "Flashcard Content",
-                      hintTextStyle: TextStyle(color: AppColors.greyBorder),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.greyBorder,
-                          width: 1.4,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.lmcOrange,
-                          width: 1.4,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      inputTextStyle: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w800,
-                        color: AppColors.lmcBlue,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.money_outlined,
-                        color: AppColors.lmcBlue,
-                        size: 25.sp,
-                      ),
-                      controller: _contentController,
-                    ),
-                    verticalSpace(20.h),
-
-                    GeneralTextFormField(
-                      hintText: "Content Translation",
-                      hintTextStyle: TextStyle(color: AppColors.greyBorder),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.greyBorder,
-                          width: 1.4,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppColors.lmcOrange,
-                          width: 1.4,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      inputTextStyle: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w800,
-                        color: AppColors.lmcBlue,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.money_outlined,
-                        color: AppColors.lmcBlue,
-                        size: 25.sp,
-                      ),
-                      controller: _translationController,
-                    ),
-
-                    verticalSpace(20.h),
-
-                    verticalSpace(20.h),
-                    if (state is AddFlashcardLoading)
-                      CircularProgressIndicator()
-                    else
-                      AppTextButton(
-                        buttonText: "Add Flashcard",
-                        textStyle: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.background2,
-                        ),
-                        onPressed: () => _addFlashcard(context),
-                        backgroundColor: AppColors.lmcBlue,
-                      ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

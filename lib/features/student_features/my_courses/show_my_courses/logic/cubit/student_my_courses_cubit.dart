@@ -15,9 +15,9 @@ class StudentMyCoursesCubit extends Cubit<StudentMyCoursesState> {
 
     try {
       final myCourses = await getStudentMyCoursesUsecase.execute();
-      emit(StudentMyCoursesSuccess(myCourses));
+      if(! isClosed){emit(StudentMyCoursesSuccess(myCourses));}
     } catch (error) {
-      emit(StudentMyCoursesFailure(error.toString()));
+      if(! isClosed){emit(StudentMyCoursesFailure(error.toString()));}
     }
   }
 }

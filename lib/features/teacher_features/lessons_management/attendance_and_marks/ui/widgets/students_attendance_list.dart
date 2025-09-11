@@ -10,7 +10,7 @@ import 'package:lmc_app/features/teacher_features/lessons_management/attendance_
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_course_lessons/data/models/tacher_course_lessons_model.dart';
 
 class StudentsCardsList extends StatelessWidget {
-  final Lessons lesson;
+  final TeacherLessons lesson;
 
   const StudentsCardsList({super.key, required this.lesson});
 

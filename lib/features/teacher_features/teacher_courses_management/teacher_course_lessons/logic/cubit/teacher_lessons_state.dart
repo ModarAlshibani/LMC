@@ -15,7 +15,7 @@ class LessonsInitial extends TeacherLessonsState {}
 class LessonsLoading extends TeacherLessonsState {}
 
 class LessonsSuccess extends TeacherLessonsState {
-  final List<Lessons> myLessons;
+  final List<TeacherLessons> myLessons;
 
   const LessonsSuccess(this.myLessons);
 

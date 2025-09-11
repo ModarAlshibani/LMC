@@ -1,15 +1,15 @@
 class TacherCourseLessonsModel {
   String? courseId;
-  List<Lessons>? lessons;
+  List<TeacherLessons>? lessons;
 
   TacherCourseLessonsModel({this.courseId, this.lessons});
 
   TacherCourseLessonsModel.fromJson(Map<String, dynamic> json) {
     courseId = json['CourseId'];
     if (json['Lessons'] != null) {
-      lessons = <Lessons>[];
+      lessons = <TeacherLessons>[];
       json['Lessons'].forEach((v) {
-        lessons!.add(new Lessons.fromJson(v));
+        lessons!.add(new TeacherLessons.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class TacherCourseLessonsModel {
   }
 }
 
-class Lessons {
+class TeacherLessons {
   int? id;
   int? courseId;
   String? title;
@@ -35,7 +35,7 @@ class Lessons {
   String? updatedAt;
   Course? course;
 
-  Lessons(
+  TeacherLessons(
       {this.id,
       this.courseId,
       this.title,
@@ -46,7 +46,7 @@ class Lessons {
       this.updatedAt,
       this.course});
 
-  Lessons.fromJson(Map<String, dynamic> json) {
+  TeacherLessons.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     courseId = json['CourseId'];
     title = json['Title'];

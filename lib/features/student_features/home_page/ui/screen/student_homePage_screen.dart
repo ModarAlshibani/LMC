@@ -152,11 +152,18 @@ class _StudentHomePageScreenState extends State<StudentHomePageScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      GlassInkwell(
-                        firstRow: 'Take a',
-                        secondRow: 'placement',
-                        thirdRow: 'test',
-                        icon: 'assets/icons/placement_test.png',
+                      InkWell(
+                        onTap:
+                          () => Navigator.pushNamed(
+                            context,
+                            Routes.placement_test_screen,
+                          ),
+                        child: GlassInkwell(
+                          firstRow: 'Take a',
+                          secondRow: 'placement',
+                          thirdRow: 'test',
+                          icon: 'assets/icons/placement_test.png',
+                        ),
                       ),
                       InkWell(
                         onTap:

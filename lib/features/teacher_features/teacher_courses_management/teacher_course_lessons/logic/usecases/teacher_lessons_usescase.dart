@@ -6,7 +6,7 @@ class GetTeacherLessonsUsecase {
 
   GetTeacherLessonsUsecase(this.apiService);
 
-  Future<List<Lessons>> execute(int courseId) async {
+  Future<List<TeacherLessons>> execute(int courseId) async {
     try {
       // Call the API service to get all availableCourses
       final myLessons = await apiService.getTeacherLessons(courseId);

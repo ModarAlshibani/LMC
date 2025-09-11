@@ -6,6 +6,20 @@ import '../theming/colors.dart';
 import '../widgets/glass_card.dart';
 
 class NetworkErrorHandler {
+    static String extractErrorMessage(dynamic error) {
+    if (error is DioException) {
+      return _handleDioException(error);
+    } else if (error is ApiException) {
+      return error.message;
+    } else if (error is NetworkException) {
+      return error.message;
+    } else if (error is Exception) {
+      return error.toString();
+    } else if (error is Error) {
+      return error.toString();
+    }
+    return 'An unexpected error occurred. Please try again.';
+  }
   static Exception handleError(dynamic error, BuildContext context) {
     String errorMessage = 'An unexpected error occurred. Please try again.';
 

@@ -1,3 +1,4 @@
+// lib/features/student_features/show_teachers/logic/show_teachers_cubit.dart
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -13,12 +14,11 @@ class ShowTeachersCubit extends Cubit<ShowTeachersState> {
 
   Future<void> fetchAllTeachers() async {
     emit(ShowTeachersLoading());
-
     try {
       final teachers = await getTeachersListUsecase.execute();
       if (!isClosed) emit(ShowTeachersSuccess(teachers));
-      } catch (error) {
-        if (!isClosed) emit(ShowTeachersFailure(error.toString()));
-      }
+    } catch (error) {
+      if (!isClosed) emit(ShowTeachersFailure(error.toString()));
+    }
   }
 }

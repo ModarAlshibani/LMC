@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lmc_app/core/di/dependency_injection.dart';
 import 'package:lmc_app/core/theming/colors.dart';
 import 'package:lmc_app/features/for_all/announsments/logic/cubit/all_announcements_cubit.dart';
+import 'package:lmc_app/features/for_all/login/logic/cubit/logout_cubit.dart';
+import 'package:lmc_app/features/for_all/login/logic/cubit/logout_state.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/logic/cubit/my_courses_teacher_cubit.dart';
 import 'package:lmc_app/features/teacher_features/teacher_courses_management/teacher_courses/ui/screens/my_courses_teacher_screen.dart';
 import 'package:lmc_app/features/teacher_features/teacher_homepage/teacher_homepage.dart';
@@ -30,25 +33,66 @@ class _TeacherNavBarState extends State<TeacherNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background2,
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: AppColors.lmcBlue,
-        buttonBackgroundColor: AppColors.lmcOrange,
-        animationDuration: Duration(milliseconds: 300),
-        items: <Widget>[
-          Icon(Icons.home, size: 30, color: AppColors.backgroundColor),
-          Icon(Icons.play_lesson, size: 30, color: AppColors.backgroundColor),
-          Icon(Icons.person, size: 30, color: AppColors.backgroundColor),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+    return WillPopScope(
+    onWillPop: () async {
+      final shouldExit = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Exit App"),
+          content: Text("Are you sure you want to exit the app?"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text("No"),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text("Yes"),
+            ),
+          ],
+        ),
+      );
+       if (shouldExit ?? false) {
+       SystemNavigator.pop(); // ✅ exits app properly on Android
+  }
+
+  return false; // prevents further back navigation
+    },
+      child: BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthLoggedOut) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            '/loginScreen',
+            (route) => false,
+          );
+        } else if (state is AuthLogoutFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Logout failed: ${state.error}')),
+          );
+        }
         },
+        child: Scaffold(
+          backgroundColor: AppColors.background2,
+          bottomNavigationBar: CurvedNavigationBar(
+            backgroundColor: Colors.transparent,
+            color: AppColors.lmcBlue,
+            buttonBackgroundColor: AppColors.lmcOrange,
+            animationDuration: Duration(milliseconds: 300),
+            items: <Widget>[
+              Icon(Icons.home, size: 30, color: AppColors.backgroundColor),
+              Icon(Icons.play_lesson, size: 30, color: AppColors.backgroundColor),
+              Icon(Icons.person, size: 30, color: AppColors.backgroundColor),
+            ],
+            onTap: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          ),
+          body: _pages[_currentIndex],
+        ),
       ),
-      body: _pages[_currentIndex],
     );
   }
 }

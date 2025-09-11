@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lmc_app/core/routing/routes.dart';
 import 'package:lmc_app/features/for_all/drawer/ui/my_drawer.dart';
 
 import '../../../../../core/helpers/spacing.dart';
@@ -136,21 +137,36 @@ class TeacherHomepage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    GlassInkwell(
-                      firstRow: 'Reserve',
-                      secondRow: 'a',
-                      thirdRow: 'classroom',
-                      icon: 'assets/icons/placement_test.png',
+                    InkWell(
+                      onTap:
+                            () => Navigator.pushNamed(
+                              context,
+                              Routes.calendar_screen,
+                            ),
+                      child: GlassInkwell(  
+                        firstRow: 'Show',
+                        secondRow: 'todays',
+                        thirdRow: 'schedule',
+                        icon: 'assets/icons/placement_test.png',
+                      ),
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         print("navigate to complaints screen");
                       },
-                      child: GlassInkwell(
-                        firstRow: 'Submit',
-                        secondRow: 'a',
-                        thirdRow: 'Complaint',
-                        icon: 'assets/icons/private_course.png',
+                      child: InkWell(
+                        onTap:
+                            () => Navigator.pushNamed(
+                              context,
+                              Routes.my_complaints,
+                            ),
+
+                        child: GlassInkwell(
+                          firstRow: 'Submit',
+                          secondRow: 'a',
+                          thirdRow: 'Complaint',
+                          icon: 'assets/icons/private_course.png',
+                        ),
                       ),
                     ),
                   ],

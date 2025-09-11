@@ -10,7 +10,7 @@ import 'package:lmc_app/features/teacher_features/teacher_courses_management/tea
 import '../../../../../../core/theming/colors.dart';
 
 class TeacherLessonDetails extends StatelessWidget {
-  final Lessons lesson_details;
+  final dynamic lesson_details;
 
   const TeacherLessonDetails({super.key, required this.lesson_details});
 
